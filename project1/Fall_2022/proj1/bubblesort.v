@@ -93,13 +93,17 @@ module bubblesort (
       swap <= 1
       state <= 5
     end else if (state == 5) begin
-      temp[i] <= dmem[i]
-      dmem[i] <= dmem[i+1] 
+      m_we <= 1
+      m_wa <= i+1
+      m_din <= temp1
       state <= 6
     end else if (state == 6) begin
-      dmem[i] <= temp[i]
+      m_we <= 1
+      m_wa <= i
+      m_din <= temp2
       state <= 7
     end else if (state == 7) begin
+      m_we <= 0
       counter <= counter + 1;
       if (counter >= 100)
         state <= 0
