@@ -1,3 +1,5 @@
+// TRY THIS THING
+
 module bubblesort (
     input wire clk,
     input wire reset,     
@@ -74,41 +76,45 @@ module bubblesort (
   // State 6 - If swap, mem[i+1] = temp
   // State 7 - Checking/Incrementing Counter
 	always @(posedge clk or posedge reset) begin
-  if (we) begin 
     if (state == 1) begin
-      m_ra <= i
-      state <=2
+      m_ra = i;
+      state = 2;
     end else if (state == 2) begin
-        m_ra <= i + 1
-        temp1 <= m_dout
-        state <= 3
+        temp1 = m_dout;
+        m_ra = i + 1;
+        state = 3;
     end else if (state == 3) begin
-        temp2 <= m_dout
+        temp2 = m_dout;
         if (temp1 > temp2) begin
-            state <= 4
+            state = 5;
         end else begin
-            state <= 7
+            state = 7;
         end
-    end else if (state == 4) begin
-      swap <= 1
-      state <= 5
     end else if (state == 5) begin
-      m_we <= 1
-      m_wa <= i+1
-      m_din <= temp1
-      state <= 6
+      m_we = 1;
+      m_wa = i+1;
+      m_din = temp1;
+      state = 6;
     end else if (state == 6) begin
-      m_we <= 1
-      m_wa <= i
-      m_din <= temp2
-      state <= 7
+      m_we = 1;
+      m_wa = i;
+      m_din = temp2;
+      state = 7;
     end else if (state == 7) begin
-      m_we <= 0
-      counter <= counter + 1;
-      if (counter >= 100)
-        state <= 0
+      m_we = 0;
+      counter = counter + 1;
+      if (i == 9) 
+        begin
+        i = 0;
+        end
+      else 
+        begin
+        i = i + 1;
+        end
+      if (counter >= 99)
+        state = 0;
       else
-        state <= 1
+        state = 1;
     end 
-end 
+end
 endmodule
