@@ -33,7 +33,7 @@ module bubblesort (
     reg[3:0] state;
     reg[15:0] temp1;
     reg[15:0] temp2;
-  	reg[1:0] swap;
+    reg[1:0] swap;
     // Initialize the memory
     initial begin
         $readmemh("ex1.mem", dmem);
@@ -77,10 +77,18 @@ module bubblesort (
   if (we) begin 
     if (state == 1) begin
       m_ra <= i
+      state <=2
     end else if (state == 2) begin
-      
+        m_ra <= i + 1
+        temp1 <= m_dout
+        state <= 3
     end else if (state == 3) begin
-      
+        temp2 <= m_dout
+        if (temp1 > temp2) begin
+            state <= 4
+        end else begin
+            state <= 7
+        end
     end else if (state == 4) begin
       swap <= 1
       state <= 5
