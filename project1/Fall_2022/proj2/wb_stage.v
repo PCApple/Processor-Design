@@ -19,7 +19,6 @@ module WB_STAGE(
   wire  [`DBITS-1:0] sxt_imm_WB;
   wire  [`DBITS-1:0] rs1_WB;
   wire  [`DBITS-1:0] rs2_WB;
-  wire  [`DBITS-1:0] output_WB;
 
   
   wire wr_reg_WB; // is this instruction writing into a register file? 
@@ -43,7 +42,7 @@ module WB_STAGE(
                                 sxt_imm_WB,
                                 rs1_WB,
                                 rs2_WB,
-                                output_WB,
+                                regval_WB,
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
@@ -52,22 +51,9 @@ module WB_STAGE(
         
 
 
-
+assign wregno_WB = inst_WB[11:7];
 // we send register write (and CSR register) information to DE stage 
-assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} ;  
-always @ (posedge clk) begin
-  if (op_I_WB == `ADD_I) begin
-    wr_reg_WB <= 1;
-    wr_regno_WB <= inst_WB[11:7];
-    regval_WB <= output_WB;
-  end else if (op_I_WB == `ADDI_I) begin
-    wr_reg_WB <= 1;
-    wr_regno_WB <= inst_WB[11:7];
-    regval_WB <= output_WB;
-  end else begin
-    wr_reg_WB = 0;
-  end
-end
+assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB};
 
 // this code need to be commented out when we synthesize the code later 
     // special workaround to get tests Pass/Fail status

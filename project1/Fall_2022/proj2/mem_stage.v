@@ -47,6 +47,7 @@ module MEM_STAGE(
   wire [`DBITS-1:0] wr_val_MEM;  // memory write value 
   wire wr_mem_MEM;  // is this instruction writing a value into memory? 
   // Read from D-MEM  (read code is completed if there is a correct memaddr_MEM ) 
+  // asynchronous read
   assign rd_val_MEM = dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]];
 
   
@@ -54,7 +55,7 @@ module MEM_STAGE(
   always @ (posedge clk) begin
   if (wr_mem_MEM)
     // fill out the correct signal name to do write operations 
-      
+      //synchronous write
       dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= wr_val_MEM; 
   end
 

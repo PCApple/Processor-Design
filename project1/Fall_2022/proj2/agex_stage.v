@@ -59,9 +59,9 @@ module AGEX_STAGE(
   
   case (op_I_AGEX)
     `ADDI_I:
-      output_AGEX <= rs1 + sxt_imm_AGEX;
+      output_AGEX <= rs1_AGEX + sxt_imm_AGEX;
     `ADD_I:
-      output_AGEX <= rs1 + rs2;
+      output_AGEX <= rs1_AGEX + rs2_AGEX;
 	 endcase 
    
   end 

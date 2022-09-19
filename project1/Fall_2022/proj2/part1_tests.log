@@ -1,15 +1,35 @@
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
-make: Nothing to be done for 'tests'.
+-- VERILATE ----------------
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF'
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
-make: Nothing to be done for 'tests'.
+-- VERILATE ----------------
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF'
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
-make: Nothing to be done for 'tests'.
+-- VERILATE ----------------
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF'
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
-make: Nothing to be done for 'tests'.
+-- VERILATE ----------------
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF'
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
-make: Nothing to be done for 'tests'.
+-- VERILATE ----------------
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF'

@@ -98,7 +98,6 @@ module FE_STAGE(
             FE_latch <= FE_latch;
             // put more here
           else 
-            inst_FE <= imem[PC_FE_latch];
             FE_latch <= FE_latch_contents; 
             // put more here
         end  
