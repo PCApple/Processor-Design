@@ -81,8 +81,7 @@ module FE_STAGE(
       end 
     else 
       PC_FE_latch <= PC_FE_latch;
-
-  //put more here
+      //put more here
   end
   
 
@@ -96,12 +95,11 @@ module FE_STAGE(
         begin 
          // this is just an example. you need to expand the contents of if/else
          if  (stall_pipe_FE)
-            FE_latch <= FE_latch; 
+            FE_latch <= FE_latch;
             // put more here
-            FE_latch_out = 0;
           else 
+            inst_FE <= imem[PC_FE_latch];
             FE_latch <= FE_latch_contents; 
-            
             // put more here
         end  
   end

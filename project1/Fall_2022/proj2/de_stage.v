@@ -194,18 +194,19 @@ module DE_STAGE(
     `S_immediate: 
       sxt_imm_DE =  {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[11:8], inst_DE[7]};  
     `B_immediate: 
-      sxt_imm_DE = {{19{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 0};  
+      sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0};  //20 not 19
     `U_immediate: 
-      sxt_imm_DE = {{1{inst_DE[31]}}, inst_DE[30:20], inst_DE[19:12], 0};  
+      sxt_imm_DE = {inst_DE[31], inst_DE[30:20], inst_DE[19:12], 12'b0};  
     `J_immediate: 
-      sxt_imm_DE = {{11{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 0};  // jumps
+      sxt_imm_DE = {{11{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};  // jumps
       
     default:
       sxt_imm_DE = 32'b0; 
     endcase  
   end 
    wire wr_reg_WB; 
- 
+ reg  [`DBITS-1:0] reg_val_1;
+ reg  [`DBITS-1:0] reg_val_2;
  /* this signal is passed from WB stage */ 
   wire wr_reg_WB; // is this instruction writing into a register file? 
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
@@ -226,7 +227,7 @@ module DE_STAGE(
             inst_DE,
             PC_DE, 
             pcplus_DE,
-            inst_count_DE, 
+            inst_count_DE,
             bus_canary_DE 
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
 
@@ -240,6 +241,7 @@ module DE_STAGE(
                                   pcplus_DE,
                                   op_I_DE,
                                   inst_count_DE, 
+                                  sxt_imm_DE,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
@@ -316,6 +318,7 @@ module DE_STAGE(
         DE_latch <= {`DE_latch_WIDTH{1'b0}};
       else
           DE_latch <= DE_latch_contents;
+
      end 
   end
 

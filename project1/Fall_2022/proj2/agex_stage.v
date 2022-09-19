@@ -23,7 +23,12 @@ module AGEX_STAGE(
   wire [`DBITS-1:0] inst_count_AGEX; 
   wire [`DBITS-1:0] pcplus_AGEX; 
   wire [`IOPBITS-1:0] op_I_AGEX;
-  reg br_cond_AGEX; // 1 means a branch condition is satisified. 0 means a branch condition is not satisifed 
+  reg br_cond_AGEX; // 1 means a branch condition is satisified. 0 means a branch condition is not satisifed
+
+  wire [`DBITS-1:0] sxt_imm_AGEX; // for the immediate value 
+  wire [`DBITS-1:0] rs1_AGEX; // rs1 value
+  wire [`DBITS-1:0] rs2_AGEX; // rs2 value
+  reg [`DBITS-1:0] output_AGEX; // returning value from ALU ops
 
 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
@@ -53,11 +58,10 @@ module AGEX_STAGE(
   always @ (*) begin
   
   case (op_I_AGEX)
-    `ADD_I: 
-       
     `ADDI_I:
-      AGEX_latch_out = ;
-
+      output_AGEX <= rs1 + sxt_imm_AGEX;
+    `ADD_I:
+      output_AGEX <= rs1 + rs2;
 	 endcase 
    
   end 
@@ -78,16 +82,23 @@ module AGEX_STAGE(
     PC_AGEX,
     pcplus_AGEX,
     op_I_AGEX,
-    inst_count_AGEX, 
+    inst_count_AGEX,
+    sxt_imm_AGEX,
+    rs1_AGEX,
+    rs2_AGEX,     
             // more signals might need
     bus_canary_AGEX
   } = from_DE_latch;    
  
   assign AGEX_latch_contents = {
-    inst_AGEX,
+    inst_AGEX,  // passed from inst_de to here
     PC_AGEX,
     op_I_AGEX,
-    inst_count_AGEX, 
+    inst_count_AGEX,
+    sxt_imm_AGEX, 
+    rs1_AGEX,
+    rs2_AGEX,
+    output_AGEX,
             // more signals might need
     bus_canary_AGEX     
   }; 

@@ -13,6 +13,8 @@ module MEM_STAGE(
   // D-MEM
   (* ram_init_file = `IDMEMINITFILE *)
   reg [`DBITS-1:0] dmem[`DMEMWORDS-1:0];
+
+  
  
  // DMEM and IMEM should contains the same contents 
  initial begin
@@ -30,6 +32,10 @@ module MEM_STAGE(
   wire [`DBITS-1:0] inst_count_MEM; 
   wire [`INSTBITS-1:0] inst_MEM; 
   wire [`DBITS-1:0] PC_MEM;
+  wire [`DBITS-1:0] sxt_imm_MEM;
+  wire [`DBITS-1:0] rs1_MEM;
+  wire [`DBITS-1:0] rs2_MEM;
+  wire [`DBITS-1:0] output_MEM;
  
 
    wire [`BUS_CANARY_WIDTH-1:0] bus_canary_MEM;
@@ -58,8 +64,12 @@ module MEM_STAGE(
                                 inst_MEM,
                                 PC_MEM,
                                 op_I_MEM,
-                                inst_count_MEM, 
-                                 // more signals might need
+                                inst_count_MEM,
+                                sxt_imm_MEM,
+                                rs1_MEM,
+                                rs2_MEM,
+                                output_MEM,                                                                
+                                
                                  bus_canary_MEM
                                  } = from_AGEX_latch;  
  
@@ -69,7 +79,11 @@ module MEM_STAGE(
                                 inst_MEM,
                                 PC_MEM,
                                 op_I_MEM,
-                                inst_count_MEM, 
+                                inst_count_MEM,
+                                sxt_imm_MEM,
+                                rs1_MEM,
+                                rs2_MEM,
+                                output_MEM, 
                                         // more signals might need    
                               bus_canary_MEM                   
    }; 

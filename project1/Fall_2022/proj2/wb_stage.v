@@ -16,9 +16,14 @@ module WB_STAGE(
   wire [`DBITS-1:0] PC_WB;
   wire [`DBITS-1:0] inst_count_WB; 
   wire [`BUS_CANARY_WIDTH-1:0] bus_canary_WB;
+  wire  [`DBITS-1:0] sxt_imm_WB;
+  wire  [`DBITS-1:0] rs1_WB;
+  wire  [`DBITS-1:0] rs2_WB;
+  wire  [`DBITS-1:0] output_WB;
 
   
   wire wr_reg_WB; // is this instruction writing into a register file? 
+  
   
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
   wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
@@ -35,6 +40,10 @@ module WB_STAGE(
                                 PC_WB,
                                 op_I_WB,
                                 inst_count_WB, 
+                                sxt_imm_WB,
+                                rs1_WB,
+                                rs2_WB,
+                                output_WB,
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
