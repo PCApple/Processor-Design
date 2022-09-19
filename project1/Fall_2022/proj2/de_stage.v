@@ -205,8 +205,7 @@ module DE_STAGE(
     endcase  
   end 
    wire wr_reg_WB; 
- reg  [`DBITS-1:0] reg_val_1;
- reg  [`DBITS-1:0] reg_val_2;
+// Our Edit: adding reg_val_1 and reg_val_2 and always block
  /* this signal is passed from WB stage */ 
   wire wr_reg_WB; // is this instruction writing into a register file? 
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
@@ -242,6 +241,8 @@ module DE_STAGE(
                                   op_I_DE,
                                   inst_count_DE, 
                                   sxt_imm_DE,
+                                  regs[inst_DE[19:15]],
+                                  regs[inst_DE[24:20]],
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 

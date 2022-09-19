@@ -55,6 +55,19 @@ module WB_STAGE(
 
 // we send register write (and CSR register) information to DE stage 
 assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} ;  
+always @ (posedge clk) begin
+  if (op_I_WB == `ADD_I) begin
+    wr_reg_WB <= 1;
+    wr_regno_WB <= inst_WB[11:7];
+    regval_WB <= output_WB;
+  end else if (op_I_WB == `ADDI_I) begin
+    wr_reg_WB <= 1;
+    wr_regno_WB <= inst_WB[11:7];
+    regval_WB <= output_WB;
+  end else begin
+    wr_reg_WB = 0;
+  end
+end
 
 // this code need to be commented out when we synthesize the code later 
     // special workaround to get tests Pass/Fail status
