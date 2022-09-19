@@ -198,8 +198,8 @@
 
 `define AGEX_latch_WIDTH   (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `DBITS+`BUS_CANARY_WIDTH)
     // (inst, PC, op_I, inst_count, sxt_imm, regs[0], regs[0], output, bus_canary)
-`define MEM_latch_WIDTH    (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS +  `DBITS + `DBITS + `BUS_CANARY_WIDTH) 
-    // (inst_DE, PC_DE, op_I_DE, inst_count_DE, sxt_imm_DE, regs[0], regs[0], bus_canary_DE)
+`define MEM_latch_WIDTH    (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS +  `DBITS + `DBITS + `DBITS + `BUS_CANARY_WIDTH) 
+    // (inst_DE, PC_DE, op_I_DE, inst_count_DE, sxt_imm_DE, regs[0], regs[0], output, bus_canary_DE)
 
 `define from_DE_to_FE_WIDTH  1 
 `define from_AGEX_to_FE_WIDTH 1
