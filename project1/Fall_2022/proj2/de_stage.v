@@ -198,7 +198,7 @@ module DE_STAGE(
     `U_immediate: 
       sxt_imm_DE = {inst_DE[31], inst_DE[30:20], inst_DE[19:12], 12'b0};  
     `J_immediate: 
-      sxt_imm_DE = {{11{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};  // jumps
+      sxt_imm_DE = {{12{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};  // jumps
       
     default:
       sxt_imm_DE = 32'b0; 
@@ -243,6 +243,7 @@ module DE_STAGE(
                                   sxt_imm_DE,
                                   regs[inst_DE[19:15]],
                                   regs[inst_DE[24:20]],
+                                  type_I_DE,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 

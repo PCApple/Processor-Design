@@ -19,14 +19,14 @@ module FE_STAGE(
       $readmemh(`IDMEMINITFILE , imem);
   end
 
-  /*
+  
   // Display memory contents with verilator 
   always @(posedge clk) begin
     for (integer i=0 ; i<`IMEMWORDS ; i=i+1) begin
         $display("%h", imem[i]);
     end
   end
-  */
+  
 
   /* pipeline latch */ 
   reg [`FE_latch_WIDTH-1:0] FE_latch;  // FE latch 
@@ -36,7 +36,10 @@ module FE_STAGE(
   wire [`INSTBITS-1:0] inst_FE;  // instruction value in the FE stage 
   wire [`DBITS-1:0] pcplus_FE;  // pc plus value in the FE stage 
   wire stall_pipe_FE; // signal to indicate when a front-end needs to be stall
-  
+
+  wire br_cond_FE;
+  wire [`DBITS-1:0] branch_addr_FE;
+
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
   // reading instruction from imem 
@@ -52,6 +55,7 @@ module FE_STAGE(
   // This is the value of "incremented PC", computed in the FE stage
   assign pcplus_FE = PC_FE_latch + `INSTSIZE;
   
+  assign {br_cond_FE, branch_addr_FE} = from_AGEX_to_FE;
    
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
   assign FE_latch_contents = {
@@ -67,7 +71,16 @@ module FE_STAGE(
 
 
   // **TODO: Complete the rest of the pipeline 
-   assign stall_pipe_FE = 0;  // you need to modify this line for your design 
+  reg stall_next;
+  always @ (negedge clk) begin
+    stall_next = 0;
+    if (stall_pipe_FE == 0) begin
+      stall_next = 1;
+    end else begin
+      stall_next = 0;
+    end
+  end
+   assign stall_pipe_FE = stall_next;  // you need to modify this line for your design 
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -76,9 +89,15 @@ module FE_STAGE(
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
     else if (!stall_pipe_FE) begin 
-      PC_FE_latch <= pcplus_FE;
-      inst_count_FE <= inst_count_FE + 1; 
+      if (br_cond_FE) begin
+        PC_FE_latch <= branch_addr_FE;
+        inst_count_FE <= inst_count_FE + 1; 
       end 
+      else begin
+        PC_FE_latch <= pcplus_FE;
+        inst_count_FE <= inst_count_FE + 1; 
+      end 
+    end
     else 
       PC_FE_latch <= PC_FE_latch;
       //put more here

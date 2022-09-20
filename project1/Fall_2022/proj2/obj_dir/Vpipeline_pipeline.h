@@ -27,11 +27,12 @@ VL_MODULE(Vpipeline_pipeline) {
     VL_IN8(reset,0,0);
     
     // LOCAL SIGNALS
-    CData/*0:0*/ __PVT__from_AGEX_to_FE;
     CData/*0:0*/ __PVT__from_MEM_to_FE;
     CData/*0:0*/ __PVT__from_AGEX_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_AGEX;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_next;
     CData/*5:0*/ __PVT__my_DE_stage__DOT__op_I_DE;
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
@@ -43,13 +44,16 @@ VL_MODULE(Vpipeline_pipeline) {
     IData/*31:0*/ __PVT__my_FE_stage__DOT__pcplus_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
-    WData/*201:0*/ __PVT__my_DE_stage__DOT__DE_latch[7];
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__unnamedblk1__DOT__i;
+    WData/*237:0*/ __PVT__my_DE_stage__DOT__DE_latch[8];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__sxt_imm_DE;
-    WData/*233:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
+    WData/*237:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
     IData/*31:0*/ __PVT__my_AGEX_stage__DOT__output_AGEX;
-    WData/*233:0*/ __PVT__my_MEM_stage__DOT__MEM_latch[8];
+    IData/*31:0*/ __PVT__my_AGEX_stage__DOT__branch_addr_AGEX;
+    WData/*237:0*/ __PVT__my_MEM_stage__DOT__MEM_latch[8];
     IData/*31:0*/ __PVT__my_MEM_stage__DOT__memaddr_MEM;
     IData/*31:0*/ __PVT__my_MEM_stage__DOT__wr_val_MEM;
+    QData/*32:0*/ __PVT__from_AGEX_to_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__imem[16384];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__regs[32];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__csr_regs[16];
@@ -57,7 +61,7 @@ VL_MODULE(Vpipeline_pipeline) {
     
     // LOCAL VARIABLES
     CData/*5:0*/ __Vtableidx1;
-    IData/*31:0*/ __Vdly__my_FE_stage__DOT__inst_count_FE;
+    WData/*131:0*/ __Vdly__my_FE_stage__DOT__FE_latch[5];
     CData/*1:0*/ __Vtablechg1[64];
     static CData/*3:0*/ __Vtable1___PVT__my_DE_stage__DOT__type_I_DE[64];
     static CData/*2:0*/ __Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE[64];

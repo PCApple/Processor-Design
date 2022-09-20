@@ -93,19 +93,35 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__2(Vpipeline__Sym
     // Variables
     CData/*0:0*/ __Vdlyvset__my_MEM_stage__DOT__dmem__v0;
     SData/*13:0*/ __Vdlyvdim0__my_MEM_stage__DOT__dmem__v0;
+    IData/*31:0*/ __Vdly__my_FE_stage__DOT__PC_FE_latch;
+    IData/*31:0*/ __Vdly__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __Vdlyvval__my_MEM_stage__DOT__dmem__v0;
     // Body
-    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__inst_count_FE 
-        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE;
     __Vdlyvset__my_MEM_stage__DOT__dmem__v0 = 0U;
+    __Vdly__my_FE_stage__DOT__inst_count_FE = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE;
+    __Vdly__my_FE_stage__DOT__PC_FE_latch = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch;
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[0U] 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U];
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[1U] 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U];
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[2U] 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U];
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[3U] 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U];
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[4U] 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U];
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__unnamedblk1__DOT__i = 0U;
+    while (VL_GTS_III(1,32,32, 0x4000U, vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__unnamedblk1__DOT__i)) {
+        VL_WRITEF("%x\n",32,vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
+                  [(0x3fffU & vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__unnamedblk1__DOT__i)]);
+        vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__unnamedblk1__DOT__i 
+            = ((IData)(1U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__unnamedblk1__DOT__i);
+    }
     vlSymsp->TOP__pipeline.__PVT__cycle_count = ((IData)(vlTOPp->reset)
                                                   ? 0U
                                                   : 
                                                  ((IData)(1U) 
                                                   + vlSymsp->TOP__pipeline.__PVT__cycle_count));
-    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__inst_count_FE 
-        = ((IData)(vlTOPp->reset) ? 1U : ((IData)(1U) 
-                                          + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE));
     if (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__wr_mem_MEM) {
         __Vdlyvval__my_MEM_stage__DOT__dmem__v0 = vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__wr_val_MEM;
         __Vdlyvset__my_MEM_stage__DOT__dmem__v0 = 1U;
@@ -113,26 +129,119 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__2(Vpipeline__Sym
             (0x3fffU & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__memaddr_MEM 
                         >> 2U));
     }
+    if (vlTOPp->reset) {
+        __Vdly__my_FE_stage__DOT__inst_count_FE = 1U;
+    } else {
+        if ((1U & (~ (IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)))) {
+            __Vdly__my_FE_stage__DOT__inst_count_FE 
+                = ((1U & (IData)((vlSymsp->TOP__pipeline.__PVT__from_AGEX_to_FE 
+                                  >> 0x20U))) ? ((IData)(1U) 
+                                                 + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE)
+                    : ((IData)(1U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE));
+        }
+    }
+    __Vdly__my_FE_stage__DOT__PC_FE_latch = ((IData)(vlTOPp->reset)
+                                              ? 0x200U
+                                              : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                                  ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(
+                                                             (vlSymsp->TOP__pipeline.__PVT__from_AGEX_to_FE 
+                                                              >> 0x20U)))
+                                                   ? (IData)(vlSymsp->TOP__pipeline.__PVT__from_AGEX_to_FE)
+                                                   : vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE)));
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[0U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                           ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U]
+                                           : (0xfU 
+                                              | (0xfffffff0U 
+                                                 & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
+                                                    << 4U)))));
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[1U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                           ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U]
+                                           : ((0xfU 
+                                               & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
+                                                  >> 0x1cU)) 
+                                              | (0xfffffff0U 
+                                                 & (((IData)(4U) 
+                                                     + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch) 
+                                                    << 4U)))));
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[2U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                           ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U]
+                                           : ((0xfU 
+                                               & (((IData)(4U) 
+                                                   + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch) 
+                                                  >> 0x1cU)) 
+                                              | (0xfffffff0U 
+                                                 & ((IData)(
+                                                            (((QData)((IData)(
+                                                                              vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
+                                                                              [
+                                                                              (0x3fffU 
+                                                                               & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                                                >> 2U))])) 
+                                                              << 0x20U) 
+                                                             | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)))) 
+                                                    << 4U)))));
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[3U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                           ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U]
+                                           : ((0xfU 
+                                               & ((IData)(
+                                                          (((QData)((IData)(
+                                                                            vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
+                                                                            [
+                                                                            (0x3fffU 
+                                                                             & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                                                >> 2U))])) 
+                                                            << 0x20U) 
+                                                           | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)))) 
+                                                  >> 0x1cU)) 
+                                              | (0xfffffff0U 
+                                                 & ((IData)(
+                                                            ((((QData)((IData)(
+                                                                               vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
+                                                                               [
+                                                                               (0x3fffU 
+                                                                                & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                                                >> 2U))])) 
+                                                               << 0x20U) 
+                                                              | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch))) 
+                                                             >> 0x20U)) 
+                                                    << 4U)))));
+    vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[4U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next)
+                                           ? vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U]
+                                           : (0xfU 
+                                              & ((IData)(
+                                                         ((((QData)((IData)(
+                                                                            vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
+                                                                            [
+                                                                            (0x3fffU 
+                                                                             & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                                                >> 2U))])) 
+                                                            << 0x20U) 
+                                                           | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch))) 
+                                                          >> 0x20U)) 
+                                                 >> 0x1cU))));
     if (__Vdlyvset__my_MEM_stage__DOT__dmem__v0) {
         vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem[__Vdlyvdim0__my_MEM_stage__DOT__dmem__v0] 
             = __Vdlyvval__my_MEM_stage__DOT__dmem__v0;
     }
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
+        = __Vdly__my_FE_stage__DOT__inst_count_FE;
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
+        = __Vdly__my_FE_stage__DOT__PC_FE_latch;
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE 
+        = ((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch);
 }
 
 VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vpipeline_pipeline::_sequent__TOP__pipeline__3\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Variables
-    WData/*255:0*/ __Vtemp7[8];
-    WData/*255:0*/ __Vtemp8[8];
-    WData/*255:0*/ __Vtemp9[8];
-    WData/*255:0*/ __Vtemp12[8];
-    WData/*255:0*/ __Vtemp26[8];
-    WData/*255:0*/ __Vtemp27[8];
-    WData/*255:0*/ __Vtemp28[8];
-    WData/*255:0*/ __Vtemp29[8];
-    WData/*255:0*/ __Vtemp30[8];
-    WData/*255:0*/ __Vtemp31[8];
     // Body
     vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
         = ((IData)(vlTOPp->reset) ? 0U : vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U]);
@@ -150,94 +259,94 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
         = ((IData)(vlTOPp->reset) ? 0U : vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U]);
     vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
         = ((IData)(vlTOPp->reset) ? 0U : vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[7U]);
-    VL_EXTEND_WW(234,202, __Vtemp7, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-    VL_EXTEND_WW(234,202, __Vtemp8, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-    VL_EXTEND_WW(234,202, __Vtemp9, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-    VL_EXTEND_WW(234,202, __Vtemp12, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfffffff0U 
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffffff00U 
                                            & (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-                                              << 4U)) 
-                                          | (0xfU & 
-                                             __Vtemp12[0U])));
+                                              << 8U)) 
+                                          | (0xffU 
+                                             & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U])));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-                                                   >> 0x1cU)) 
-                                          | (0xfffffff0U 
-                                             & __Vtemp9[0U])));
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffU & 
+                                           (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
+                                            >> 0x18U)) 
+                                          | (0xffffff00U 
+                                             & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U])));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[2U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & __Vtemp9[1U]) 
-                                          | (0xfffffff0U 
-                                             & __Vtemp9[1U])));
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffU & 
+                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U]) 
+                                          | (0xffffff00U 
+                                             & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U])));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[3U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & __Vtemp9[2U]) 
-                                          | (0xfffffff0U 
-                                             & __Vtemp9[2U])));
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffU & 
+                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U]) 
+                                          | (0xffffff00U 
+                                             & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U])));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[4U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & __Vtemp9[3U]) 
-                                          | (0xfffffff0U 
-                                             & __Vtemp9[3U])));
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffU & 
+                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U]) 
+                                          | (0xffffff00U 
+                                             & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U])));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[5U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfffffc00U 
+        = ((IData)(vlTOPp->reset) ? 0U : ((0xffffc000U 
                                            & ((IData)(
                                                       (((QData)((IData)(
-                                                                        __Vtemp7[7U])) 
-                                                        << 0x36U) 
+                                                                        vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U])) 
+                                                        << 0x32U) 
                                                        | (((QData)((IData)(
-                                                                           __Vtemp7[6U])) 
-                                                           << 0x16U) 
+                                                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U])) 
+                                                           << 0x12U) 
                                                           | ((QData)((IData)(
-                                                                             __Vtemp7[5U])) 
-                                                             >> 0xaU)))) 
-                                              << 0xaU)) 
-                                          | ((0x3f0U 
-                                              & __Vtemp8[4U]) 
-                                             | (0xfU 
-                                                & __Vtemp9[4U]))));
+                                                                             vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U])) 
+                                                             >> 0xeU)))) 
+                                              << 0xeU)) 
+                                          | ((0x3f00U 
+                                              & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U]) 
+                                             | (0xffU 
+                                                & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U]))));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0x3ffU & 
-                                           ((IData)(
-                                                    (((QData)((IData)(
-                                                                      __Vtemp7[7U])) 
-                                                      << 0x36U) 
-                                                     | (((QData)((IData)(
-                                                                         __Vtemp7[6U])) 
-                                                         << 0x16U) 
-                                                        | ((QData)((IData)(
-                                                                           __Vtemp7[5U])) 
-                                                           >> 0xaU)))) 
-                                            >> 0x16U)) 
-                                          | (0xfffffc00U 
+        = ((IData)(vlTOPp->reset) ? 0U : ((0x3fffU 
+                                           & ((IData)(
+                                                      (((QData)((IData)(
+                                                                        vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U])) 
+                                                        << 0x32U) 
+                                                       | (((QData)((IData)(
+                                                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U])) 
+                                                           << 0x12U) 
+                                                          | ((QData)((IData)(
+                                                                             vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U])) 
+                                                             >> 0xeU)))) 
+                                              >> 0x12U)) 
+                                          | (0xffffc000U 
                                              & ((IData)(
                                                         ((((QData)((IData)(
-                                                                           __Vtemp7[7U])) 
-                                                           << 0x36U) 
+                                                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U])) 
+                                                           << 0x32U) 
                                                           | (((QData)((IData)(
-                                                                              __Vtemp7[6U])) 
-                                                              << 0x16U) 
+                                                                              vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U])) 
+                                                              << 0x12U) 
                                                              | ((QData)((IData)(
-                                                                                __Vtemp7[5U])) 
-                                                                >> 0xaU))) 
+                                                                                vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U])) 
+                                                                >> 0xeU))) 
                                                          >> 0x20U)) 
-                                                << 0xaU))));
+                                                << 0xeU))));
     vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[7U] 
-        = ((IData)(vlTOPp->reset) ? 0U : (0x3ffU & 
+        = ((IData)(vlTOPp->reset) ? 0U : (0x3fffU & 
                                           ((IData)(
                                                    ((((QData)((IData)(
-                                                                      __Vtemp7[7U])) 
-                                                      << 0x36U) 
+                                                                      vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U])) 
+                                                      << 0x32U) 
                                                      | (((QData)((IData)(
-                                                                         __Vtemp7[6U])) 
-                                                         << 0x16U) 
+                                                                         vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U])) 
+                                                         << 0x12U) 
                                                         | ((QData)((IData)(
-                                                                           __Vtemp7[5U])) 
-                                                           >> 0xaU))) 
+                                                                           vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U])) 
+                                                           >> 0xeU))) 
                                                     >> 0x20U)) 
-                                           >> 0x16U)));
+                                           >> 0x12U)));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0xfffffff0U 
+                                                   (0xffffff00U 
                                                     & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                                        [
                                                        (0x1fU 
@@ -245,13 +354,15 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                             << 8U) 
                                                            | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                               >> 0x18U)))] 
-                                                       << 4U)) 
-                                                   | (0xfU 
-                                                      & vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U]))));
+                                                       << 8U)) 
+                                                   | (((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE) 
+                                                       << 4U) 
+                                                      | (0xfU 
+                                                         & vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U])))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0xfU 
+                                                   (0xffU 
                                                     & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                                        [
                                                        (0x1fU 
@@ -259,8 +370,8 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                             << 8U) 
                                                            | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                               >> 0x18U)))] 
-                                                       >> 0x1cU)) 
-                                                   | (0xfffffff0U 
+                                                       >> 0x18U)) 
+                                                   | (0xffffff00U 
                                                       & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                                          [
                                                          (0x1fU 
@@ -268,11 +379,11 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                               << 0xdU) 
                                                              | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                                 >> 0x13U)))] 
-                                                         << 4U)))));
+                                                         << 8U)))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0xfU 
+                                                   (0xffU 
                                                     & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                                        [
                                                        (0x1fU 
@@ -280,8 +391,8 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                             << 0xdU) 
                                                            | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                               >> 0x13U)))] 
-                                                       >> 0x1cU)) 
-                                                   | (0xfffffff0U 
+                                                       >> 0x18U)) 
+                                                   | (0xffffff00U 
                                                       & ((IData)(
                                                                  (((QData)((IData)(
                                                                                 ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
@@ -290,11 +401,11 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                                                 >> 4U)))) 
                                                                    << 0x20U) 
                                                                   | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__sxt_imm_DE)))) 
-                                                         << 4U)))));
+                                                         << 8U)))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0xfU 
+                                                   (0xffU 
                                                     & ((IData)(
                                                                (((QData)((IData)(
                                                                                 ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
@@ -303,8 +414,8 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                                                 >> 4U)))) 
                                                                  << 0x20U) 
                                                                 | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__sxt_imm_DE)))) 
-                                                       >> 0x1cU)) 
-                                                   | (0xfffffff0U 
+                                                       >> 0x18U)) 
+                                                   | (0xffffff00U 
                                                       & ((IData)(
                                                                  ((((QData)((IData)(
                                                                                 ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
@@ -314,26 +425,17 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                                     << 0x20U) 
                                                                    | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__sxt_imm_DE))) 
                                                                   >> 0x20U)) 
-                                                         << 4U)))));
+                                                         << 8U)))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0xfffffc00U 
-                                                    & ((IData)(
-                                                               (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U])) 
-                                                                 << 0x3cU) 
-                                                                | (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U])) 
-                                                                    << 0x1cU) 
-                                                                   | ((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U])) 
-                                                                      >> 4U)))) 
+                                                   (0xffffc000U 
+                                                    & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
                                                        << 0xaU)) 
-                                                   | ((0xfffffff0U 
+                                                   | ((0xffffff00U 
                                                        & ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__op_I_DE) 
-                                                          << 4U)) 
-                                                      | (0xfU 
+                                                          << 8U)) 
+                                                      | (0xffU 
                                                          & ((IData)(
                                                                     ((((QData)((IData)(
                                                                                 ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
@@ -343,139 +445,90 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                                        << 0x20U) 
                                                                       | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__sxt_imm_DE))) 
                                                                      >> 0x20U)) 
-                                                            >> 0x1cU))))));
+                                                            >> 0x18U))))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
                                            ? 0U : (
-                                                   (0x3ffU 
-                                                    & ((IData)(
-                                                               (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U])) 
-                                                                 << 0x3cU) 
-                                                                | (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U])) 
-                                                                    << 0x1cU) 
-                                                                   | ((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U])) 
-                                                                      >> 4U)))) 
-                                                       >> 0x16U)) 
-                                                   | (0xfffffc00U 
-                                                      & ((IData)(
-                                                                 ((((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U])) 
-                                                                    << 0x3cU) 
-                                                                   | (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U])) 
-                                                                       << 0x1cU) 
-                                                                      | ((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U])) 
-                                                                         >> 4U))) 
-                                                                  >> 0x20U)) 
+                                                   (0x3fffU 
+                                                    & ((0x3c00U 
+                                                        & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
+                                                           << 0xaU)) 
+                                                       | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
+                                                          >> 0x16U))) 
+                                                   | (0xffffc000U 
+                                                      & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
                                                          << 0xaU)))));
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
         = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
-                                           ? 0U : (0x3ffU 
-                                                   & ((IData)(
-                                                              ((((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U])) 
-                                                                 << 0x3cU) 
-                                                                | (((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U])) 
-                                                                    << 0x1cU) 
-                                                                   | ((QData)((IData)(
-                                                                                vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U])) 
-                                                                      >> 4U))) 
-                                                               >> 0x20U)) 
-                                                      >> 0x16U))));
-    VL_EXTEND_WW(234,202, __Vtemp26, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-    if ((0xcU == (0x3fU & ((__Vtemp26[5U] << 0x1cU) 
-                           | (__Vtemp26[4U] >> 4U))))) {
-        VL_EXTEND_WW(234,202, __Vtemp27, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-        VL_EXTEND_WW(234,202, __Vtemp28, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
+                                           ? 0U : (
+                                                   (0x3fffU 
+                                                    & ((0x3c00U 
+                                                        & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
+                                                           << 0xaU)) 
+                                                       | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
+                                                          >> 0x16U))) 
+                                                   | (0xffffc000U 
+                                                      & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
+                                                         << 0xaU)))));
+    vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+        = ((IData)(vlTOPp->reset) ? 0U : ((IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__pipeline_stall_DE)
+                                           ? 0U : (0x3fffU 
+                                                   & ((0x3c00U 
+                                                       & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+                                                          << 0xaU)) 
+                                                      | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
+                                                         >> 0x16U)))));
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U] 
+        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[0U];
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
+        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[1U];
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
+        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[2U];
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
+        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[3U];
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__FE_latch[4U];
+    if ((0xcU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                            << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                         >> 8U))))) {
         vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-            = (((__Vtemp27[2U] << 0x1cU) | (__Vtemp27[1U] 
-                                            >> 4U)) 
-               + ((__Vtemp28[3U] << 0x1cU) | (__Vtemp28[2U] 
-                                              >> 4U)));
+            = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                 << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                              >> 8U)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                          << 0x18U) 
+                                         | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                            >> 8U)));
     } else {
-        VL_EXTEND_WW(234,202, __Vtemp29, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-        if ((1U == (0x3fU & ((__Vtemp29[5U] << 0x1cU) 
-                             | (__Vtemp29[4U] >> 4U))))) {
-            VL_EXTEND_WW(234,202, __Vtemp30, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-            VL_EXTEND_WW(234,202, __Vtemp31, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
+        if ((1U == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                              << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                           >> 8U))))) {
             vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-                = (((__Vtemp30[2U] << 0x1cU) | (__Vtemp30[1U] 
-                                                >> 4U)) 
-                   + ((__Vtemp31[1U] << 0x1cU) | (__Vtemp31[0U] 
-                                                  >> 4U)));
+                = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                     << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                  >> 8U)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                              << 0x18U) 
+                                             | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                                >> 8U)));
         }
     }
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U] 
-        = ((IData)(vlTOPp->reset) ? 0U : (0xfU | (0xfffffff0U 
-                                                  & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
-                                                     << 4U))));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
-                                                   >> 0x1cU)) 
-                                          | (0xfffffff0U 
-                                             & (((IData)(4U) 
-                                                 + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch) 
-                                                << 4U))));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & (
-                                                   ((IData)(4U) 
-                                                    + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch) 
-                                                   >> 0x1cU)) 
-                                          | (0xfffffff0U 
-                                             & ((IData)(
-                                                        (((QData)((IData)(
-                                                                          vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
-                                                                          [
-                                                                          (0x3fffU 
-                                                                           & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                                                              >> 2U))])) 
-                                                          << 0x20U) 
-                                                         | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)))) 
-                                                << 4U))));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
-        = ((IData)(vlTOPp->reset) ? 0U : ((0xfU & ((IData)(
-                                                           (((QData)((IData)(
-                                                                             vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
-                                                                             [
-                                                                             (0x3fffU 
-                                                                              & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                                                                >> 2U))])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)))) 
-                                                   >> 0x1cU)) 
-                                          | (0xfffffff0U 
-                                             & ((IData)(
-                                                        ((((QData)((IData)(
-                                                                           vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
-                                                                           [
-                                                                           (0x3fffU 
-                                                                            & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                                                               >> 2U))])) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch))) 
-                                                         >> 0x20U)) 
-                                                << 4U))));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
-        = ((IData)(vlTOPp->reset) ? 0U : (0xfU & ((IData)(
-                                                          ((((QData)((IData)(
-                                                                             vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
-                                                                             [
-                                                                             (0x3fffU 
-                                                                              & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                                                                >> 2U))])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch))) 
-                                                           >> 0x20U)) 
-                                                  >> 0x1cU)));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE 
-        = vlSymsp->TOP__pipeline.__Vdly__my_FE_stage__DOT__inst_count_FE;
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch 
-        = ((IData)(vlTOPp->reset) ? 0x200U : vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE);
+    if ((0x1cU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                             << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                          >> 8U))))) {
+        if ((((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+               << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                            >> 8U)) == ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                         << 0x18U) 
+                                        | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                           >> 8U)))) {
+            vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX 
+                = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+                     << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                                  >> 0xeU)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                                << 0x18U) 
+                                               | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                                  >> 8U)));
+        }
+    }
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__op_I_DE 
         = ((((0x33U == (0x7fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                   << 0x1cU) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
@@ -1055,6 +1108,18 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                                                                 >> 0x10U)))))
                                                                                 ? 0x23U
                                                                                 : 0x25U))))))))))))))))))))))))))))))))));
+    vlSymsp->TOP__pipeline.__PVT__from_AGEX_to_FE = 
+        (((QData)((IData)(((0x1cU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                                                << 0x18U) 
+                                               | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                                  >> 8U)))) 
+                           & (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                             >> 8U)) 
+                              == ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                   << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                                >> 8U)))))) 
+          << 0x20U) | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX)));
     vlSymsp->TOP__pipeline.__Vtableidx1 = vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__op_I_DE;
     if ((1U & vlSymsp->TOP__pipeline.__Vtablechg1[vlSymsp->TOP__pipeline.__Vtableidx1])) {
         vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE 
@@ -1066,8 +1131,6 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
             = vlSymsp->TOP__pipeline.__Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE
             [vlSymsp->TOP__pipeline.__Vtableidx1];
     }
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE 
-        = ((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch);
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__sxt_imm_DE 
         = ((1U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_immediate_DE))
             ? ((0xfffff800U & (VL_NEGATE_I((IData)(
@@ -1118,7 +1181,7 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__3(Vpipeline__Sym
                                              & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                 >> 4U))))
                         : ((2U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_immediate_DE))
-                            ? ((0x7ff00000U & (VL_NEGATE_I((IData)(
+                            ? ((0xfff00000U & (VL_NEGATE_I((IData)(
                                                                    (1U 
                                                                     & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                                                        >> 3U)))) 
@@ -1158,10 +1221,14 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__4(Vpipeline__Sym
     IData/*31:0*/ __Vdlyvval__my_DE_stage__DOT__regs__v32;
     IData/*31:0*/ __Vdlyvval__my_DE_stage__DOT__csr_regs__v16;
     // Body
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next 
+        = (1U & (~ (IData)(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_pipe_FE)));
     __Vdlyvset__my_DE_stage__DOT__csr_regs__v0 = 0U;
     __Vdlyvset__my_DE_stage__DOT__csr_regs__v16 = 0U;
     __Vdlyvset__my_DE_stage__DOT__regs__v0 = 0U;
     __Vdlyvset__my_DE_stage__DOT__regs__v32 = 0U;
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_pipe_FE 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next;
     if (vlTOPp->reset) {
         __Vdlyvset__my_DE_stage__DOT__csr_regs__v0 = 1U;
     } else {
@@ -1257,35 +1324,50 @@ VL_INLINE_OPT void Vpipeline_pipeline::_sequent__TOP__pipeline__4(Vpipeline__Sym
 void Vpipeline_pipeline::_settle__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vpipeline_pipeline::_settle__TOP__pipeline__5\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Variables
-    WData/*255:0*/ __Vtemp37[8];
-    WData/*255:0*/ __Vtemp38[8];
-    WData/*255:0*/ __Vtemp39[8];
-    WData/*255:0*/ __Vtemp40[8];
-    WData/*255:0*/ __Vtemp41[8];
-    WData/*255:0*/ __Vtemp42[8];
     // Body
-    VL_EXTEND_WW(234,202, __Vtemp37, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-    if ((0xcU == (0x3fU & ((__Vtemp37[5U] << 0x1cU) 
-                           | (__Vtemp37[4U] >> 4U))))) {
-        VL_EXTEND_WW(234,202, __Vtemp38, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-        VL_EXTEND_WW(234,202, __Vtemp39, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_pipe_FE 
+        = vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__stall_next;
+    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE 
+        = ((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch);
+    if ((0xcU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                            << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                         >> 8U))))) {
         vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-            = (((__Vtemp38[2U] << 0x1cU) | (__Vtemp38[1U] 
-                                            >> 4U)) 
-               + ((__Vtemp39[3U] << 0x1cU) | (__Vtemp39[2U] 
-                                              >> 4U)));
+            = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                 << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                              >> 8U)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                          << 0x18U) 
+                                         | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                            >> 8U)));
     } else {
-        VL_EXTEND_WW(234,202, __Vtemp40, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-        if ((1U == (0x3fU & ((__Vtemp40[5U] << 0x1cU) 
-                             | (__Vtemp40[4U] >> 4U))))) {
-            VL_EXTEND_WW(234,202, __Vtemp41, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
-            VL_EXTEND_WW(234,202, __Vtemp42, vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch);
+        if ((1U == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                              << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                           >> 8U))))) {
             vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
-                = (((__Vtemp41[2U] << 0x1cU) | (__Vtemp41[1U] 
-                                                >> 4U)) 
-                   + ((__Vtemp42[1U] << 0x1cU) | (__Vtemp42[0U] 
-                                                  >> 4U)));
+                = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                     << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                  >> 8U)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                              << 0x18U) 
+                                             | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                                >> 8U)));
+        }
+    }
+    if ((0x1cU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                             << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                          >> 8U))))) {
+        if ((((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+               << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                            >> 8U)) == ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                         << 0x18U) 
+                                        | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                           >> 8U)))) {
+            vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX 
+                = (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+                     << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                                  >> 0xeU)) + ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                                << 0x18U) 
+                                               | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                                  >> 8U)));
         }
     }
     vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__op_I_DE 
@@ -1867,8 +1949,18 @@ void Vpipeline_pipeline::_settle__TOP__pipeline__5(Vpipeline__Syms* __restrict v
                                                                                 >> 0x10U)))))
                                                                                 ? 0x23U
                                                                                 : 0x25U))))))))))))))))))))))))))))))))));
-    vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__pcplus_FE 
-        = ((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch);
+    vlSymsp->TOP__pipeline.__PVT__from_AGEX_to_FE = 
+        (((QData)((IData)(((0x1cU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                                                << 0x18U) 
+                                               | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                                  >> 8U)))) 
+                           & (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                             >> 8U)) 
+                              == ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+                                   << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
+                                                >> 8U)))))) 
+          << 0x20U) | (QData)((IData)(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX)));
     vlSymsp->TOP__pipeline.__Vtableidx1 = vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__op_I_DE;
     if ((1U & vlSymsp->TOP__pipeline.__Vtablechg1[vlSymsp->TOP__pipeline.__Vtableidx1])) {
         vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE 
@@ -1930,7 +2022,7 @@ void Vpipeline_pipeline::_settle__TOP__pipeline__5(Vpipeline__Syms* __restrict v
                                              & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                 >> 4U))))
                         : ((2U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_immediate_DE))
-                            ? ((0x7ff00000U & (VL_NEGATE_I((IData)(
+                            ? ((0xfff00000U & (VL_NEGATE_I((IData)(
                                                                    (1U 
                                                                     & (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                                                        >> 3U)))) 
@@ -1963,7 +2055,7 @@ void Vpipeline_pipeline::_ctor_var_reset() {
     clk = VL_RAND_RESET_I(1);
     reset = VL_RAND_RESET_I(1);
     __PVT__cycle_count = VL_RAND_RESET_I(32);
-    __PVT__from_AGEX_to_FE = VL_RAND_RESET_I(1);
+    __PVT__from_AGEX_to_FE = VL_RAND_RESET_Q(33);
     __PVT__from_MEM_to_FE = VL_RAND_RESET_I(1);
     __PVT__from_AGEX_to_DE = VL_RAND_RESET_I(1);
     __PVT__from_MEM_to_DE = VL_RAND_RESET_I(1);
@@ -1974,9 +2066,12 @@ void Vpipeline_pipeline::_ctor_var_reset() {
     VL_RAND_RESET_W(132, __PVT__my_FE_stage__DOT__FE_latch);
     __PVT__my_FE_stage__DOT__PC_FE_latch = VL_RAND_RESET_I(32);
     __PVT__my_FE_stage__DOT__pcplus_FE = VL_RAND_RESET_I(32);
+    __PVT__my_FE_stage__DOT__stall_pipe_FE = VL_RAND_RESET_I(1);
     __PVT__my_FE_stage__DOT__inst_count_FE = VL_RAND_RESET_I(32);
     __PVT__my_FE_stage__DOT__inst_count_AGEX = VL_RAND_RESET_I(32);
-    VL_RAND_RESET_W(202, __PVT__my_DE_stage__DOT__DE_latch);
+    __PVT__my_FE_stage__DOT__stall_next = VL_RAND_RESET_I(1);
+    __PVT__my_FE_stage__DOT__unnamedblk1__DOT__i = VL_RAND_RESET_I(32);
+    VL_RAND_RESET_W(238, __PVT__my_DE_stage__DOT__DE_latch);
     { int __Vi0=0; for (; __Vi0<32; ++__Vi0) {
             __PVT__my_DE_stage__DOT__regs[__Vi0] = VL_RAND_RESET_I(32);
     }}
@@ -1988,12 +2083,13 @@ void Vpipeline_pipeline::_ctor_var_reset() {
     __PVT__my_DE_stage__DOT__type_immediate_DE = VL_RAND_RESET_I(3);
     __PVT__my_DE_stage__DOT__sxt_imm_DE = VL_RAND_RESET_I(32);
     __PVT__my_DE_stage__DOT__pipeline_stall_DE = VL_RAND_RESET_I(1);
-    VL_RAND_RESET_W(234, __PVT__my_AGEX_stage__DOT__AGEX_latch);
+    VL_RAND_RESET_W(238, __PVT__my_AGEX_stage__DOT__AGEX_latch);
     __PVT__my_AGEX_stage__DOT__output_AGEX = VL_RAND_RESET_I(32);
+    __PVT__my_AGEX_stage__DOT__branch_addr_AGEX = VL_RAND_RESET_I(32);
     { int __Vi0=0; for (; __Vi0<16384; ++__Vi0) {
             __PVT__my_MEM_stage__DOT__dmem[__Vi0] = VL_RAND_RESET_I(32);
     }}
-    VL_RAND_RESET_W(234, __PVT__my_MEM_stage__DOT__MEM_latch);
+    VL_RAND_RESET_W(238, __PVT__my_MEM_stage__DOT__MEM_latch);
     __PVT__my_MEM_stage__DOT__memaddr_MEM = VL_RAND_RESET_I(32);
     __PVT__my_MEM_stage__DOT__wr_val_MEM = VL_RAND_RESET_I(32);
     __PVT__my_MEM_stage__DOT__wr_mem_MEM = VL_RAND_RESET_I(1);
@@ -2190,5 +2286,5 @@ void Vpipeline_pipeline::_ctor_var_reset() {
     __Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE[61] = 0U;
     __Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE[62] = 0U;
     __Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE[63] = 0U;
-    __Vdly__my_FE_stage__DOT__inst_count_FE = VL_RAND_RESET_I(32);
+    VL_RAND_RESET_W(132, __Vdly__my_FE_stage__DOT__FE_latch);
 }

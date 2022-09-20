@@ -28,7 +28,9 @@ module AGEX_STAGE(
   wire [`DBITS-1:0] sxt_imm_AGEX; // for the immediate value 
   wire [`DBITS-1:0] rs1_AGEX; // rs1 value
   wire [`DBITS-1:0] rs2_AGEX; // rs2 value
+  wire [`TYPENOBITS-1:0] type_I_AGEX; // instruction type
   reg [`DBITS-1:0] output_AGEX; // returning value from ALU ops
+  reg [`DBITS-1:0] branch_addr_AGEX;
 
 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
@@ -38,9 +40,20 @@ module AGEX_STAGE(
   
   always @ (*) begin
     case (op_I_AGEX)
-      
-      `BEQ_I : br_cond_AGEX = 1; // write correct code to check the branch condition. 
-    
+      `BEQ_I :
+      begin
+        if (rs1_AGEX == rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 0;
+        end
+      end
+
+      //`BEQ_I : br_cond_AGEX = 1; // write correct code to check the branch condition. 
+      // Check registers one and two
+      // If equal, pcplus_AGEX <= PC_AGEX + offset
+
       /*
       `BNE_I : ...
       `BLT_I : ...
@@ -59,9 +72,9 @@ module AGEX_STAGE(
   
   case (op_I_AGEX)
     `ADDI_I:
-      output_AGEX <= rs1_AGEX + sxt_imm_AGEX;
+      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
     `ADD_I:
-      output_AGEX <= rs1_AGEX + rs2_AGEX;
+      output_AGEX = rs1_AGEX + rs2_AGEX;
 	 endcase 
    
   end 
@@ -76,6 +89,7 @@ module AGEX_STAGE(
     */
   end 
 
+  assign from_AGEX_to_FE = { br_cond_AGEX, branch_addr_AGEX};
 
   assign  {
     inst_AGEX,
@@ -85,7 +99,8 @@ module AGEX_STAGE(
     inst_count_AGEX,
     sxt_imm_AGEX,
     rs1_AGEX,
-    rs2_AGEX,     
+    rs2_AGEX,    
+    type_I_AGEX, 
             // more signals might need
     bus_canary_AGEX
   } = from_DE_latch;    
@@ -99,6 +114,7 @@ module AGEX_STAGE(
     rs1_AGEX,
     rs2_AGEX,
     output_AGEX,
+    type_I_AGEX,
             // more signals might need
     bus_canary_AGEX     
   }; 

@@ -1,0 +1,9 @@
+
+*.dat
+*.d
+*.vcd
+*.o
+*.a
+project1/Fall_2022/proj2/obj_dir/Vpipeline
+*.log
+*.log

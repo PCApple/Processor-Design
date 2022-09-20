@@ -19,6 +19,7 @@ module WB_STAGE(
   wire  [`DBITS-1:0] sxt_imm_WB;
   wire  [`DBITS-1:0] rs1_WB;
   wire  [`DBITS-1:0] rs2_WB;
+  wire [`TYPENOBITS-1:0] type_I_WB; // instruction type
 
   
   wire wr_reg_WB; // is this instruction writing into a register file? 
@@ -43,13 +44,30 @@ module WB_STAGE(
                                 rs1_WB,
                                 rs2_WB,
                                 regval_WB,
+                                type_I_WB,
+
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
         
         // write register by sending data to the DE stage 
         
-
+reg is_wb;
+always @ (*) begin
+  is_wb = 0;
+  if (type_I_WB == `I_Type)begin
+    is_wb = 1;
+  end else if (type_I_WB == `R_Type) begin
+    is_wb = 1;
+  end else if (type_I_WB == `S_Type) begin
+    is_wb = 0;
+  end else if (type_I_WB == `U_Type) begin
+    is_wb = 1;
+  end else begin
+    is_wb = 0;
+  end
+end
+assign wr_reg_WB = is_wb;
 
 assign wregno_WB = inst_WB[11:7];
 // we send register write (and CSR register) information to DE stage 

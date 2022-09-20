@@ -25,13 +25,13 @@ VL_MODULE(Vpipeline_WB_STAGE) {
     VL_OUT8(__PVT__from_WB_to_FE,0,0);
     VL_OUT8(__PVT__from_WB_to_AGEX,0,0);
     VL_OUT8(__PVT__from_WB_to_MEM,0,0);
-    VL_INW(__PVT__from_MEM_latch,233,0,8);
+    VL_INW(__PVT__from_MEM_latch,237,0,8);
     VL_OUT64(__PVT__from_WB_to_DE,42,0);
     
     // LOCAL SIGNALS
-    CData/*0:0*/ __PVT__wr_reg_WB;
     CData/*3:0*/ __PVT__wcsrno_WB;
     CData/*0:0*/ __PVT__wr_csr_WB;
+    CData/*0:0*/ __PVT__is_wb;
     IData/*31:0*/ last_WB_value[32];
     IData/*31:0*/ WB_counters[32];
     
