@@ -31,12 +31,13 @@ VL_MODULE(Vpipeline_pipeline) {
     CData/*0:0*/ __PVT__from_AGEX_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_AGEX;
-    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
-    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_next;
+    CData/*4:0*/ __PVT__my_DE_stage__DOT__flagged_reg;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__is_flagged;
     CData/*5:0*/ __PVT__my_DE_stage__DOT__op_I_DE;
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__pipeline_stall_DE;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__stall_next;
     CData/*0:0*/ __PVT__my_MEM_stage__DOT__wr_mem_MEM;
     IData/*31:0*/ __PVT__cycle_count;
     WData/*131:0*/ __PVT__my_FE_stage__DOT__FE_latch[5];
@@ -44,7 +45,6 @@ VL_MODULE(Vpipeline_pipeline) {
     IData/*31:0*/ __PVT__my_FE_stage__DOT__pcplus_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
-    IData/*31:0*/ __PVT__my_FE_stage__DOT__unnamedblk1__DOT__i;
     WData/*237:0*/ __PVT__my_DE_stage__DOT__DE_latch[8];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__sxt_imm_DE;
     WData/*237:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];

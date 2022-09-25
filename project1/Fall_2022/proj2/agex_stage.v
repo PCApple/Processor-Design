@@ -70,11 +70,11 @@ module AGEX_STAGE(
  
   always @ (*) begin
   
-  case (op_I_AGEX)
-    `ADDI_I:
-      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
-    `ADD_I:
-      output_AGEX = rs1_AGEX + rs2_AGEX;
+    case (op_I_AGEX)
+      `ADDI_I:
+        output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+      `ADD_I:
+        output_AGEX = rs1_AGEX + rs2_AGEX;
 	 endcase 
    
   end 
@@ -127,7 +127,7 @@ module AGEX_STAGE(
     else 
         begin
       // need to complete 
-            AGEX_latch <= AGEX_latch_contents ;
+            AGEX_latch <= AGEX_latch_contents;
         end 
   end
 

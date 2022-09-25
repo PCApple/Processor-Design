@@ -16,7 +16,10 @@ module DE_STAGE(
 
   /* architecture register file */ 
   reg [`DBITS-1:0] regs [`REGWORDS-1:0];
-  reg [`DBITS-1:0] csr_regs[`CSRREGNUM-1:0]; 
+  reg [`DBITS-1:0] csr_regs[`CSRREGNUM-1:0];
+
+  reg [`REGNOBITS-1:0] flagged_reg;
+  reg is_flagged;
   
   /* decode signals */
   wire [`INSTBITS-1:0] inst_DE; 
@@ -199,7 +202,6 @@ module DE_STAGE(
       sxt_imm_DE = {inst_DE[31], inst_DE[30:20], inst_DE[19:12], 12'b0};  
     `J_immediate: 
       sxt_imm_DE = {{12{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};  // jumps
-      
     default:
       sxt_imm_DE = 32'b0; 
     endcase  
@@ -217,7 +219,7 @@ module DE_STAGE(
   assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
 
 
-  wire pipeline_stall_DE; 
+  reg pipeline_stall_DE;
   assign from_DE_to_FE = {pipeline_stall_DE}; // pass the DE stage stall signal to FE stage 
 
 
@@ -310,16 +312,27 @@ module DE_STAGE(
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
-
+  always 
+  reg [4:0] count = 0;
+  reg stall_next;
   always @ (posedge clk) begin // you need to expand this always block 
     if (reset) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end
-     else begin  
-      if (pipeline_stall_DE) 
+     else begin
+      if (stall_next) begin
+      stall_next = 0;
+      pipeline_stall_DE = 1;
+      end else if ((op_I_DE ==  `BEQ_I ) || (op_I_DE == `BNE_I) || (op_I_DE == `BLT_I) || (op_I_DE == `BGE_I) || (op_I_DE == `BLTU_I) || (op_I_DE == `BGEU_I)) begin
+        stall_next = 1;
+      end else
+        stall_next = 0; 
+      if (pipeline_stall_DE) begin
         DE_latch <= {`DE_latch_WIDTH{1'b0}};
-      else
+      end
+      else begin
           DE_latch <= DE_latch_contents;
+      end
 
      end 
   end

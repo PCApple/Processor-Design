@@ -91,7 +91,15 @@ module MEM_STAGE(
                                         // more signals might need    
                               bus_canary_MEM                   
    }; 
+   reg[`REGNOBITS-1:0] forward_reg;
+   reg[`DBITS-1:0] forward_content;
+   reg is_forwarded;
+   always @ (*) begin
 
+    forward_reg = inst_MEM[11:7];
+    forward_content = output_MEM;
+   end
+   assign from_MEM_to_AGEX = {forward_reg, forward_content};
   always @ (posedge clk) begin
     if (reset) begin
         MEM_latch <= {`MEM_latch_WIDTH{1'b0}}; 

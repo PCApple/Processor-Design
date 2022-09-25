@@ -1,5 +1,10 @@
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
+Passed!
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
+Failed. exitcode: -1
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
+Passed!
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
+Passed!
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
+Failed. exitcode: 0

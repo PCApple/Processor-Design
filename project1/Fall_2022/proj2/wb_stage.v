@@ -55,7 +55,9 @@ module WB_STAGE(
 reg is_wb;
 always @ (*) begin
   is_wb = 0;
-  if (type_I_WB == `I_Type)begin
+  if (op_I_WB == `INVALID_I) begin
+    is_wb = 0;
+  end else if (type_I_WB == `I_Type)begin
     is_wb = 1;
   end else if (type_I_WB == `R_Type) begin
     is_wb = 1;
