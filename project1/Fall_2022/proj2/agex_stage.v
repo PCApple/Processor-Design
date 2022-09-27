@@ -56,13 +56,35 @@ module AGEX_STAGE(
       // Check registers one and two
       // If equal, pcplus_AGEX <= PC_AGEX + offset
 
+      `BNE_I : begin
+        if (rs1_AGEX != rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 0;
+        end
+      end
+      `BLT_I : begin
+        if (rs1_AGEX <= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 0;
+        end
+      end
+      `BGE_I : begin
+        if (rs1_AGEX >= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 0;
+        end
+      end
       /*
-      `BNE_I : ...
-      `BLT_I : ...
-      `BGE_I : ...
       `BLTU_I: ..
       `BGEU_I : ...
       */
+  
       default : br_cond_AGEX = 1'b0;
     endcase
   end
@@ -83,6 +105,48 @@ module AGEX_STAGE(
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
+    `AND_I: begin
+      output_AGEX = rs1_AGEX & rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `MUL_I: begin
+      output_AGEX = rs1_AGEX * rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SUB_I: begin
+      output_AGEX = rs1_AGEX - rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `OR_I: begin
+      output_AGEX = rs1_AGEX | rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `XOR_I: begin
+      output_AGEX = rs1_AGEX ^ rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `ANDI_I: begin
+      output_AGEX = rs1_AGEX & sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `ORI_I: begin
+      output_AGEX = rs1_AGEX | sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `XORI_I: begin
+      output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+
+
     default: is_forwarding = 0;
 
 	 endcase 
