@@ -31,6 +31,8 @@ module AGEX_STAGE(
   wire [`TYPENOBITS-1:0] type_I_AGEX; // instruction type
   reg [`DBITS-1:0] output_AGEX; // returning value from ALU ops
   reg [`DBITS-1:0] branch_addr_AGEX;
+  reg [`REGNOBITS-1:0] forward_reg;
+  reg is_forwarding;
 
 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
@@ -71,10 +73,18 @@ module AGEX_STAGE(
   always @ (*) begin
   
   case (op_I_AGEX)
-    `ADDI_I:
+    `ADDI_I: begin
       output_AGEX = rs1_AGEX + sxt_imm_AGEX;
-    `ADD_I:
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `ADD_I: begin
       output_AGEX = rs1_AGEX + rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    default: is_forwarding = 0;
+
 	 endcase 
    
   end 
@@ -115,9 +125,12 @@ module AGEX_STAGE(
     rs2_AGEX,
     output_AGEX,
     type_I_AGEX,
+    forward_reg,
+    is_forwarding,
             // more signals might need
     bus_canary_AGEX     
   }; 
+  assign from_AGEX_to_DE = {forward_reg, is_forwarding};
  
   always @ (posedge clk) begin
     if (reset) begin
@@ -127,7 +140,7 @@ module AGEX_STAGE(
     else 
         begin
       // need to complete 
-            AGEX_latch <= AGEX_latch_contents ;
+            AGEX_latch <= AGEX_latch_contents;
         end 
   end
 

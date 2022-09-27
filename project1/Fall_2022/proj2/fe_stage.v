@@ -21,11 +21,11 @@ module FE_STAGE(
 
   
   // Display memory contents with verilator 
-  always @(posedge clk) begin
+  /*always @(posedge clk) begin
     for (integer i=0 ; i<`IMEMWORDS ; i=i+1) begin
         $display("%h", imem[i]);
     end
-  end
+  end*/
   
 
   /* pipeline latch */ 
@@ -71,7 +71,7 @@ module FE_STAGE(
 
 
   // **TODO: Complete the rest of the pipeline 
-  reg stall_next;
+  /*reg stall_next;
   always @ (negedge clk) begin
     stall_next = 0;
     if (stall_pipe_FE == 0) begin
@@ -79,8 +79,8 @@ module FE_STAGE(
     end else begin
       stall_next = 0;
     end
-  end
-   assign stall_pipe_FE = stall_next;  // you need to modify this line for your design 
+  end*/
+   assign stall_pipe_FE = {from_DE_to_FE};  // you need to modify this line for your design 
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */

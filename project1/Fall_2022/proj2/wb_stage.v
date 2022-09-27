@@ -20,6 +20,8 @@ module WB_STAGE(
   wire  [`DBITS-1:0] rs1_WB;
   wire  [`DBITS-1:0] rs2_WB;
   wire [`TYPENOBITS-1:0] type_I_WB; // instruction type
+  wire [`REGNOBITS-1:0] forward_reg_WB;
+  wire is_forwarding_WB;
 
   
   wire wr_reg_WB; // is this instruction writing into a register file? 
@@ -45,6 +47,8 @@ module WB_STAGE(
                                 rs2_WB,
                                 regval_WB,
                                 type_I_WB,
+                                forward_reg_WB,
+                                is_forwarding_WB,
 
                                 // more signals might need                        
                                  bus_canary_WB 
@@ -71,7 +75,7 @@ assign wr_reg_WB = is_wb;
 
 assign wregno_WB = inst_WB[11:7];
 // we send register write (and CSR register) information to DE stage 
-assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB};
+assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, forward_reg_WB, is_forwarding_WB};
 
 // this code need to be commented out when we synthesize the code later 
     // special workaround to get tests Pass/Fail status

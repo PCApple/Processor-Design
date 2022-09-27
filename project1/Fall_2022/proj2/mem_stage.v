@@ -37,6 +37,8 @@ module MEM_STAGE(
   wire [`DBITS-1:0] rs2_MEM;
   wire [`DBITS-1:0] output_MEM;
   wire [`TYPENOBITS-1:0] type_I_MEM; // instruction type
+  wire [`REGNOBITS-1:0] forward_reg_MEM;
+  wire is_forwarding_MEM;
  
 
    wire [`BUS_CANARY_WIDTH-1:0] bus_canary_MEM;
@@ -71,7 +73,9 @@ module MEM_STAGE(
                                 rs1_MEM,
                                 rs2_MEM,
                                 output_MEM,
-                                type_I_MEM,                                                                
+                                type_I_MEM,
+                                forward_reg_MEM,
+                                is_forwarding_MEM,                                                                
                                 
                                  bus_canary_MEM
                                  } = from_AGEX_latch;  
@@ -88,9 +92,12 @@ module MEM_STAGE(
                                 rs2_MEM,
                                 output_MEM,
                                 type_I_MEM, 
+                                forward_reg_MEM,
+                                is_forwarding_MEM,   
                                         // more signals might need    
                               bus_canary_MEM                   
    }; 
+   assign from_MEM_to_DE = {forward_reg_MEM, is_forwarding_MEM};
 
   always @ (posedge clk) begin
     if (reset) begin

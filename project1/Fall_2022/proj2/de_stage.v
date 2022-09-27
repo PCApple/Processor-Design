@@ -212,13 +212,25 @@ module DE_STAGE(
   wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
   wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
   wire wr_csr_WB; // is this instruction writing into CSR ? 
+  wire [`REGNOBITS-1:0] agex_forward_reg_addr;
+  wire [`REGNOBITS-1:0] mem_forward_reg_addr;
+  wire [`REGNOBITS-1:0] wb_forward_reg_addr;
+  wire is_forwarding_agex;
+  wire is_forwarding_mem;
+  wire is_forwarding_wb;
+
 
   // signals come from WB stage for register WB 
-  assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
+  assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, wb_forward_reg_addr, is_forwarding_wb} = from_WB_to_DE;  
+  assign {agex_forward_reg_addr, is_forwarding_agex} = from_AGEX_to_DE;
+  assign {mem_forward_reg_addr, is_forwarding_mem} = from_MEM_to_DE;
 
 
+  reg stall_next;
   wire pipeline_stall_DE; 
-  assign from_DE_to_FE = {pipeline_stall_DE}; // pass the DE stage stall signal to FE stage 
+  assign pipeline_stall_DE = stall_next;
+  assign from_DE_to_FE = pipeline_stall_DE;
+  //assign pipeline_stall_DE = {from_AGEX_to_DE};
 
 
   // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
@@ -309,6 +321,15 @@ module DE_STAGE(
 		  	regs[wregno_WB] <= regval_WB; 
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
+  end
+  always @ (*) begin
+    if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
+    || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+    ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+      stall_next = 1;
+    end else begin
+      stall_next = 0;
+    end
   end
 
   always @ (posedge clk) begin // you need to expand this always block 

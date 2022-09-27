@@ -28,15 +28,14 @@ VL_MODULE(Vpipeline_pipeline) {
     
     // LOCAL SIGNALS
     CData/*0:0*/ __PVT__from_MEM_to_FE;
-    CData/*0:0*/ __PVT__from_AGEX_to_DE;
-    CData/*0:0*/ __PVT__from_MEM_to_DE;
+    CData/*5:0*/ __PVT__from_AGEX_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_AGEX;
-    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
-    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_next;
     CData/*5:0*/ __PVT__my_DE_stage__DOT__op_I_DE;
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
-    CData/*0:0*/ __PVT__my_DE_stage__DOT__pipeline_stall_DE;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__stall_next;
+    CData/*4:0*/ __PVT__my_AGEX_stage__DOT__forward_reg;
+    CData/*0:0*/ __PVT__my_AGEX_stage__DOT__is_forwarding;
     CData/*0:0*/ __PVT__my_MEM_stage__DOT__wr_mem_MEM;
     IData/*31:0*/ __PVT__cycle_count;
     WData/*131:0*/ __PVT__my_FE_stage__DOT__FE_latch[5];
@@ -44,13 +43,12 @@ VL_MODULE(Vpipeline_pipeline) {
     IData/*31:0*/ __PVT__my_FE_stage__DOT__pcplus_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
-    IData/*31:0*/ __PVT__my_FE_stage__DOT__unnamedblk1__DOT__i;
     WData/*237:0*/ __PVT__my_DE_stage__DOT__DE_latch[8];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__sxt_imm_DE;
-    WData/*237:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
+    WData/*243:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
     IData/*31:0*/ __PVT__my_AGEX_stage__DOT__output_AGEX;
     IData/*31:0*/ __PVT__my_AGEX_stage__DOT__branch_addr_AGEX;
-    WData/*237:0*/ __PVT__my_MEM_stage__DOT__MEM_latch[8];
+    WData/*243:0*/ __PVT__my_MEM_stage__DOT__MEM_latch[8];
     IData/*31:0*/ __PVT__my_MEM_stage__DOT__memaddr_MEM;
     IData/*31:0*/ __PVT__my_MEM_stage__DOT__wr_val_MEM;
     QData/*32:0*/ __PVT__from_AGEX_to_FE;
@@ -87,10 +85,10 @@ VL_MODULE(Vpipeline_pipeline) {
     static void _sequent__TOP__pipeline__2(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__3(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__4(Vpipeline__Syms* __restrict vlSymsp);
-    static void _settle__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void _sequent__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp);
+    static void _settle__TOP__pipeline__6(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+  private:
+    static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

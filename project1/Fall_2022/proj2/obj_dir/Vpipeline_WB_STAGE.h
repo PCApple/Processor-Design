@@ -25,8 +25,8 @@ VL_MODULE(Vpipeline_WB_STAGE) {
     VL_OUT8(__PVT__from_WB_to_FE,0,0);
     VL_OUT8(__PVT__from_WB_to_AGEX,0,0);
     VL_OUT8(__PVT__from_WB_to_MEM,0,0);
-    VL_INW(__PVT__from_MEM_latch,237,0,8);
-    VL_OUT64(__PVT__from_WB_to_DE,42,0);
+    VL_INW(__PVT__from_MEM_latch,243,0,8);
+    VL_OUT64(__PVT__from_WB_to_DE,48,0);
     
     // LOCAL SIGNALS
     CData/*3:0*/ __PVT__wcsrno_WB;
@@ -55,9 +55,8 @@ VL_MODULE(Vpipeline_WB_STAGE) {
     static void _sequent__TOP__pipeline__my_WB_stage__1(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__my_WB_stage__2(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__my_WB_stage__3(Vpipeline__Syms* __restrict vlSymsp);
-    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+  private:
+    static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------
