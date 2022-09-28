@@ -13,7 +13,6 @@ Vpipeline__Syms::Vpipeline__Syms(Vpipeline* topp, const char* namep)
     // Setup locals
     : __Vm_namep(namep)
     , __Vm_activity(false)
-    , __Vm_baseCode(0)
     , __Vm_didInit(false)
     // Setup submodule names
     , TOP__pipeline(Verilated::catName(topp->name(), "pipeline"))
@@ -29,10 +28,10 @@ Vpipeline__Syms::Vpipeline__Syms(Vpipeline* topp, const char* namep)
     TOP__pipeline.__Vconfigure(this, true);
     TOP__pipeline__my_WB_stage.__Vconfigure(this, true);
     // Setup scopes
-    __Vscope_pipeline__my_WB_stage.configure(this, name(), "pipeline.my_WB_stage", "my_WB_stage", 0, VerilatedScope::SCOPE_OTHER);
+    __Vscope_pipeline__my_WB_stage.configure(this, name(), "pipeline.my_WB_stage", "my_WB_stage", VerilatedScope::SCOPE_OTHER);
     // Setup export functions
     for (int __Vfinal=0; __Vfinal<2; __Vfinal++) {
-        __Vscope_pipeline__my_WB_stage.varInsert(__Vfinal,"WB_counters", &(TOP__pipeline__my_WB_stage.WB_counters), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,31,0);
-        __Vscope_pipeline__my_WB_stage.varInsert(__Vfinal,"last_WB_value", &(TOP__pipeline__my_WB_stage.last_WB_value), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,31,0);
+        __Vscope_pipeline__my_WB_stage.varInsert(__Vfinal,"WB_counters", &(TOP__pipeline__my_WB_stage.WB_counters), VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,31,0);
+        __Vscope_pipeline__my_WB_stage.varInsert(__Vfinal,"last_WB_value", &(TOP__pipeline__my_WB_stage.last_WB_value), VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,31,0);
     }
 }

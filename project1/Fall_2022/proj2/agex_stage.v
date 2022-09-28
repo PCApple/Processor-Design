@@ -61,7 +61,8 @@ module AGEX_STAGE(
           br_cond_AGEX = 1;
           branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
         end else begin
-          br_cond_AGEX = 0;
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
         end
       end
       `BLT_I : begin
@@ -69,7 +70,8 @@ module AGEX_STAGE(
           br_cond_AGEX = 1;
           branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
         end else begin
-          br_cond_AGEX = 0;
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
         end
       end
       `BGE_I : begin
@@ -77,15 +79,32 @@ module AGEX_STAGE(
           br_cond_AGEX = 1;
           branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
         end else begin
-          br_cond_AGEX = 0;
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
         end
       end
-      /*
-      `BLTU_I: ..
-      `BGEU_I : ...
-      */
-  
-      default : br_cond_AGEX = 1'b0;
+      `BLTU_I: begin
+        if (rs1_AGEX <= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `BGEU_I : begin
+        if (rs1_AGEX >= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      default : begin
+        br_cond_AGEX = 1'b0;
+        branch_addr_AGEX = 0;
+      end
     endcase
   end
 
@@ -97,70 +116,67 @@ module AGEX_STAGE(
   case (op_I_AGEX)
     `ADDI_I: begin
       output_AGEX = rs1_AGEX + sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ADD_I: begin
       output_AGEX = rs1_AGEX + rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
+    end
+    `AUIPC_I: begin
+      output_AGEX = PC_AGEX + sxt_imm_AGEX;
     end
     `AND_I: begin
       output_AGEX = rs1_AGEX & rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `MUL_I: begin
       output_AGEX = rs1_AGEX * rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `SUB_I: begin
       output_AGEX = rs1_AGEX - rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `OR_I: begin
       output_AGEX = rs1_AGEX | rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `XOR_I: begin
       output_AGEX = rs1_AGEX ^ rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ANDI_I: begin
       output_AGEX = rs1_AGEX & sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ORI_I: begin
       output_AGEX = rs1_AGEX | sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `XORI_I: begin
       output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
+    end
+    `INVALID_I: begin
+      output_AGEX = 0;
+    end
+	 endcase 
+  end
+  always @ (*) begin
+    if (op_I_AGEX == `ADD_I || op_I_AGEX == `SUB_I || op_I_AGEX == `AND_I || op_I_AGEX == `OR_I || op_I_AGEX == `XOR_I || op_I_AGEX == `MUL_I || op_I_AGEX == `ADDI_I || op_I_AGEX == `AUIPC_I || op_I_AGEX == `XORI_I || op_I_AGEX == `ORI_I || op_I_AGEX == `JAL_I || op_I_AGEX == `JALR_I) begin
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
+    end else begin
+      is_forwarding = 0;
+      forward_reg = 0;
     end
-
-
-    default: is_forwarding = 0;
-
-	 endcase 
-   
   end 
-
   // branch target needs to be computed here 
   // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
 
-  always @(*)begin  
-  /*
-    if (op_I_AGEX == `JAL_I) 
-    ... 
-    */
+  always @(*) begin  
+    if (op_I_AGEX == `JAL_I) begin
+      br_cond_AGEX = 1;
+      branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      output_AGEX = pcplus_AGEX;
+    end else if (op_I_AGEX == `JALR_I) begin
+      br_cond_AGEX = 1;
+      branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 32'hFFFFFFFE;
+      output_AGEX = pcplus_AGEX;
+    end else if (op_I_AGEX == `JR_I) begin
+      br_cond_AGEX = 1;
+      branch_addr_AGEX = rs1_AGEX;
+    end
   end 
 
   assign from_AGEX_to_FE = { br_cond_AGEX, branch_addr_AGEX};

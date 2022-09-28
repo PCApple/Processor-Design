@@ -11,6 +11,16 @@ module DE_STAGE(
   output wire [`DE_latch_WIDTH-1:0]       DE_latch_out
 );
 
+initial begin
+  for (integer i = 0; i < 32; i++) begin
+    regs[i] = {`DBITS{1'b0}};
+  end
+  for (integer i = 0; i < 32; i++) begin
+    csr_regs[i] = {`DBITS{1'b0}};
+  end
+  
+end
+
   /* pipeline latch*/ 
   reg [`DE_latch_WIDTH-1:0] DE_latch; 
 
@@ -209,7 +219,7 @@ module DE_STAGE(
  /* this signal is passed from WB stage */ 
   wire wr_reg_WB; // is this instruction writing into a register file? 
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
-  wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
+  wire signed [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
   wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
   wire wr_csr_WB; // is this instruction writing into CSR ? 
   wire [`REGNOBITS-1:0] agex_forward_reg_addr;
@@ -322,23 +332,35 @@ module DE_STAGE(
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
+  reg continue_stall;
   always @ (*) begin
     if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
     || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
     ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
       stall_next = 1;
+      continue_stall = 0;
     end else begin
+      if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I 
+      || op_I_DE == `JAL_I || op_I_DE == `JALR_I || op_I_DE == `JR_I) begin
+        stall_next = 1;
+        continue_stall = 1;
+      end
       stall_next = 0;
     end
   end
 
-  always @ (posedge clk) begin // you need to expand this always block 
+  always @ (posedge clk) begin // you need to expand this always block to handle stalls
     if (reset) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end
      else begin  
-      if (pipeline_stall_DE) 
-        DE_latch <= {`DE_latch_WIDTH{1'b0}};
+      if (pipeline_stall_DE) begin
+        if (continue_stall) begin
+          DE_latch <= DE_latch_contents;
+        end else begin
+          DE_latch <= {`DE_latch_WIDTH{1'b0}};
+        end
+      end
       else
           DE_latch <= DE_latch_contents;
 
