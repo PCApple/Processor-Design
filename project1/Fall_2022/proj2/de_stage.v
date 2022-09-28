@@ -34,7 +34,9 @@ end
   wire [`DBITS-1:0] pcplus_DE; 
   wire [`DBITS-1:0] inst_count_DE; 
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
-  wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE; 
+  wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE;
+  reg [`DBITS-1:0] rs1_content;
+  reg [`DBITS-1:0] rs2_content;
  
 
   // extracting a part of opcode 
@@ -251,7 +253,24 @@ end
             inst_count_DE,
             bus_canary_DE 
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
-
+  always @ (*) begin
+    if (type_I_DE == `R_Type) begin
+      rs1_content = regs[inst_DE[19:15]];
+      rs2_content = regs[inst_DE[24:20]];
+    end else if (type_I_DE == `I_Type) begin
+      rs1_content = regs[inst_DE[19:15]];
+      rs2_content = 0;
+    end else if (type_I_DE == `S_Type) begin
+      rs1_content = regs[inst_DE[19:15]];
+      rs2_content = regs[inst_DE[24:20]];
+    end else if (type_I_DE == `U_Type) begin
+      rs1_content = 0;
+      rs2_content = 0;
+    end else begin
+      rs1_content = 0;
+      rs2_content = 0;
+    end
+  end
 
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
@@ -263,8 +282,8 @@ end
                                   op_I_DE,
                                   inst_count_DE, 
                                   sxt_imm_DE,
-                                  regs[inst_DE[19:15]],
-                                  regs[inst_DE[24:20]],
+                                  rs1_content,
+                                  rs2_content,
                                   type_I_DE,
                                   // more signals might need
                                    bus_canary_DE 

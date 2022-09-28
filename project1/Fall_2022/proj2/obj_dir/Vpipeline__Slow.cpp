@@ -36,6 +36,7 @@ void Vpipeline::_eval_initial(Vpipeline__Syms* __restrict vlSymsp) {
     Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlSymsp->TOP__pipeline._initial__TOP__pipeline__1(vlSymsp);
+    vlTOPp->__Vm_traceActivity[3U] = 1U;
     vlTOPp->__Vm_traceActivity[2U] = 1U;
     vlTOPp->__Vm_traceActivity[1U] = 1U;
     vlTOPp->__Vm_traceActivity[0U] = 1U;
@@ -54,6 +55,7 @@ void Vpipeline::_eval_settle(Vpipeline__Syms* __restrict vlSymsp) {
     Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlSymsp->TOP__pipeline._settle__TOP__pipeline__6(vlSymsp);
+    vlTOPp->__Vm_traceActivity[3U] = 1U;
     vlTOPp->__Vm_traceActivity[2U] = 1U;
     vlTOPp->__Vm_traceActivity[1U] = 1U;
     vlTOPp->__Vm_traceActivity[0U] = 1U;
@@ -66,7 +68,7 @@ void Vpipeline::_ctor_var_reset() {
     // Body
     clk = VL_RAND_RESET_I(1);
     reset = VL_RAND_RESET_I(1);
-    { int __Vi0=0; for (; __Vi0<3; ++__Vi0) {
+    { int __Vi0=0; for (; __Vi0<4; ++__Vi0) {
             __Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }}
 }

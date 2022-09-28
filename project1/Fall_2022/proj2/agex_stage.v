@@ -116,47 +116,69 @@ module AGEX_STAGE(
   case (op_I_AGEX)
     `ADDI_I: begin
       output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `ADD_I: begin
       output_AGEX = rs1_AGEX + rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `AUIPC_I: begin
       output_AGEX = PC_AGEX + sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `AND_I: begin
       output_AGEX = rs1_AGEX & rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `MUL_I: begin
       output_AGEX = rs1_AGEX * rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `SUB_I: begin
       output_AGEX = rs1_AGEX - rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `OR_I: begin
       output_AGEX = rs1_AGEX | rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `XOR_I: begin
       output_AGEX = rs1_AGEX ^ rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `ANDI_I: begin
       output_AGEX = rs1_AGEX & sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `ORI_I: begin
       output_AGEX = rs1_AGEX | sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `XORI_I: begin
       output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
     `INVALID_I: begin
       output_AGEX = 0;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end
 	 endcase 
   end
+  
   always @ (*) begin
-    if (op_I_AGEX == `ADD_I || op_I_AGEX == `SUB_I || op_I_AGEX == `AND_I || op_I_AGEX == `OR_I || op_I_AGEX == `XOR_I || op_I_AGEX == `MUL_I || op_I_AGEX == `ADDI_I || op_I_AGEX == `AUIPC_I || op_I_AGEX == `XORI_I || op_I_AGEX == `ORI_I || op_I_AGEX == `JAL_I || op_I_AGEX == `JALR_I) begin
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
-    end else begin
+    if (op_I_AGEX != `ADD_I || op_I_AGEX != `SUB_I || op_I_AGEX != `AND_I || op_I_AGEX != `OR_I || op_I_AGEX != `XOR_I || op_I_AGEX != `MUL_I || op_I_AGEX != `ADDI_I || op_I_AGEX != `AUIPC_I || op_I_AGEX != `XORI_I || op_I_AGEX != `ORI_I || op_I_AGEX != `JAL_I || op_I_AGEX != `JALR_I) begin
       is_forwarding = 0;
       forward_reg = 0;
     end
@@ -169,10 +191,14 @@ module AGEX_STAGE(
       br_cond_AGEX = 1;
       branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
       output_AGEX = pcplus_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end else if (op_I_AGEX == `JALR_I) begin
       br_cond_AGEX = 1;
       branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 32'hFFFFFFFE;
       output_AGEX = pcplus_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
     end else if (op_I_AGEX == `JR_I) begin
       br_cond_AGEX = 1;
       branch_addr_AGEX = rs1_AGEX;
