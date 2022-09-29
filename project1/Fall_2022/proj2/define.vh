@@ -17,7 +17,7 @@
 // [NOTICE] please note that both imem and dmem use the SAME "IDMEMINITFILE".
 // you need to change this line to change which test file to read 
 `define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem"
-`define IMEMADDRBITS  16
+`define IMEMADDRBITS  16_
 `define IMEMWORDBITS  2
 `define IMEMWORDS	  (1 << (`IMEMADDRBITS - `IMEMWORDBITS))
 `define DMEMADDRBITS  16

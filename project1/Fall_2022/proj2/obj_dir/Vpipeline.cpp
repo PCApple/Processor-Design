@@ -91,17 +91,21 @@ void Vpipeline::_eval(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
+    if (((~ (IData)(vlTOPp->clk)) & (IData)(vlTOPp->__Vclklast__TOP__clk))) {
         vlSymsp->TOP__pipeline._sequent__TOP__pipeline__2(vlSymsp);
         vlTOPp->__Vm_traceActivity = (2U | vlTOPp->__Vm_traceActivity);
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__1(vlSymsp);
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__3(vlSymsp);
-        vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
     }
-    if (((~ (IData)(vlTOPp->clk)) & (IData)(vlTOPp->__Vclklast__TOP__clk))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
+    if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__3(vlSymsp);
         vlTOPp->__Vm_traceActivity = (4U | vlTOPp->__Vm_traceActivity);
+        vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__3(vlSymsp);
+    }
+    if (((IData)(vlTOPp->clk) ^ (IData)(vlTOPp->__Vclklast__TOP__clk))) {
+        vlSymsp->TOP__pipeline._multiclk__TOP__pipeline__6(vlSymsp);
+        vlTOPp->__Vm_traceActivity = (8U | vlTOPp->__Vm_traceActivity);
     }
     // Final
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
@@ -129,7 +133,7 @@ void Vpipeline::_eval_settle(Vpipeline__Syms* __restrict vlSymsp) {
     // Body
     vlSymsp->TOP__pipeline._settle__TOP__pipeline__5(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
-    vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
+    vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__3(vlSymsp);
 }
 
 VL_INLINE_OPT QData Vpipeline::_change_request(Vpipeline__Syms* __restrict vlSymsp) {

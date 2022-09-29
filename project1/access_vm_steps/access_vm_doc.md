@@ -68,7 +68,7 @@ Before attempting the following steps, please ensure you are connected to campus
       ```
       *Note: You may find it useful to set up an alias for frequently used pace-vnc-job command in your .bashrc file since you will use this command a lot to start a vncserver*
 
-4. The last few lines give you instructions to set up "SSH port forwarding". Briefly, this meansthat you are using SSH to forward the GUI connection from the remote cluster back to yourlocal machine. To do this, follow the instructions as shown:
+4. The last few lines give you instructions to set up "SSH port forwarding". Briefly, this means that you are using SSH to forward the GUI connection from the remote cluster back to your local machine. To do this, follow the instructions as shown:
       ```
       #Enter SHIFT+~ then SHIFT+C on this empty command-line. If you've done thisright, you should get the ssh> line below
       [gburdell@login-coc-ice-1 ~]$

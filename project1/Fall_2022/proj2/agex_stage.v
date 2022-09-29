@@ -40,28 +40,10 @@ module AGEX_STAGE(
   
   always @ (*) begin
     case (op_I_AGEX)
-      `BEQ_I :
-      begin
-        if (rs1_AGEX == rs2_AGEX) begin
-          br_cond_AGEX = 1;
-          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-        end else begin
-          br_cond_AGEX = 0;
-        end
+      
+      default : begin
+        
       end
-
-      //`BEQ_I : br_cond_AGEX = 1; // write correct code to check the branch condition. 
-      // Check registers one and two
-      // If equal, pcplus_AGEX <= PC_AGEX + offset
-
-      /*
-      `BNE_I : ...
-      `BLT_I : ...
-      `BGE_I : ...
-      `BLTU_I: ..
-      `BGEU_I : ...
-      */
-      default : br_cond_AGEX = 1'b0;
     endcase
   end
 
@@ -71,22 +53,152 @@ module AGEX_STAGE(
   always @ (*) begin
   
     case (op_I_AGEX)
-      `ADDI_I:
+      `ADDI_I: begin
+        $display("in ADDI");
         output_AGEX = rs1_AGEX + sxt_imm_AGEX;
-      `ADD_I:
+      end
+      `ADD_I: begin
+        $display("in ADD");
         output_AGEX = rs1_AGEX + rs2_AGEX;
+      end
+      //`LUI_I: begin
+      //  output_AGEX = sxt_imm_AGEX; // already shifted in dec
+      //  is_forwarding = 1;
+      //  forward_reg = inst_AGEX[11:7];
+      `AUIPC_I: begin
+        $display("in AUIPC");
+        output_AGEX = PC_AGEX + sxt_imm_AGEX;
+      end
+      `AND_I: begin
+        $display("in AND");
+        output_AGEX = rs1_AGEX & rs2_AGEX;
+      end
+      `MUL_I: begin
+        output_AGEX = rs1_AGEX * rs2_AGEX;
+      end
+      `SUB_I: begin
+        output_AGEX = rs1_AGEX - rs2_AGEX;
+      end
+      `OR_I: begin
+        output_AGEX = rs1_AGEX | rs2_AGEX;
+      end
+      `XOR_I: begin
+        output_AGEX = rs1_AGEX ^ rs2_AGEX;
+      end
+      `ANDI_I: begin
+        output_AGEX = rs1_AGEX & sxt_imm_AGEX;
+      end
+      `ORI_I: begin
+        output_AGEX = rs1_AGEX | sxt_imm_AGEX;
+      end
+      `XORI_I: begin
+        output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
+      end
+      `INVALID_I: begin
+        $display("in INVALID");
+        output_AGEX = 0;
+      end
+      `BEQ_I : begin
+        $display("in BEQ");
+            if (rs1_AGEX == rs2_AGEX) begin
+              $display("BEQ is true, rs1 = %d, rs2 = %d", rs1_AGEX, rs2_AGEX);
+              br_cond_AGEX = 1;
+              branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+            end else begin
+              $display("BEQ is false, rs1 = %d, rs2 = %d", rs1_AGEX, rs2_AGEX);
+              br_cond_AGEX = 1;
+              branch_addr_AGEX = pcplus_AGEX;
+            end
+      end
+      `BNE_I : begin
+        $display("BNE_I");
+        if (rs1_AGEX != rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `BLT_I : begin
+        $display("BLT_I");
+        if (rs1_AGEX <= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `BGE_I : begin
+        $display("BGE_I");
+        if (rs1_AGEX >= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `BLTU_I: begin
+        $display("BLTU");
+        if (rs1_AGEX <= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `BGEU_I : begin
+        $display("BGEU_I");
+        if (rs1_AGEX >= rs2_AGEX) begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        end else begin
+          br_cond_AGEX = 1;
+          branch_addr_AGEX = pcplus_AGEX;
+        end
+      end
+      `JAL_I : begin
+        $display("in JAL");
+        br_cond_AGEX = 1;
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+        output_AGEX = pcplus_AGEX;
+        end
+      `JALR_I : begin
+        $display("in JALR");
+        br_cond_AGEX = 1;
+        branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 32'hFFFFFFFE;
+        output_AGEX = pcplus_AGEX;
+      end
+      `JR_I : begin
+        $display("in JR");
+        is_forwarding = 0;
+        forward_reg = 0;
+        br_cond_AGEX = 1;
+        branch_addr_AGEX = rs1_AGEX;
+      end
+      default: begin
+        $display("in default");
+        output_AGEX = 0;
+        br_cond_AGEX = 1'b0;
+        branch_addr_AGEX = 0;
+      end
 	 endcase 
-   
-  end 
-
+  end
+  /*
+  always @ (*) begin
+    if (op_I_AGEX != `ADD_I || op_I_AGEX != `SUB_I || op_I_AGEX != `AND_I || op_I_AGEX != `OR_I || op_I_AGEX != `XOR_I || op_I_AGEX != `MUL_I || op_I_AGEX != `ADDI_I || op_I_AGEX != `AUIPC_I || op_I_AGEX != `XORI_I || op_I_AGEX != `ORI_I || op_I_AGEX != `JAL_I || op_I_AGEX != `JALR_I) begin
+      $display("bruh");
+      is_forwarding = 0;
+      forward_reg = 0;
+    end
+  end */
   // branch target needs to be computed here 
   // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
 
-  always @(*)begin  
-  /*
-    if (op_I_AGEX == `JAL_I) 
-    ... 
-    */
+  always @(*) begin  
   end 
 
   assign from_AGEX_to_FE = { br_cond_AGEX, branch_addr_AGEX};

@@ -16,10 +16,15 @@ module DE_STAGE(
 
   /* architecture register file */ 
   reg [`DBITS-1:0] regs [`REGWORDS-1:0];
+<<<<<<< Updated upstream
   reg [`DBITS-1:0] csr_regs[`CSRREGNUM-1:0];
 
   reg [`REGNOBITS-1:0] flagged_reg;
   reg is_flagged;
+=======
+  reg [`DBITS-1:0] score_regs [`REGWORDS-1:0];
+  reg [`DBITS-1:0] csr_regs[`CSRREGNUM-1:0]; 
+>>>>>>> Stashed changes
   
   /* decode signals */
   wire [`INSTBITS-1:0] inst_DE; 
@@ -290,6 +295,10 @@ module DE_STAGE(
       regs[30] <= {`DBITS{1'b0}};
       regs[31] <= {`DBITS{1'b0}};
 
+      for(int i=0; i<32; i=i+1) begin
+        score_regs[i] <= {`DBITS{1'b0}};
+      end
+
       csr_regs[0] <= {`DBITS{1'b0}};
       csr_regs[1] <= {`DBITS{1'b0}};
       csr_regs[2] <= {`DBITS{1'b0}};
@@ -307,15 +316,126 @@ module DE_STAGE(
       csr_regs[14] <= {`DBITS{1'b0}};
       csr_regs[15] <= {`DBITS{1'b0}};
     end
-    else if (wr_reg_WB) 
-		  	regs[wregno_WB] <= regval_WB; 
+    else if (wr_reg_WB) begin 
+		  	regs[wregno_WB] <= regval_WB;
+        score_regs[wregno_WB] = score_regs[wregno_WB] - 1;
+        $display("score_regs[%d] = %d", wregno_WB, score_regs[wregno_WB]);
+    end 
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
-  always 
-  reg [4:0] count = 0;
-  reg stall_next;
-  always @ (posedge clk) begin // you need to expand this always block 
+  reg continue_stall;
+  /*always @ (*) begin
+    if (type_I_DE == `R_Type || type_I_DE == `I_Type || type_I_DE == `U_Type) begin
+      if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
+      || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+      ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+        $display("stall on PC %h, reg agex: %d, reg mem: %d, reg wb: %d, forward agex: %d, forward mem: %d, forward wb: %d", PC_DE, agex_forward_reg_addr, mem_forward_reg_addr, wb_forward_reg_addr, is_forwarding_agex, is_forwarding_mem, is_forwarding_wb);
+        stall_next = 1;
+        continue_stall = 0;
+      end else if (op_I_DE == `JAL_I || op_I_DE == `JALR_I || op_I_DE == `JR_I) begin
+        $display("stall on PC %h, reg agex: %d, reg mem: %d, reg wb: %d, forward agex: %d, forward mem: %d, forward wb: %d", PC_DE, agex_forward_reg_addr, mem_forward_reg_addr, wb_forward_reg_addr, is_forwarding_agex, is_forwarding_mem, is_forwarding_wb);
+        stall_next = 0;
+        continue_stall = 1;
+      end else begin
+        $display("no stall on PC %h, reg agex: %d, reg mem: %d, reg wb: %d, forward agex: %d, forward mem: %d, forward wb: %d", PC_DE, agex_forward_reg_addr, mem_forward_reg_addr, wb_forward_reg_addr, is_forwarding_agex, is_forwarding_mem, is_forwarding_wb);
+        stall_next = 0;
+        continue_stall = 0;
+      end
+    end else begin
+      if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I || op_I_DE == `BLT_I ) begin
+        continue_stall = 1;
+        if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
+        || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+        ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+        stall_next = 1;
+        $display("stall on PC %h, reg agex: %d, reg mem: %d, reg wb: %d, forward agex: %d, forward mem: %d, forward wb: %d", PC_DE, agex_forward_reg_addr, mem_forward_reg_addr, wb_forward_reg_addr, is_forwarding_agex, is_forwarding_mem, is_forwarding_wb);
+        end
+      end else begin
+        $display("no stall on PC %h, reg agex: %d, reg mem: %d, reg wb: %d, forward agex: %d, forward mem: %d, forward wb: %d", PC_DE, agex_forward_reg_addr, mem_forward_reg_addr, wb_forward_reg_addr, is_forwarding_agex, is_forwarding_mem, is_forwarding_wb);
+        stall_next = 0;
+        continue_stall = 0;
+      end
+    end
+  end*/
+  /*
+  always @ (*) begin
+    if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
+    || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+    ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin //RAW hazard
+      if (type_I_DE == `R_Type || type_I_DE == `S_Type) begin
+        stall_next = 1;
+        continue_stall = 0;
+      end else if (type_I_DE == `I_Type) begin
+        stall_next = 1;
+        continue_stall = 0;
+      end else if (type_I_DE == `U_Type) begin
+      end
+    end else begin
+      if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I 
+      || op_I_DE == `JAL_I || op_I_DE == `JALR_I || op_I_DE == `JR_I) begin
+        stall_next = 1;
+        continue_stall = 1;
+      end else begin
+        stall_next = 0;
+        continue_stall = 0;
+      end
+    end
+  end*/
+  always @ (posedge clk) begin
+    if (type_I_DE == `R_Type) begin
+      if (score_regs[inst_DE[19:15]] > 0 || score_regs[inst_DE[24:20]] > 0) begin
+        stall_next = 1;
+        continue_stall = 0;
+      end else begin
+        score_regs[inst_DE[11:7]] = score_regs[inst_DE[11:7]] + 1;
+        $display("score_regs[%d] = %d", inst_DE[11:7], score_regs[inst_DE[11:7]]);
+        stall_next = 0;
+        continue_stall = 0;
+      end
+    end else if (type_I_DE == `I_Type) begin
+      if (score_regs[inst_DE[19:15]] > 0) begin
+        stall_next = 1;
+        continue_stall = 0;
+      end else begin
+        score_regs[inst_DE[11:7]] = score_regs[inst_DE[11:7]] + 1;
+        $display("score_regs[%d] = %d", inst_DE[11:7], score_regs[inst_DE[11:7]]);
+        if (op_I_DE == `JR_I || op_I_DE == `JALR_I) begin
+          stall_next = 1;
+          continue_stall = 1;
+        end else begin
+          
+          stall_next = 0;
+          continue_stall = 0;
+        end 
+      end
+    end else if (type_I_DE == `S_Type) begin
+      if (score_regs[inst_DE[19:15]] > 0 || score_regs[inst_DE[24:20]] > 0) begin
+        stall_next = 1;
+        continue_stall = 0;
+      end else begin
+        if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I || op_I_DE == `BLT_I) begin
+          stall_next = 1;
+          continue_stall = 1;
+        end else begin
+          stall_next = 0;
+          continue_stall = 0;
+        end
+      end
+    end else if (type_I_DE == `U_Type) begin
+      score_regs[inst_DE[11:7]] = score_regs[inst_DE[11:7]] + 1;
+      $display("score_regs[%d] = %d", inst_DE[11:7], score_regs[inst_DE[11:7]]);
+      if (op_I_DE == `JR_I) begin
+        stall_next = 1;
+        continue_stall = 1;
+      end else begin
+        stall_next = 0;
+        continue_stall = 0;
+      end
+    end
+    
+  end
+  always @ (posedge clk) begin // you need to expand this always block to handle stalls
     if (reset) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end

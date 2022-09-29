@@ -706,7 +706,7 @@ instruction ignores the lowest bit of the calculated target address.
 
  - Summary   : Branch based on signed comparison of two GPRs
  - Assembly  : blt rs1, rs2, imm
- - Semantics : PC = ( R[rs1] <s R[rs2] ) ? PC + sext(imm) : PC + 4
+ - Semantics : PC = ( R[rs1] <= R[rs2] ) ? PC + sext(imm) : PC + 4
  - Format    : S-type, B-immediate
 
   31        25 24     20 19     15 14  12 11      7 6           0

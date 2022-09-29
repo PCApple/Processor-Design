@@ -94,14 +94,25 @@ module FE_STAGE(
         inst_count_FE <= inst_count_FE + 1; 
       end 
       else begin
-        PC_FE_latch <= pcplus_FE;
-        inst_count_FE <= inst_count_FE + 1; 
+        if (pcplus_FE >= PC_FE_latch) begin
+          PC_FE_latch <= pcplus_FE;
+          inst_count_FE <= inst_count_FE + 1; 
+        end else begin
+          PC_FE_latch <= PC_FE_latch;
+        end 
       end 
     end
-    else 
-      PC_FE_latch <= PC_FE_latch;
-      //put more
-    
+    else begin
+      if (br_cond_FE) begin
+        PC_FE_latch <= branch_addr_FE;
+        inst_count_FE <= inst_count_FE + 1;
+      end
+      else begin
+        PC_FE_latch <= PC_FE_latch;
+      end
+    end
+      
+      //put more here
   end
   
 
