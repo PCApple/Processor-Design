@@ -87,16 +87,14 @@ module FE_STAGE(
    if (reset) begin 
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
-      end 
-    else if (!stall_pipe_FE) begin 
-      if (br_cond_FE) begin
+   end else if (br_cond_FE) begin
+        $display("branch_addr_FE: %h, br_cond_FE: %h", branch_addr_FE, br_cond_FE);
         PC_FE_latch <= branch_addr_FE;
         inst_count_FE <= inst_count_FE + 1; 
-      end 
-      else begin
+    end
+    else if (!stall_pipe_FE) begin 
         PC_FE_latch <= pcplus_FE;
         inst_count_FE <= inst_count_FE + 1; 
-      end 
     end
     else 
       PC_FE_latch <= PC_FE_latch;
@@ -113,7 +111,7 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (stall_pipe_FE)
+         if  (stall_pipe_FE && !br_cond_FE)
             FE_latch <= FE_latch;
             // put more here
           else 

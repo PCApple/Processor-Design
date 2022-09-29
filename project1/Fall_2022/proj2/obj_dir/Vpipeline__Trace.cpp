@@ -164,6 +164,7 @@ void Vpipeline::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                            >> 4U))));
             tracep->chgBit(oldp+72,((1U & (IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__from_WB_to_DE))));
             tracep->chgBit(oldp+73,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__continue_stall));
+            tracep->chgBit(oldp+74,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__already_stalled));
             __Vtemp16[0U] = ((0xffffc000U & (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX 
                                              << 0xeU)) 
                              | ((0x3c00U & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
@@ -251,195 +252,195 @@ void Vpipeline::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                          >> 0xeU))) 
                                                   >> 0x20U)) 
                                          >> 0xcU));
-            tracep->chgWData(oldp+74,(__Vtemp16),244);
-            tracep->chgIData(oldp+82,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+            tracep->chgWData(oldp+75,(__Vtemp16),244);
+            tracep->chgIData(oldp+83,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U] 
                                         << 0x12U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
                                         >> 0xeU))),32);
-            tracep->chgIData(oldp+83,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+            tracep->chgIData(oldp+84,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
                                         << 0x12U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                         >> 0xeU))),32);
-            tracep->chgIData(oldp+84,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+            tracep->chgIData(oldp+85,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                         << 0x18U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                                         >> 8U))),32);
-            tracep->chgIData(oldp+85,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+            tracep->chgIData(oldp+86,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                         << 0x12U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                         >> 0xeU))),32);
-            tracep->chgCData(oldp+86,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+            tracep->chgCData(oldp+87,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                                  << 0x18U) 
                                                 | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                                    >> 8U)))),6);
-            tracep->chgBit(oldp+87,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__br_cond_AGEX));
-            tracep->chgIData(oldp+88,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+            tracep->chgBit(oldp+88,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__br_cond_AGEX));
+            tracep->chgIData(oldp+89,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                                         << 0x18U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
                                         >> 8U))),32);
-            tracep->chgIData(oldp+89,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+            tracep->chgIData(oldp+90,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
                                         << 0x18U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
                                         >> 8U))),32);
-            tracep->chgIData(oldp+90,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+            tracep->chgIData(oldp+91,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
                                         << 0x18U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
                                         >> 8U))),32);
-            tracep->chgCData(oldp+91,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
+            tracep->chgCData(oldp+92,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
                                                 << 0x1cU) 
                                                | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
                                                   >> 4U)))),4);
-            tracep->chgIData(oldp+92,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX),32);
-            tracep->chgIData(oldp+93,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX),32);
-            tracep->chgCData(oldp+94,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__forward_reg),5);
-            tracep->chgBit(oldp+95,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__is_forwarding));
-            tracep->chgCData(oldp+96,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U])),4);
-            tracep->chgCData(oldp+97,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
+            tracep->chgIData(oldp+93,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX),32);
+            tracep->chgIData(oldp+94,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX),32);
+            tracep->chgCData(oldp+95,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__forward_reg),5);
+            tracep->chgBit(oldp+96,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__is_forwarding));
+            tracep->chgCData(oldp+97,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U])),4);
+            tracep->chgCData(oldp+98,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
                                                  << 0x12U) 
                                                 | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[5U] 
                                                    >> 0xeU)))),6);
-            tracep->chgIData(oldp+98,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[5U] 
+            tracep->chgIData(oldp+99,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[5U] 
                                         << 0x12U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[4U] 
                                         >> 0xeU))),32);
-            tracep->chgIData(oldp+99,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[7U] 
-                                        << 0xcU) | 
-                                       (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
-                                        >> 0x14U))),32);
-            tracep->chgIData(oldp+100,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
+            tracep->chgIData(oldp+100,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[7U] 
+                                         << 0xcU) | 
+                                        (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
+                                         >> 0x14U))),32);
+            tracep->chgIData(oldp+101,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[6U] 
                                          << 0xcU) | 
                                         (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[5U] 
                                          >> 0x14U))),32);
-            tracep->chgIData(oldp+101,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[4U] 
+            tracep->chgIData(oldp+102,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[4U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[3U] 
                                            >> 0xeU))),32);
-            tracep->chgIData(oldp+102,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[3U] 
+            tracep->chgIData(oldp+103,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[3U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[2U] 
                                            >> 0xeU))),32);
-            tracep->chgIData(oldp+103,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[2U] 
+            tracep->chgIData(oldp+104,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[2U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
                                            >> 0xeU))),32);
-            tracep->chgIData(oldp+104,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
+            tracep->chgIData(oldp+105,(((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
                                            >> 0xeU))),32);
-            tracep->chgCData(oldp+105,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
+            tracep->chgCData(oldp+106,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
                                                  << 0x16U) 
                                                 | (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
                                                    >> 0xaU)))),4);
-            tracep->chgCData(oldp+106,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U])),4);
-            tracep->chgIData(oldp+107,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem
+            tracep->chgCData(oldp+107,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U])),4);
+            tracep->chgIData(oldp+108,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem
                                        [(0x3fffU & 
                                          (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__memaddr_MEM 
                                           >> 2U))]),32);
-            tracep->chgCData(oldp+108,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
+            tracep->chgCData(oldp+109,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
                                                   << 0x12U) 
                                                  | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
                                                     >> 0xeU)))),6);
-            tracep->chgIData(oldp+109,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
+            tracep->chgIData(oldp+110,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
                                          << 0xcU) | 
                                         (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
                                          >> 0x14U))),32);
-            tracep->chgIData(oldp+110,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
+            tracep->chgIData(oldp+111,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
                                          << 0xcU) | 
                                         (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
                                          >> 0x14U))),32);
-            tracep->chgIData(oldp+111,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
+            tracep->chgIData(oldp+112,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[4U] 
                                            >> 0xeU))),32);
-            tracep->chgCData(oldp+112,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U])),4);
-            tracep->chgIData(oldp+113,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[4U] 
+            tracep->chgCData(oldp+113,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U])),4);
+            tracep->chgIData(oldp+114,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[4U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
                                            >> 0xeU))),32);
-            tracep->chgIData(oldp+114,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
+            tracep->chgIData(oldp+115,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
                                            >> 0xeU))),32);
-            tracep->chgIData(oldp+115,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
+            tracep->chgIData(oldp+116,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
                                            >> 0xeU))),32);
-            tracep->chgCData(oldp+116,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+            tracep->chgCData(oldp+117,((0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
                                                  << 0x16U) 
                                                 | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
                                                    >> 0xaU)))),4);
-            tracep->chgCData(oldp+117,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+            tracep->chgCData(oldp+118,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
                                                   << 0x1bU) 
                                                  | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
                                                     >> 5U)))),5);
-            tracep->chgBit(oldp+118,((1U & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+            tracep->chgBit(oldp+119,((1U & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
                                             >> 4U))));
-            tracep->chgBit(oldp+119,(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb));
-            tracep->chgCData(oldp+120,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
+            tracep->chgBit(oldp+120,(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb));
+            tracep->chgCData(oldp+121,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
                                                   << 5U) 
                                                  | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
                                                     >> 0x1bU)))),5);
-            tracep->chgIData(oldp+121,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+            tracep->chgIData(oldp+122,(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
                                          << 0x12U) 
                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
                                            >> 0xeU))),32);
         }
         if (VL_UNLIKELY(vlTOPp->__Vm_traceActivity[2U])) {
-            tracep->chgIData(oldp+122,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[0]),32);
-            tracep->chgIData(oldp+123,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[1]),32);
-            tracep->chgIData(oldp+124,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[2]),32);
-            tracep->chgIData(oldp+125,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[3]),32);
-            tracep->chgIData(oldp+126,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[4]),32);
-            tracep->chgIData(oldp+127,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[5]),32);
-            tracep->chgIData(oldp+128,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[6]),32);
-            tracep->chgIData(oldp+129,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[7]),32);
-            tracep->chgIData(oldp+130,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[8]),32);
-            tracep->chgIData(oldp+131,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[9]),32);
-            tracep->chgIData(oldp+132,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[10]),32);
-            tracep->chgIData(oldp+133,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[11]),32);
-            tracep->chgIData(oldp+134,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[12]),32);
-            tracep->chgIData(oldp+135,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[13]),32);
-            tracep->chgIData(oldp+136,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[14]),32);
-            tracep->chgIData(oldp+137,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[15]),32);
-            tracep->chgIData(oldp+138,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[16]),32);
-            tracep->chgIData(oldp+139,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[17]),32);
-            tracep->chgIData(oldp+140,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[18]),32);
-            tracep->chgIData(oldp+141,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[19]),32);
-            tracep->chgIData(oldp+142,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[20]),32);
-            tracep->chgIData(oldp+143,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[21]),32);
-            tracep->chgIData(oldp+144,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[22]),32);
-            tracep->chgIData(oldp+145,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[23]),32);
-            tracep->chgIData(oldp+146,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[24]),32);
-            tracep->chgIData(oldp+147,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[25]),32);
-            tracep->chgIData(oldp+148,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[26]),32);
-            tracep->chgIData(oldp+149,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[27]),32);
-            tracep->chgIData(oldp+150,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[28]),32);
-            tracep->chgIData(oldp+151,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[29]),32);
-            tracep->chgIData(oldp+152,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[30]),32);
-            tracep->chgIData(oldp+153,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[31]),32);
-            tracep->chgIData(oldp+154,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[0]),32);
-            tracep->chgIData(oldp+155,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[1]),32);
-            tracep->chgIData(oldp+156,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[2]),32);
-            tracep->chgIData(oldp+157,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[3]),32);
-            tracep->chgIData(oldp+158,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[4]),32);
-            tracep->chgIData(oldp+159,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[5]),32);
-            tracep->chgIData(oldp+160,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[6]),32);
-            tracep->chgIData(oldp+161,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[7]),32);
-            tracep->chgIData(oldp+162,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[8]),32);
-            tracep->chgIData(oldp+163,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[9]),32);
-            tracep->chgIData(oldp+164,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[10]),32);
-            tracep->chgIData(oldp+165,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[11]),32);
-            tracep->chgIData(oldp+166,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[12]),32);
-            tracep->chgIData(oldp+167,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[13]),32);
-            tracep->chgIData(oldp+168,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[14]),32);
-            tracep->chgIData(oldp+169,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[15]),32);
+            tracep->chgIData(oldp+123,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[0]),32);
+            tracep->chgIData(oldp+124,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[1]),32);
+            tracep->chgIData(oldp+125,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[2]),32);
+            tracep->chgIData(oldp+126,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[3]),32);
+            tracep->chgIData(oldp+127,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[4]),32);
+            tracep->chgIData(oldp+128,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[5]),32);
+            tracep->chgIData(oldp+129,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[6]),32);
+            tracep->chgIData(oldp+130,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[7]),32);
+            tracep->chgIData(oldp+131,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[8]),32);
+            tracep->chgIData(oldp+132,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[9]),32);
+            tracep->chgIData(oldp+133,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[10]),32);
+            tracep->chgIData(oldp+134,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[11]),32);
+            tracep->chgIData(oldp+135,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[12]),32);
+            tracep->chgIData(oldp+136,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[13]),32);
+            tracep->chgIData(oldp+137,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[14]),32);
+            tracep->chgIData(oldp+138,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[15]),32);
+            tracep->chgIData(oldp+139,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[16]),32);
+            tracep->chgIData(oldp+140,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[17]),32);
+            tracep->chgIData(oldp+141,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[18]),32);
+            tracep->chgIData(oldp+142,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[19]),32);
+            tracep->chgIData(oldp+143,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[20]),32);
+            tracep->chgIData(oldp+144,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[21]),32);
+            tracep->chgIData(oldp+145,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[22]),32);
+            tracep->chgIData(oldp+146,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[23]),32);
+            tracep->chgIData(oldp+147,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[24]),32);
+            tracep->chgIData(oldp+148,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[25]),32);
+            tracep->chgIData(oldp+149,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[26]),32);
+            tracep->chgIData(oldp+150,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[27]),32);
+            tracep->chgIData(oldp+151,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[28]),32);
+            tracep->chgIData(oldp+152,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[29]),32);
+            tracep->chgIData(oldp+153,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[30]),32);
+            tracep->chgIData(oldp+154,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs[31]),32);
+            tracep->chgIData(oldp+155,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[0]),32);
+            tracep->chgIData(oldp+156,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[1]),32);
+            tracep->chgIData(oldp+157,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[2]),32);
+            tracep->chgIData(oldp+158,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[3]),32);
+            tracep->chgIData(oldp+159,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[4]),32);
+            tracep->chgIData(oldp+160,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[5]),32);
+            tracep->chgIData(oldp+161,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[6]),32);
+            tracep->chgIData(oldp+162,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[7]),32);
+            tracep->chgIData(oldp+163,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[8]),32);
+            tracep->chgIData(oldp+164,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[9]),32);
+            tracep->chgIData(oldp+165,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[10]),32);
+            tracep->chgIData(oldp+166,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[11]),32);
+            tracep->chgIData(oldp+167,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[12]),32);
+            tracep->chgIData(oldp+168,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[13]),32);
+            tracep->chgIData(oldp+169,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[14]),32);
+            tracep->chgIData(oldp+170,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__csr_regs[15]),32);
         }
         if (VL_UNLIKELY(vlTOPp->__Vm_traceActivity[3U])) {
-            tracep->chgWData(oldp+170,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch_contents),238);
+            tracep->chgWData(oldp+171,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch_contents),238);
         }
-        tracep->chgBit(oldp+178,(vlTOPp->clk));
-        tracep->chgBit(oldp+179,(vlTOPp->reset));
-        tracep->chgIData(oldp+180,(((1U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE))
+        tracep->chgBit(oldp+179,(vlTOPp->clk));
+        tracep->chgBit(oldp+180,(vlTOPp->reset));
+        tracep->chgIData(oldp+181,(((1U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE))
                                      ? vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                     [(0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                                 << 0xdU) 
@@ -460,7 +461,7 @@ void Vpipeline::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                  | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                     >> 0x13U)))]
                                              : 0U)))),32);
-        tracep->chgIData(oldp+181,(((1U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE))
+        tracep->chgIData(oldp+182,(((1U == (IData)(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__type_I_DE))
                                      ? vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                     [(0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                                 << 8U) 
@@ -477,70 +478,70 @@ void Vpipeline::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                       | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                          >> 0x18U)))]
                                                   : 0U)))),32);
-        tracep->chgIData(oldp+182,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[0]),32);
-        tracep->chgIData(oldp+183,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[1]),32);
-        tracep->chgIData(oldp+184,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[2]),32);
-        tracep->chgIData(oldp+185,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[3]),32);
-        tracep->chgIData(oldp+186,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[4]),32);
-        tracep->chgIData(oldp+187,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[5]),32);
-        tracep->chgIData(oldp+188,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[6]),32);
-        tracep->chgIData(oldp+189,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[7]),32);
-        tracep->chgIData(oldp+190,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[8]),32);
-        tracep->chgIData(oldp+191,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[9]),32);
-        tracep->chgIData(oldp+192,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[10]),32);
-        tracep->chgIData(oldp+193,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[11]),32);
-        tracep->chgIData(oldp+194,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[12]),32);
-        tracep->chgIData(oldp+195,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[13]),32);
-        tracep->chgIData(oldp+196,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[14]),32);
-        tracep->chgIData(oldp+197,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[15]),32);
-        tracep->chgIData(oldp+198,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[16]),32);
-        tracep->chgIData(oldp+199,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[17]),32);
-        tracep->chgIData(oldp+200,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[18]),32);
-        tracep->chgIData(oldp+201,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[19]),32);
-        tracep->chgIData(oldp+202,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[20]),32);
-        tracep->chgIData(oldp+203,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[21]),32);
-        tracep->chgIData(oldp+204,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[22]),32);
-        tracep->chgIData(oldp+205,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[23]),32);
-        tracep->chgIData(oldp+206,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[24]),32);
-        tracep->chgIData(oldp+207,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[25]),32);
-        tracep->chgIData(oldp+208,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[26]),32);
-        tracep->chgIData(oldp+209,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[27]),32);
-        tracep->chgIData(oldp+210,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[28]),32);
-        tracep->chgIData(oldp+211,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[29]),32);
-        tracep->chgIData(oldp+212,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[30]),32);
-        tracep->chgIData(oldp+213,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[31]),32);
-        tracep->chgIData(oldp+214,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[0]),32);
-        tracep->chgIData(oldp+215,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[1]),32);
-        tracep->chgIData(oldp+216,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[2]),32);
-        tracep->chgIData(oldp+217,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[3]),32);
-        tracep->chgIData(oldp+218,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[4]),32);
-        tracep->chgIData(oldp+219,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[5]),32);
-        tracep->chgIData(oldp+220,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[6]),32);
-        tracep->chgIData(oldp+221,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[7]),32);
-        tracep->chgIData(oldp+222,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[8]),32);
-        tracep->chgIData(oldp+223,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[9]),32);
-        tracep->chgIData(oldp+224,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[10]),32);
-        tracep->chgIData(oldp+225,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[11]),32);
-        tracep->chgIData(oldp+226,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[12]),32);
-        tracep->chgIData(oldp+227,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[13]),32);
-        tracep->chgIData(oldp+228,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[14]),32);
-        tracep->chgIData(oldp+229,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[15]),32);
-        tracep->chgIData(oldp+230,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[16]),32);
-        tracep->chgIData(oldp+231,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[17]),32);
-        tracep->chgIData(oldp+232,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[18]),32);
-        tracep->chgIData(oldp+233,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[19]),32);
-        tracep->chgIData(oldp+234,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[20]),32);
-        tracep->chgIData(oldp+235,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[21]),32);
-        tracep->chgIData(oldp+236,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[22]),32);
-        tracep->chgIData(oldp+237,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[23]),32);
-        tracep->chgIData(oldp+238,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[24]),32);
-        tracep->chgIData(oldp+239,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[25]),32);
-        tracep->chgIData(oldp+240,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[26]),32);
-        tracep->chgIData(oldp+241,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[27]),32);
-        tracep->chgIData(oldp+242,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[28]),32);
-        tracep->chgIData(oldp+243,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[29]),32);
-        tracep->chgIData(oldp+244,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[30]),32);
-        tracep->chgIData(oldp+245,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[31]),32);
+        tracep->chgIData(oldp+183,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[0]),32);
+        tracep->chgIData(oldp+184,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[1]),32);
+        tracep->chgIData(oldp+185,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[2]),32);
+        tracep->chgIData(oldp+186,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[3]),32);
+        tracep->chgIData(oldp+187,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[4]),32);
+        tracep->chgIData(oldp+188,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[5]),32);
+        tracep->chgIData(oldp+189,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[6]),32);
+        tracep->chgIData(oldp+190,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[7]),32);
+        tracep->chgIData(oldp+191,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[8]),32);
+        tracep->chgIData(oldp+192,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[9]),32);
+        tracep->chgIData(oldp+193,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[10]),32);
+        tracep->chgIData(oldp+194,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[11]),32);
+        tracep->chgIData(oldp+195,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[12]),32);
+        tracep->chgIData(oldp+196,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[13]),32);
+        tracep->chgIData(oldp+197,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[14]),32);
+        tracep->chgIData(oldp+198,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[15]),32);
+        tracep->chgIData(oldp+199,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[16]),32);
+        tracep->chgIData(oldp+200,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[17]),32);
+        tracep->chgIData(oldp+201,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[18]),32);
+        tracep->chgIData(oldp+202,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[19]),32);
+        tracep->chgIData(oldp+203,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[20]),32);
+        tracep->chgIData(oldp+204,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[21]),32);
+        tracep->chgIData(oldp+205,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[22]),32);
+        tracep->chgIData(oldp+206,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[23]),32);
+        tracep->chgIData(oldp+207,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[24]),32);
+        tracep->chgIData(oldp+208,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[25]),32);
+        tracep->chgIData(oldp+209,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[26]),32);
+        tracep->chgIData(oldp+210,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[27]),32);
+        tracep->chgIData(oldp+211,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[28]),32);
+        tracep->chgIData(oldp+212,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[29]),32);
+        tracep->chgIData(oldp+213,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[30]),32);
+        tracep->chgIData(oldp+214,(vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[31]),32);
+        tracep->chgIData(oldp+215,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[0]),32);
+        tracep->chgIData(oldp+216,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[1]),32);
+        tracep->chgIData(oldp+217,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[2]),32);
+        tracep->chgIData(oldp+218,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[3]),32);
+        tracep->chgIData(oldp+219,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[4]),32);
+        tracep->chgIData(oldp+220,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[5]),32);
+        tracep->chgIData(oldp+221,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[6]),32);
+        tracep->chgIData(oldp+222,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[7]),32);
+        tracep->chgIData(oldp+223,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[8]),32);
+        tracep->chgIData(oldp+224,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[9]),32);
+        tracep->chgIData(oldp+225,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[10]),32);
+        tracep->chgIData(oldp+226,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[11]),32);
+        tracep->chgIData(oldp+227,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[12]),32);
+        tracep->chgIData(oldp+228,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[13]),32);
+        tracep->chgIData(oldp+229,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[14]),32);
+        tracep->chgIData(oldp+230,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[15]),32);
+        tracep->chgIData(oldp+231,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[16]),32);
+        tracep->chgIData(oldp+232,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[17]),32);
+        tracep->chgIData(oldp+233,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[18]),32);
+        tracep->chgIData(oldp+234,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[19]),32);
+        tracep->chgIData(oldp+235,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[20]),32);
+        tracep->chgIData(oldp+236,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[21]),32);
+        tracep->chgIData(oldp+237,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[22]),32);
+        tracep->chgIData(oldp+238,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[23]),32);
+        tracep->chgIData(oldp+239,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[24]),32);
+        tracep->chgIData(oldp+240,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[25]),32);
+        tracep->chgIData(oldp+241,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[26]),32);
+        tracep->chgIData(oldp+242,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[27]),32);
+        tracep->chgIData(oldp+243,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[28]),32);
+        tracep->chgIData(oldp+244,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[29]),32);
+        tracep->chgIData(oldp+245,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[30]),32);
+        tracep->chgIData(oldp+246,(vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[31]),32);
     }
 }
 

@@ -35,6 +35,7 @@ VL_MODULE(Vpipeline_pipeline) {
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__stall_next;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__continue_stall;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__already_stalled;
     CData/*0:0*/ __PVT__my_AGEX_stage__DOT__br_cond_AGEX;
     CData/*4:0*/ __PVT__my_AGEX_stage__DOT__forward_reg;
     CData/*0:0*/ __PVT__my_AGEX_stage__DOT__is_forwarding;
@@ -66,6 +67,7 @@ VL_MODULE(Vpipeline_pipeline) {
     CData/*5:0*/ __Vtableidx1;
     CData/*5:0*/ __Vtableidx2;
     CData/*1:0*/ __Vtablechg1[64];
+    CData/*1:0*/ __Vtablechg2[64];
     static CData/*3:0*/ __Vtable1___PVT__my_DE_stage__DOT__type_I_DE[64];
     static CData/*2:0*/ __Vtable1___PVT__my_DE_stage__DOT__type_immediate_DE[64];
     static CData/*0:0*/ __Vtable2___PVT__my_AGEX_stage__DOT__is_forwarding[64];
@@ -89,12 +91,11 @@ VL_MODULE(Vpipeline_pipeline) {
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
     static void _initial__TOP__pipeline__1(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-    static void _multiclk__TOP__pipeline__8(Vpipeline__Syms* __restrict vlSymsp);
+    static void _multiclk__TOP__pipeline__6(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__2(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__3(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__4(Vpipeline__Syms* __restrict vlSymsp);
-    static void _sequent__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp);
-    static void _settle__TOP__pipeline__6(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _settle__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
   private:
     static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
