@@ -80,7 +80,8 @@ module FE_STAGE(
       stall_next = 0;
     end
   end*/
-   assign stall_pipe_FE = {from_DE_to_FE};  // you need to modify this line for your design 
+  wire continue_stall_FE;
+   assign {stall_pipe_FE, continue_stall_FE} = {from_DE_to_FE};  // you need to modify this line for your design 
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -111,10 +112,10 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (stall_pipe_FE && !br_cond_FE)
-            FE_latch <= FE_latch;
-            // put more here
-          else 
+         if  (stall_pipe_FE && !br_cond_FE) begin
+          FE_latch <= FE_latch;
+          // put more here
+         end else 
             FE_latch <= FE_latch_contents; 
             // put more here
         end  

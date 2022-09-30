@@ -26,8 +26,8 @@ module AGEX_STAGE(
   reg br_cond_AGEX; // 1 means a branch condition is satisified. 0 means a branch condition is not satisifed
 
   wire [`DBITS-1:0] sxt_imm_AGEX; // for the immediate value 
-  wire [`DBITS-1:0] rs1_AGEX; // rs1 value
-  wire [`DBITS-1:0] rs2_AGEX; // rs2 value
+  wire signed [`DBITS-1:0] rs1_AGEX; // rs1 value
+  wire signed [`DBITS-1:0] rs2_AGEX; // rs2 value
   wire [`TYPENOBITS-1:0] type_I_AGEX; // instruction type
   reg [`DBITS-1:0] output_AGEX; // returning value from ALU ops
   reg [`DBITS-1:0] branch_addr_AGEX;

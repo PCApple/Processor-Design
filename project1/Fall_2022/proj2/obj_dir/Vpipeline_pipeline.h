@@ -27,6 +27,7 @@ VL_MODULE(Vpipeline_pipeline) {
     VL_IN8(reset,0,0);
     
     // LOCAL SIGNALS
+    CData/*1:0*/ __PVT__from_DE_to_FE;
     CData/*0:0*/ __PVT__from_MEM_to_FE;
     CData/*5:0*/ __PVT__from_AGEX_to_DE;
     CData/*0:0*/ __PVT__from_MEM_to_AGEX;
@@ -96,8 +97,9 @@ VL_MODULE(Vpipeline_pipeline) {
     static void _sequent__TOP__pipeline__3(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__4(Vpipeline__Syms* __restrict vlSymsp);
     static void _settle__TOP__pipeline__5(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-  private:
-    static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
+    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

@@ -241,7 +241,7 @@ end
   reg stall_next;
   wire pipeline_stall_DE; 
   assign pipeline_stall_DE = stall_next;
-  assign from_DE_to_FE = pipeline_stall_DE;
+  assign from_DE_to_FE = {pipeline_stall_DE, continue_stall};
   //assign pipeline_stall_DE = {from_AGEX_to_DE};
 
 
@@ -413,8 +413,15 @@ end
         continue_stall = 0;
       end else begin
         if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I || op_I_DE == `BLT_I) begin
-          stall_next = 1;
-          continue_stall = 1;
+          if(already_stalled) begin
+            stall_next = 0;
+            continue_stall = 0;
+            already_stalled = 0;
+          end else begin
+            stall_next = 1;
+            continue_stall = 1;
+            already_stalled = 1;
+          end
         end else begin
           stall_next = 0;
           continue_stall = 0;
