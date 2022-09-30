@@ -16,7 +16,7 @@
 // address space is m 0x00000000 to 0x000fffff
 // [NOTICE] please note that both imem and dmem use the SAME "IDMEMINITFILE".
 // you need to change this line to change which test file to read 
-`define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part2/addi.mem"
+`define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part2/beq.mem"
 `define IMEMADDRBITS  16_
 `define IMEMWORDBITS  2
 `define IMEMWORDS	  (1 << (`IMEMADDRBITS - `IMEMWORDBITS))
@@ -193,7 +193,7 @@
 // we added 3 dbits to each latch except fe
 `define FE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `DBITS + `BUS_CANARY_WIDTH)
     // (inst_FE, PC_FE_latch, pcplus_FE, `BUS_CANARY_VALUE)
-`define DE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `TYPENOBITS+ `BUS_CANARY_WIDTH)
+`define DE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `TYPENOBITS + 1 + `BUS_CANARY_WIDTH)
     // (inst, PC, pcplus, op_I, inst_count, sxt_imm, regs[0], regs[0], bus_canary)
 
 `define AGEX_latch_WIDTH   (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `DBITS +`TYPENOBITS+ `REGNOBITS+ 1 +`BUS_CANARY_WIDTH)
@@ -201,12 +201,12 @@
 `define MEM_latch_WIDTH    (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS +  `DBITS + `DBITS + `DBITS + `TYPENOBITS + `REGNOBITS + 1 + `BUS_CANARY_WIDTH) 
     // (inst_DE, PC_DE, op_I_DE, inst_count_DE, sxt_imm_DE, regs[0], regs[0], output, bus_canary_DE)
 
-`define from_DE_to_FE_WIDTH  (1 + 1)
+`define from_DE_to_FE_WIDTH  1
 `define from_AGEX_to_FE_WIDTH (1 + `DBITS)
 `define from_MEM_to_FE_WIDTH 1
 `define from_WB_to_FE_WIDTH 1
 
-`define from_AGEX_to_DE_WIDTH (`REGNOBITS + 1) 
+`define from_AGEX_to_DE_WIDTH (`REGNOBITS + 1 + 1) 
 `define from_MEM_to_DE_WIDTH  (`REGNOBITS + 1) 
 `define from_WB_to_DE_WIDTH  (1 + `REGNOBITS + `DBITS + `CSRNOBITS + 1 + `REGNOBITS + 1) 
 

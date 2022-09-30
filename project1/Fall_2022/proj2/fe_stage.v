@@ -36,6 +36,7 @@ module FE_STAGE(
   wire [`INSTBITS-1:0] inst_FE;  // instruction value in the FE stage 
   wire [`DBITS-1:0] pcplus_FE;  // pc plus value in the FE stage 
   wire stall_pipe_FE; // signal to indicate when a front-end needs to be stall
+  wire about_to_branch_FE; // signal to indicate when a front-end is about to branch
 
   wire br_cond_FE;
   wire [`DBITS-1:0] branch_addr_FE;
@@ -80,8 +81,7 @@ module FE_STAGE(
       stall_next = 0;
     end
   end*/
-  wire continue_stall_FE;
-   assign {stall_pipe_FE, continue_stall_FE} = {from_DE_to_FE};  // you need to modify this line for your design 
+   assign {stall_pipe_FE} = {from_DE_to_FE};  // you need to modify this line for your design 
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -97,10 +97,11 @@ module FE_STAGE(
         PC_FE_latch <= pcplus_FE;
         inst_count_FE <= inst_count_FE + 1; 
     end
-    else 
+    else begin
       PC_FE_latch <= PC_FE_latch;
       //put more here
   end
+end
   
 
   always @ (posedge clk) begin

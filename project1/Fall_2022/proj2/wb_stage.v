@@ -56,9 +56,15 @@ module WB_STAGE(
         // write register by sending data to the DE stage 
         
 reg is_wb;
+/*always @ (*) begin
+  is_wb = 0;
+  if (op_I_WB == `SUB_I || op_I_WB == `LUI_I || op_I_WB == `ADD_I || op_I_WB == `ADDI_I || op_I_WB == `AUIPC_I || op_I_WB == `JAL_I || op_I_WB == `JALR_I) begin
+    is_wb = 1;
+  end
+end*/
 always @ (*) begin
   is_wb = 0;
-  if (op_I_WB == `ADD_I || op_I_WB == `ADDI_I || op_I_WB == `AUIPC_I || op_I_WB == `JAL_I || op_I_WB == `JALR_I) begin
+  if (is_forwarding_WB) begin
     is_wb = 1;
   end
 end

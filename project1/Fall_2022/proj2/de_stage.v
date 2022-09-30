@@ -54,7 +54,9 @@ end
   reg [`IMMTYPENOBITS-1:0] type_immediate_DE;  // immediate type information for decodding purpose 
 
   always @(*) begin 
-    if ((op_DE == `ADD_OPCODE) && (F3_DE == `ADD_FUNCT3) && (F7_DE == `ADD_FUNCT7))
+    if (br_cond_DE)
+      op_I_DE = `INVALID_I;
+    else if ((op_DE == `ADD_OPCODE) && (F3_DE == `ADD_FUNCT3) && (F7_DE == `ADD_FUNCT7))
       op_I_DE = `ADD_I; 
     else if ((op_DE == `SUB_OPCODE) && (F3_DE == `SUB_FUNCT3) && (F7_DE == `SUB_FUNCT7))
       op_I_DE = `SUB_I; 
@@ -230,18 +232,19 @@ end
   wire is_forwarding_agex;
   wire is_forwarding_mem;
   wire is_forwarding_wb;
+  wire br_cond_DE;
 
 
   // signals come from WB stage for register WB 
   assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, wb_forward_reg_addr, is_forwarding_wb} = from_WB_to_DE;  
-  assign {agex_forward_reg_addr, is_forwarding_agex} = from_AGEX_to_DE;
+  assign {agex_forward_reg_addr, is_forwarding_agex, br_cond_DE} = from_AGEX_to_DE;
   assign {mem_forward_reg_addr, is_forwarding_mem} = from_MEM_to_DE;
 
 
   reg stall_next;
   wire pipeline_stall_DE; 
   assign pipeline_stall_DE = stall_next;
-  assign from_DE_to_FE = {pipeline_stall_DE, continue_stall};
+  assign from_DE_to_FE = {pipeline_stall_DE};
   //assign pipeline_stall_DE = {from_AGEX_to_DE};
 
 
@@ -285,6 +288,7 @@ end
                                   rs1_content,
                                   rs2_content,
                                   type_I_DE,
+                                  br_cond_DE,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
@@ -371,12 +375,14 @@ end
       stall_next = 0;
     end
   end*/
-  reg already_stalled;
   always @ (posedge clk) begin
-    if (type_I_DE == `R_Type) begin
+    if (op_I_DE == `INVALID_I) begin
+        stall_next = 0;
+        continue_stall = 0;
+    end else if (type_I_DE == `R_Type) begin
       if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
-    || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
-    ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+        || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+        ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
         stall_next = 1;
         continue_stall = 0;
       end else begin
@@ -385,60 +391,42 @@ end
       end
     end else if (type_I_DE == `I_Type) begin
       if (((inst_DE[19:15] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
-    || ((inst_DE[19:15] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
-    ((inst_DE[19:15] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+        || ((inst_DE[19:15] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+        ((inst_DE[19:15] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
         stall_next = 1;
         continue_stall = 0;
       end else begin
         if (op_I_DE == `JR_I || op_I_DE == `JALR_I) begin
-          if(already_stalled) begin
-            stall_next = 0;
-            continue_stall = 0;
-            already_stalled = 0;
-          end else begin
-            stall_next = 1;
-            continue_stall = 1;
-            already_stalled = 1;
-          end
+          stall_next = 1;
+          continue_stall = 1;
         end else begin
           stall_next = 0;
           continue_stall = 0;
-        end 
+        end
       end
-    end else if (type_I_DE == `S_Type) begin
+    end
+    else if (type_I_DE == `S_Type) begin
       if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
-    || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
-    ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
+        || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
+        ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
         stall_next = 1;
         continue_stall = 0;
       end else begin
         if (op_I_DE == `BEQ_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I || op_I_DE == `BLT_I) begin
-          if(already_stalled) begin
-            stall_next = 0;
-            continue_stall = 0;
-            already_stalled = 0;
-          end else begin
-            stall_next = 1;
-            continue_stall = 1;
-            already_stalled = 1;
-          end
+          stall_next = 1;
+          continue_stall = 1;
         end else begin
           stall_next = 0;
           continue_stall = 0;
         end
       end
     end else if (type_I_DE == `U_Type) begin
-      if (op_I_DE == `JAL_I) begin
-        stall_next = 1;
-        continue_stall = 1;
-      end else begin
-        stall_next = 0;
-        continue_stall = 0;
+      stall_next = 0;
+      continue_stall = 0;
       end
     end
-  end
   always @ (posedge clk) begin // you need to expand this always block to handle stalls
-    if (reset) begin
+    if (reset || br_cond_DE) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end
      else begin  
@@ -449,9 +437,13 @@ end
           DE_latch <= {`DE_latch_WIDTH{1'b0}};
         end
       end
-      else
+      else begin
+        if (op_I_DE == `INVALID_I) begin
+          DE_latch <= {`DE_latch_WIDTH{1'b0}};
+        end else begin
           DE_latch <= DE_latch_contents;
-
+        end
+      end
      end 
   end
 

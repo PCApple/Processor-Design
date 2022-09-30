@@ -55,9 +55,8 @@ VL_MODULE(Vpipeline_WB_STAGE) {
     static void _sequent__TOP__pipeline__my_WB_stage__1(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__my_WB_stage__2(Vpipeline__Syms* __restrict vlSymsp);
     static void _sequent__TOP__pipeline__my_WB_stage__3(Vpipeline__Syms* __restrict vlSymsp);
-    static void traceInit(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceFull(VerilatedVcd* vcdp, void* userthis, uint32_t code);
-    static void traceChg(VerilatedVcd* vcdp, void* userthis, uint32_t code);
+  private:
+    static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

@@ -9,29 +9,10 @@
 
 //==========
 
-VL_CTOR_IMP(Vpipeline) {
-    Vpipeline__Syms* __restrict vlSymsp = __VlSymsp = new Vpipeline__Syms(this, name());
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    VL_CELL(pipeline, Vpipeline_pipeline);
-    // Reset internal values
-    
-    // Reset structure values
-    _ctor_var_reset();
-}
-
-void Vpipeline::__Vconfigure(Vpipeline__Syms* vlSymsp, bool first) {
-    if (0 && first) {}  // Prevent unused
-    this->__VlSymsp = vlSymsp;
-}
-
-Vpipeline::~Vpipeline() {
-    delete __VlSymsp; __VlSymsp=NULL;
-}
-
-void Vpipeline::eval() {
+void Vpipeline::eval_step() {
     VL_DEBUG_IF(VL_DBG_MSGF("+++++TOP Evaluate Vpipeline::eval\n"); );
     Vpipeline__Syms* __restrict vlSymsp = this->__VlSymsp;  // Setup global symbol table
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
 #ifdef VL_DEBUG
     // Debug assertions
     _eval_debug_assertions();
@@ -89,56 +70,38 @@ void Vpipeline::_eval_initial_loop(Vpipeline__Syms* __restrict vlSymsp) {
 
 void Vpipeline::_eval(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval\n"); );
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
         vlSymsp->TOP__pipeline._sequent__TOP__pipeline__2(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (2U | vlTOPp->__Vm_traceActivity);
+        vlTOPp->__Vm_traceActivity[1U] = 1U;
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__1(vlSymsp);
         vlSymsp->TOP__pipeline._sequent__TOP__pipeline__3(vlSymsp);
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
     }
     if (((~ (IData)(vlTOPp->clk)) & (IData)(vlTOPp->__Vclklast__TOP__clk))) {
         vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (4U | vlTOPp->__Vm_traceActivity);
+        vlTOPp->__Vm_traceActivity[2U] = 1U;
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__3(vlSymsp);
     }
     if (((IData)(vlTOPp->clk) ^ (IData)(vlTOPp->__Vclklast__TOP__clk))) {
         vlSymsp->TOP__pipeline._multiclk__TOP__pipeline__6(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (8U | vlTOPp->__Vm_traceActivity);
+        vlTOPp->__Vm_traceActivity[3U] = 1U;
     }
     // Final
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
 }
 
-void Vpipeline::_eval_initial(Vpipeline__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval_initial\n"); );
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Body
-    vlSymsp->TOP__pipeline._initial__TOP__pipeline__1(vlSymsp);
-    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
-    vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
-}
-
-void Vpipeline::final() {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::final\n"); );
-    // Variables
-    Vpipeline__Syms* __restrict vlSymsp = this->__VlSymsp;
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-}
-
-void Vpipeline::_eval_settle(Vpipeline__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval_settle\n"); );
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
-    // Body
-    vlSymsp->TOP__pipeline._settle__TOP__pipeline__5(vlSymsp);
-    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
-    vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
-}
-
 VL_INLINE_OPT QData Vpipeline::_change_request(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_change_request\n"); );
-    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    return (vlTOPp->_change_request_1(vlSymsp));
+}
+
+VL_INLINE_OPT QData Vpipeline::_change_request_1(Vpipeline__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_change_request_1\n"); );
+    Vpipeline* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     // Change detection
     QData __req = false;  // Logically a bool
@@ -155,11 +118,3 @@ void Vpipeline::_eval_debug_assertions() {
         Verilated::overWidthError("reset");}
 }
 #endif  // VL_DEBUG
-
-void Vpipeline::_ctor_var_reset() {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_ctor_var_reset\n"); );
-    // Body
-    clk = VL_RAND_RESET_I(1);
-    reset = VL_RAND_RESET_I(1);
-    __Vm_traceActivity = 0;
-}

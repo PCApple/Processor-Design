@@ -1,0 +1,130 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Sep 30 07:35:36 2022
+[*]
+[dumpfile] "C:\Github2\CS3220\project1\Fall_2022\proj2\trace.vcd"
+[dumpfile_mtime] "Fri Sep 30 07:33:28 2022"
+[dumpfile_size] 355740
+[savefile] "C:\Github2\CS3220\project1\Fall_2022\proj2\project2.gtkw"
+[timestart] 151
+[size] 1920 1017
+[pos] -1 -1
+*0.000000 172 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.pipeline.
+[sst_width] 197
+[signals_width] 355
+[sst_expanded] 1
+[sst_vpaned_height] 300
+@28
+TOP.pipeline.clk
+@22
+[color] 1
+TOP.pipeline.my_FE_stage.PC_FE_latch[31:0]
+[color] 1
+TOP.pipeline.my_DE_stage.PC_DE[31:0]
+[color] 1
+TOP.pipeline.my_AGEX_stage.PC_AGEX[31:0]
+[color] 1
+TOP.pipeline.my_MEM_stage.PC_MEM[31:0]
+[color] 1
+TOP.pipeline.my_WB_stage.PC_WB[31:0]
+@24
+[color] 3
+TOP.pipeline.my_DE_stage.op_I_DE[5:0]
+[color] 3
+TOP.pipeline.my_AGEX_stage.op_I_AGEX[5:0]
+[color] 3
+TOP.pipeline.my_MEM_stage.op_I_MEM[5:0]
+[color] 3
+TOP.pipeline.my_WB_stage.op_I_WB[5:0]
+@28
+TOP.pipeline.my_FE_stage.br_cond_FE
+@22
+TOP.pipeline.my_FE_stage.branch_addr_FE[31:0]
+@28
+TOP.pipeline.my_FE_stage.stall_pipe_FE
+@420
+[color] 5
+TOP.pipeline.my_AGEX_stage.rs1_AGEX[31:0]
+[color] 5
+TOP.pipeline.my_AGEX_stage.rs2_AGEX[31:0]
+@22
+[color] 5
+TOP.pipeline.my_AGEX_stage.sxt_imm_AGEX[31:0]
+[color] 5
+TOP.pipeline.my_AGEX_stage.output_AGEX[31:0]
+TOP.pipeline.my_WB_stage.regval_WB[31:0]
+TOP.pipeline.my_WB_stage.wregno_WB[4:0]
+@29
+TOP.pipeline.my_DE_stage.wr_reg_WB
+@22
++{TOP.pipeline.my_DE_stage.wregno_WB[4:0]} TOP.pipeline.my_DE_stage.wregno_WB[4:0]
+TOP.pipeline.my_DE_stage.regval_WB[31:0]
+@24
+[color] 7
+TOP.pipeline.my_DE_stage.pipeline_stall_DE
+@28
+[color] 7
+TOP.pipeline.my_DE_stage.stall_next
+[color] 7
+TOP.pipeline.my_DE_stage.continue_stall
+@22
+[color] 2
+TOP.pipeline.my_DE_stage.agex_forward_reg_addr[4:0]
+@28
+[color] 2
+TOP.pipeline.my_DE_stage.is_forwarding_agex
+@22
+[color] 2
+TOP.pipeline.my_MEM_stage.forward_reg_MEM[4:0]
+@28
+[color] 2
+TOP.pipeline.my_MEM_stage.is_forwarding_MEM
+@22
+[color] 2
+TOP.pipeline.my_WB_stage.forward_reg_WB[4:0]
+@28
+[color] 2
+TOP.pipeline.my_WB_stage.is_forwarding_WB
+@22
+[color] 6
+TOP.pipeline.my_DE_stage.type_I_DE[3:0]
+@28
+[color] 6
+TOP.pipeline.my_DE_stage.inst_DE[31:0]
+@22
+TOP.pipeline.my_DE_stage.regs(0)[31:0]
+TOP.pipeline.my_DE_stage.regs(1)[31:0]
+TOP.pipeline.my_DE_stage.regs(2)[31:0]
+TOP.pipeline.my_DE_stage.regs(3)[31:0]
+TOP.pipeline.my_DE_stage.regs(4)[31:0]
+TOP.pipeline.my_DE_stage.regs(5)[31:0]
+TOP.pipeline.my_DE_stage.regs(6)[31:0]
+TOP.pipeline.my_DE_stage.regs(7)[31:0]
+TOP.pipeline.my_DE_stage.regs(8)[31:0]
+TOP.pipeline.my_DE_stage.regs(9)[31:0]
+TOP.pipeline.my_DE_stage.regs(10)[31:0]
+TOP.pipeline.my_DE_stage.regs(11)[31:0]
+TOP.pipeline.my_DE_stage.regs(12)[31:0]
+TOP.pipeline.my_DE_stage.regs(13)[31:0]
+TOP.pipeline.my_DE_stage.regs(14)[31:0]
+TOP.pipeline.my_DE_stage.regs(15)[31:0]
+TOP.pipeline.my_DE_stage.regs(16)[31:0]
+TOP.pipeline.my_DE_stage.regs(17)[31:0]
+TOP.pipeline.my_DE_stage.regs(18)[31:0]
+TOP.pipeline.my_DE_stage.regs(19)[31:0]
+TOP.pipeline.my_DE_stage.regs(20)[31:0]
+TOP.pipeline.my_DE_stage.regs(21)[31:0]
+TOP.pipeline.my_DE_stage.regs(22)[31:0]
+TOP.pipeline.my_DE_stage.regs(23)[31:0]
+TOP.pipeline.my_DE_stage.regs(24)[31:0]
+TOP.pipeline.my_DE_stage.regs(25)[31:0]
+TOP.pipeline.my_DE_stage.regs(26)[31:0]
+TOP.pipeline.my_DE_stage.regs(27)[31:0]
+TOP.pipeline.my_DE_stage.regs(28)[31:0]
+TOP.pipeline.my_DE_stage.regs(29)[31:0]
+TOP.pipeline.my_DE_stage.regs(30)[31:0]
+TOP.pipeline.my_DE_stage.regs(31)[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
