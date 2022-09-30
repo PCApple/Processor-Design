@@ -76,24 +76,19 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__2(V
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__2\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb = 0U;
-    if ((((((1U == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                              << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                           >> 0xeU)))) 
-            | (0xcU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                  << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                               >> 0xeU))))) 
-           | (0x16U == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                  << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                               >> 0xeU))))) 
-          | (0x19U == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                 << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                              >> 0xeU))))) 
-         | (0x1bU == (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                             >> 0xeU)))))) {
-        vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb = 1U;
-    }
+    vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb 
+        = ((2U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                            << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                         >> 0xaU)))) 
+           | ((1U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                               << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                            >> 0xaU)))) 
+              | ((3U != (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                  << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                               >> 0xaU)))) 
+                 & (4U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                    << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                                 >> 0xaU)))))));
     vlSymsp->TOP__pipeline__my_WB_stage.__PVT__from_WB_to_DE 
         = (((QData)((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb)) 
             << 0x30U) | (((QData)((IData)((0x1fU & 

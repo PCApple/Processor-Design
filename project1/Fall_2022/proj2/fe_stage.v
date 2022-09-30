@@ -80,22 +80,23 @@ module FE_STAGE(
       stall_next = 0;
     end
   end*/
-  wire continue_stall_FE;
-   assign {stall_pipe_FE, continue_stall_FE} = {from_DE_to_FE};  // you need to modify this line for your design 
+   assign stall_pipe_FE = {from_DE_to_FE};  // you need to modify this line for your design 
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
    if (reset) begin 
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
-   end else if (br_cond_FE) begin
-        $display("branch_addr_FE: %h, br_cond_FE: %h", branch_addr_FE, br_cond_FE);
+      end 
+    else if (!stall_pipe_FE) begin 
+      if (br_cond_FE) begin
         PC_FE_latch <= branch_addr_FE;
         inst_count_FE <= inst_count_FE + 1; 
-    end
-    else if (!stall_pipe_FE) begin 
+      end 
+      else begin
         PC_FE_latch <= pcplus_FE;
         inst_count_FE <= inst_count_FE + 1; 
+      end 
     end
     else 
       PC_FE_latch <= PC_FE_latch;
@@ -112,10 +113,10 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (stall_pipe_FE && !br_cond_FE) begin
-          FE_latch <= FE_latch;
-          // put more here
-         end else 
+         if  (stall_pipe_FE)
+            FE_latch <= FE_latch;
+            // put more here
+          else 
             FE_latch <= FE_latch_contents; 
             // put more here
         end  

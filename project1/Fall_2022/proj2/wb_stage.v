@@ -49,6 +49,7 @@ module WB_STAGE(
                                 type_I_WB,
                                 forward_reg_WB,
                                 is_forwarding_WB,
+
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
@@ -58,8 +59,16 @@ module WB_STAGE(
 reg is_wb;
 always @ (*) begin
   is_wb = 0;
-  if (op_I_WB == `ADD_I || op_I_WB == `ADDI_I || op_I_WB == `AUIPC_I || op_I_WB == `JAL_I || op_I_WB == `JALR_I) begin
+  if (type_I_WB == `I_Type)begin
     is_wb = 1;
+  end else if (type_I_WB == `R_Type) begin
+    is_wb = 1;
+  end else if (type_I_WB == `S_Type) begin
+    is_wb = 0;
+  end else if (type_I_WB == `U_Type) begin
+    is_wb = 1;
+  end else begin
+    is_wb = 0;
   end
 end
 assign wr_reg_WB = is_wb;
