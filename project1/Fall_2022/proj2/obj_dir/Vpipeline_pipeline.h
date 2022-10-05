@@ -34,6 +34,7 @@ VL_MODULE(Vpipeline_pipeline) {
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__stall_next;
+    CData/*0:0*/ __PVT__my_AGEX_stage__DOT__br_cond_AGEX;
     CData/*4:0*/ __PVT__my_AGEX_stage__DOT__forward_reg;
     CData/*0:0*/ __PVT__my_AGEX_stage__DOT__is_forwarding;
     CData/*0:0*/ __PVT__my_MEM_stage__DOT__wr_mem_MEM;

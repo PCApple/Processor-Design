@@ -318,7 +318,10 @@ module DE_STAGE(
       csr_regs[15] <= {`DBITS{1'b0}};
     end
     else if (wr_reg_WB) 
-		  	regs[wregno_WB] <= regval_WB; 
+      if (wregno_WB == 0) 
+        regs[wregno_WB] <= 0;
+      else
+        regs[wregno_WB] <= regval_WB;
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
@@ -336,8 +339,10 @@ module DE_STAGE(
     if (reset) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end
-     else begin  
-      if (pipeline_stall_DE) 
+     else begin
+      if (op_I_DE == `INVALID_I) begin
+        DE_latch <= {`DE_latch_WIDTH{1'b0}};
+      end else if (pipeline_stall_DE) 
         DE_latch <= {`DE_latch_WIDTH{1'b0}};
       else
           DE_latch <= DE_latch_contents;

@@ -64,17 +64,17 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declBit(c+1409,"reset", false,-1);
         vcdp->declBit(c+1401,"pipeline clk", false,-1);
         vcdp->declBit(c+1409,"pipeline reset", false,-1);
-        vcdp->declBus(c+393,"pipeline cycle_count", false,-1, 31,0);
-        vcdp->declArray(c+401,"pipeline FE_latch_out", false,-1, 131,0);
-        vcdp->declArray(c+441,"pipeline DE_latch_out", false,-1, 237,0);
-        vcdp->declArray(c+505,"pipeline AGEX_latch_out", false,-1, 243,0);
-        vcdp->declArray(c+569,"pipeline MEM_latch_out", false,-1, 243,0);
+        vcdp->declBus(c+401,"pipeline cycle_count", false,-1, 31,0);
+        vcdp->declArray(c+409,"pipeline FE_latch_out", false,-1, 131,0);
+        vcdp->declArray(c+449,"pipeline DE_latch_out", false,-1, 237,0);
+        vcdp->declArray(c+513,"pipeline AGEX_latch_out", false,-1, 243,0);
+        vcdp->declArray(c+577,"pipeline MEM_latch_out", false,-1, 243,0);
         vcdp->declBus(c+1,"pipeline from_DE_to_FE", false,-1, 0,0);
         vcdp->declQuad(c+9,"pipeline from_AGEX_to_FE", false,-1, 32,0);
         vcdp->declBus(c+1929,"pipeline from_MEM_to_FE", false,-1, 0,0);
         vcdp->declBus(c+1937,"pipeline from_WB_to_FE", false,-1, 0,0);
         vcdp->declBus(c+25,"pipeline from_AGEX_to_DE", false,-1, 5,0);
-        vcdp->declBus(c+633,"pipeline from_MEM_to_DE", false,-1, 5,0);
+        vcdp->declBus(c+641,"pipeline from_MEM_to_DE", false,-1, 5,0);
         vcdp->declQuad(c+33,"pipeline from_WB_to_DE", false,-1, 48,0);
         vcdp->declBus(c+1945,"pipeline from_MEM_to_AGEX", false,-1, 0,0);
         vcdp->declBus(c+1953,"pipeline from_WB_to_AGEX", false,-1, 0,0);
@@ -85,39 +85,39 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declQuad(c+9,"pipeline my_FE_stage from_AGEX_to_FE", false,-1, 32,0);
         vcdp->declBus(c+1929,"pipeline my_FE_stage from_MEM_to_FE", false,-1, 0,0);
         vcdp->declBus(c+1937,"pipeline my_FE_stage from_WB_to_FE", false,-1, 0,0);
-        vcdp->declArray(c+401,"pipeline my_FE_stage FE_latch_out", false,-1, 131,0);
-        vcdp->declArray(c+401,"pipeline my_FE_stage FE_latch", false,-1, 131,0);
-        vcdp->declBus(c+641,"pipeline my_FE_stage PC_FE_latch", false,-1, 31,0);
+        vcdp->declArray(c+409,"pipeline my_FE_stage FE_latch_out", false,-1, 131,0);
+        vcdp->declArray(c+409,"pipeline my_FE_stage FE_latch", false,-1, 131,0);
+        vcdp->declBus(c+649,"pipeline my_FE_stage PC_FE_latch", false,-1, 31,0);
         vcdp->declBus(c+49,"pipeline my_FE_stage inst_FE", false,-1, 31,0);
-        vcdp->declBus(c+649,"pipeline my_FE_stage pcplus_FE", false,-1, 31,0);
+        vcdp->declBus(c+657,"pipeline my_FE_stage pcplus_FE", false,-1, 31,0);
         vcdp->declBit(c+1,"pipeline my_FE_stage stall_pipe_FE", false,-1);
         vcdp->declBit(c+57,"pipeline my_FE_stage br_cond_FE", false,-1);
         vcdp->declBus(c+65,"pipeline my_FE_stage branch_addr_FE", false,-1, 31,0);
         vcdp->declArray(c+73,"pipeline my_FE_stage FE_latch_contents", false,-1, 131,0);
-        vcdp->declBus(c+657,"pipeline my_FE_stage inst_count_FE", false,-1, 31,0);
+        vcdp->declBus(c+665,"pipeline my_FE_stage inst_count_FE", false,-1, 31,0);
         vcdp->declBus(c+1969,"pipeline my_FE_stage inst_count_AGEX", false,-1, 31,0);
         vcdp->declBit(c+1401,"pipeline my_DE_stage clk", false,-1);
         vcdp->declBit(c+1409,"pipeline my_DE_stage reset", false,-1);
-        vcdp->declArray(c+401,"pipeline my_DE_stage from_FE_latch", false,-1, 131,0);
+        vcdp->declArray(c+409,"pipeline my_DE_stage from_FE_latch", false,-1, 131,0);
         vcdp->declBus(c+25,"pipeline my_DE_stage from_AGEX_to_DE", false,-1, 5,0);
-        vcdp->declBus(c+633,"pipeline my_DE_stage from_MEM_to_DE", false,-1, 5,0);
+        vcdp->declBus(c+641,"pipeline my_DE_stage from_MEM_to_DE", false,-1, 5,0);
         vcdp->declQuad(c+33,"pipeline my_DE_stage from_WB_to_DE", false,-1, 48,0);
         vcdp->declBus(c+1,"pipeline my_DE_stage from_DE_to_FE", false,-1, 0,0);
-        vcdp->declArray(c+441,"pipeline my_DE_stage DE_latch_out", false,-1, 237,0);
-        vcdp->declArray(c+441,"pipeline my_DE_stage DE_latch", false,-1, 237,0);
+        vcdp->declArray(c+449,"pipeline my_DE_stage DE_latch_out", false,-1, 237,0);
+        vcdp->declArray(c+449,"pipeline my_DE_stage DE_latch", false,-1, 237,0);
         {int i; for (i=0; i<32; i++) {
                 vcdp->declBus(c+1017+i*1,"pipeline my_DE_stage regs", true,(i+0), 31,0);}}
         {int i; for (i=0; i<16; i++) {
                 vcdp->declBus(c+1273+i*1,"pipeline my_DE_stage csr_regs", true,(i+0), 31,0);}}
-        vcdp->declBus(c+665,"pipeline my_DE_stage inst_DE", false,-1, 31,0);
-        vcdp->declBus(c+673,"pipeline my_DE_stage PC_DE", false,-1, 31,0);
-        vcdp->declBus(c+681,"pipeline my_DE_stage pcplus_DE", false,-1, 31,0);
-        vcdp->declBus(c+689,"pipeline my_DE_stage inst_count_DE", false,-1, 31,0);
-        vcdp->declArray(c+329,"pipeline my_DE_stage DE_latch_contents", false,-1, 237,0);
-        vcdp->declBus(c+697,"pipeline my_DE_stage bus_canary_DE", false,-1, 3,0);
-        vcdp->declBus(c+705,"pipeline my_DE_stage F3_DE", false,-1, 2,0);
-        vcdp->declBus(c+713,"pipeline my_DE_stage F7_DE", false,-1, 6,0);
-        vcdp->declBus(c+721,"pipeline my_DE_stage op_DE", false,-1, 6,0);
+        vcdp->declBus(c+673,"pipeline my_DE_stage inst_DE", false,-1, 31,0);
+        vcdp->declBus(c+681,"pipeline my_DE_stage PC_DE", false,-1, 31,0);
+        vcdp->declBus(c+689,"pipeline my_DE_stage pcplus_DE", false,-1, 31,0);
+        vcdp->declBus(c+697,"pipeline my_DE_stage inst_count_DE", false,-1, 31,0);
+        vcdp->declArray(c+337,"pipeline my_DE_stage DE_latch_contents", false,-1, 237,0);
+        vcdp->declBus(c+705,"pipeline my_DE_stage bus_canary_DE", false,-1, 3,0);
+        vcdp->declBus(c+713,"pipeline my_DE_stage F3_DE", false,-1, 2,0);
+        vcdp->declBus(c+721,"pipeline my_DE_stage F7_DE", false,-1, 6,0);
+        vcdp->declBus(c+729,"pipeline my_DE_stage op_DE", false,-1, 6,0);
         vcdp->declBus(c+113,"pipeline my_DE_stage op_I_DE", false,-1, 5,0);
         vcdp->declBus(c+121,"pipeline my_DE_stage type_I_DE", false,-1, 3,0);
         vcdp->declBus(c+129,"pipeline my_DE_stage type_immediate_DE", false,-1, 2,0);
@@ -128,10 +128,10 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declBus(c+169,"pipeline my_DE_stage wcsrno_WB", false,-1, 3,0);
         vcdp->declBit(c+177,"pipeline my_DE_stage wr_csr_WB", false,-1);
         vcdp->declBus(c+185,"pipeline my_DE_stage agex_forward_reg_addr", false,-1, 4,0);
-        vcdp->declBus(c+729,"pipeline my_DE_stage mem_forward_reg_addr", false,-1, 4,0);
+        vcdp->declBus(c+737,"pipeline my_DE_stage mem_forward_reg_addr", false,-1, 4,0);
         vcdp->declBus(c+193,"pipeline my_DE_stage wb_forward_reg_addr", false,-1, 4,0);
         vcdp->declBit(c+201,"pipeline my_DE_stage is_forwarding_agex", false,-1);
-        vcdp->declBit(c+737,"pipeline my_DE_stage is_forwarding_mem", false,-1);
+        vcdp->declBit(c+745,"pipeline my_DE_stage is_forwarding_mem", false,-1);
         vcdp->declBit(c+209,"pipeline my_DE_stage is_forwarding_wb", false,-1);
         vcdp->declBit(c+1,"pipeline my_DE_stage stall_next", false,-1);
         vcdp->declBit(c+1,"pipeline my_DE_stage pipeline_stall_DE", false,-1);
@@ -139,37 +139,37 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declBit(c+1409,"pipeline my_AGEX_stage reset", false,-1);
         vcdp->declBus(c+1945,"pipeline my_AGEX_stage from_MEM_to_AGEX", false,-1, 0,0);
         vcdp->declBus(c+1953,"pipeline my_AGEX_stage from_WB_to_AGEX", false,-1, 0,0);
-        vcdp->declArray(c+441,"pipeline my_AGEX_stage from_DE_latch", false,-1, 237,0);
-        vcdp->declArray(c+505,"pipeline my_AGEX_stage AGEX_latch_out", false,-1, 243,0);
+        vcdp->declArray(c+449,"pipeline my_AGEX_stage from_DE_latch", false,-1, 237,0);
+        vcdp->declArray(c+513,"pipeline my_AGEX_stage AGEX_latch_out", false,-1, 243,0);
         vcdp->declQuad(c+9,"pipeline my_AGEX_stage from_AGEX_to_FE", false,-1, 32,0);
         vcdp->declBus(c+25,"pipeline my_AGEX_stage from_AGEX_to_DE", false,-1, 5,0);
-        vcdp->declArray(c+505,"pipeline my_AGEX_stage AGEX_latch", false,-1, 243,0);
+        vcdp->declArray(c+513,"pipeline my_AGEX_stage AGEX_latch", false,-1, 243,0);
         vcdp->declArray(c+217,"pipeline my_AGEX_stage AGEX_latch_contents", false,-1, 243,0);
-        vcdp->declBus(c+745,"pipeline my_AGEX_stage inst_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+753,"pipeline my_AGEX_stage PC_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+761,"pipeline my_AGEX_stage inst_count_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+769,"pipeline my_AGEX_stage pcplus_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+777,"pipeline my_AGEX_stage op_I_AGEX", false,-1, 5,0);
-        vcdp->declBit(c+785,"pipeline my_AGEX_stage br_cond_AGEX", false,-1);
+        vcdp->declBus(c+753,"pipeline my_AGEX_stage inst_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+761,"pipeline my_AGEX_stage PC_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+769,"pipeline my_AGEX_stage inst_count_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+777,"pipeline my_AGEX_stage pcplus_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+785,"pipeline my_AGEX_stage op_I_AGEX", false,-1, 5,0);
+        vcdp->declBit(c+281,"pipeline my_AGEX_stage br_cond_AGEX", false,-1);
         vcdp->declBus(c+793,"pipeline my_AGEX_stage sxt_imm_AGEX", false,-1, 31,0);
         vcdp->declBus(c+801,"pipeline my_AGEX_stage rs1_AGEX", false,-1, 31,0);
         vcdp->declBus(c+809,"pipeline my_AGEX_stage rs2_AGEX", false,-1, 31,0);
         vcdp->declBus(c+817,"pipeline my_AGEX_stage type_I_AGEX", false,-1, 3,0);
-        vcdp->declBus(c+281,"pipeline my_AGEX_stage output_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+289,"pipeline my_AGEX_stage branch_addr_AGEX", false,-1, 31,0);
-        vcdp->declBus(c+297,"pipeline my_AGEX_stage forward_reg", false,-1, 4,0);
-        vcdp->declBit(c+305,"pipeline my_AGEX_stage is_forwarding", false,-1);
+        vcdp->declBus(c+289,"pipeline my_AGEX_stage output_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+297,"pipeline my_AGEX_stage branch_addr_AGEX", false,-1, 31,0);
+        vcdp->declBus(c+305,"pipeline my_AGEX_stage forward_reg", false,-1, 4,0);
+        vcdp->declBit(c+313,"pipeline my_AGEX_stage is_forwarding", false,-1);
         vcdp->declBus(c+825,"pipeline my_AGEX_stage bus_canary_AGEX", false,-1, 3,0);
         vcdp->declBit(c+1401,"pipeline my_MEM_stage clk", false,-1);
         vcdp->declBit(c+1409,"pipeline my_MEM_stage reset", false,-1);
         vcdp->declBus(c+1961,"pipeline my_MEM_stage from_WB_to_MEM", false,-1, 0,0);
-        vcdp->declArray(c+505,"pipeline my_MEM_stage from_AGEX_latch", false,-1, 243,0);
-        vcdp->declArray(c+569,"pipeline my_MEM_stage MEM_latch_out", false,-1, 243,0);
+        vcdp->declArray(c+513,"pipeline my_MEM_stage from_AGEX_latch", false,-1, 243,0);
+        vcdp->declArray(c+577,"pipeline my_MEM_stage MEM_latch_out", false,-1, 243,0);
         vcdp->declBus(c+1929,"pipeline my_MEM_stage from_MEM_to_FE", false,-1, 0,0);
-        vcdp->declBus(c+633,"pipeline my_MEM_stage from_MEM_to_DE", false,-1, 5,0);
+        vcdp->declBus(c+641,"pipeline my_MEM_stage from_MEM_to_DE", false,-1, 5,0);
         vcdp->declBus(c+1945,"pipeline my_MEM_stage from_MEM_to_AGEX", false,-1, 0,0);
-        vcdp->declArray(c+569,"pipeline my_MEM_stage MEM_latch", false,-1, 243,0);
-        vcdp->declArray(c+505,"pipeline my_MEM_stage MEM_latch_contents", false,-1, 243,0);
+        vcdp->declArray(c+577,"pipeline my_MEM_stage MEM_latch", false,-1, 243,0);
+        vcdp->declArray(c+513,"pipeline my_MEM_stage MEM_latch_contents", false,-1, 243,0);
         vcdp->declBus(c+833,"pipeline my_MEM_stage op_I_MEM", false,-1, 5,0);
         vcdp->declBus(c+841,"pipeline my_MEM_stage inst_count_MEM", false,-1, 31,0);
         vcdp->declBus(c+849,"pipeline my_MEM_stage inst_MEM", false,-1, 31,0);
@@ -179,16 +179,16 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declBus(c+881,"pipeline my_MEM_stage rs2_MEM", false,-1, 31,0);
         vcdp->declBus(c+889,"pipeline my_MEM_stage output_MEM", false,-1, 31,0);
         vcdp->declBus(c+897,"pipeline my_MEM_stage type_I_MEM", false,-1, 3,0);
-        vcdp->declBus(c+729,"pipeline my_MEM_stage forward_reg_MEM", false,-1, 4,0);
-        vcdp->declBit(c+737,"pipeline my_MEM_stage is_forwarding_MEM", false,-1);
+        vcdp->declBus(c+737,"pipeline my_MEM_stage forward_reg_MEM", false,-1, 4,0);
+        vcdp->declBit(c+745,"pipeline my_MEM_stage is_forwarding_MEM", false,-1);
         vcdp->declBus(c+905,"pipeline my_MEM_stage bus_canary_MEM", false,-1, 3,0);
         vcdp->declBus(c+1977,"pipeline my_MEM_stage memaddr_MEM", false,-1, 31,0);
-        vcdp->declBus(c+313,"pipeline my_MEM_stage rd_val_MEM", false,-1, 31,0);
+        vcdp->declBus(c+321,"pipeline my_MEM_stage rd_val_MEM", false,-1, 31,0);
         vcdp->declBus(c+1985,"pipeline my_MEM_stage wr_val_MEM", false,-1, 31,0);
         vcdp->declBit(c+1993,"pipeline my_MEM_stage wr_mem_MEM", false,-1);
         vcdp->declBit(c+1401,"pipeline my_WB_stage clk", false,-1);
         vcdp->declBit(c+1409,"pipeline my_WB_stage reset", false,-1);
-        vcdp->declArray(c+569,"pipeline my_WB_stage from_MEM_latch", false,-1, 243,0);
+        vcdp->declArray(c+577,"pipeline my_WB_stage from_MEM_latch", false,-1, 243,0);
         vcdp->declBus(c+1937,"pipeline my_WB_stage from_WB_to_FE", false,-1, 0,0);
         vcdp->declQuad(c+33,"pipeline my_WB_stage from_WB_to_DE", false,-1, 48,0);
         vcdp->declBus(c+1953,"pipeline my_WB_stage from_WB_to_AGEX", false,-1, 0,0);
@@ -204,12 +204,12 @@ void Vpipeline::traceInitThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
         vcdp->declBus(c+977,"pipeline my_WB_stage type_I_WB", false,-1, 3,0);
         vcdp->declBus(c+985,"pipeline my_WB_stage forward_reg_WB", false,-1, 4,0);
         vcdp->declBit(c+993,"pipeline my_WB_stage is_forwarding_WB", false,-1);
-        vcdp->declBit(c+321,"pipeline my_WB_stage wr_reg_WB", false,-1);
+        vcdp->declBit(c+329,"pipeline my_WB_stage wr_reg_WB", false,-1);
         vcdp->declBus(c+1001,"pipeline my_WB_stage wregno_WB", false,-1, 4,0);
         vcdp->declBus(c+1009,"pipeline my_WB_stage regval_WB", false,-1, 31,0);
         vcdp->declBus(c+2001,"pipeline my_WB_stage wcsrno_WB", false,-1, 3,0);
         vcdp->declBit(c+2009,"pipeline my_WB_stage wr_csr_WB", false,-1);
-        vcdp->declBit(c+321,"pipeline my_WB_stage is_wb", false,-1);
+        vcdp->declBit(c+329,"pipeline my_WB_stage is_wb", false,-1);
         {int i; for (i=0; i<32; i++) {
                 vcdp->declBus(c+1417+i*1,"pipeline my_WB_stage last_WB_value", true,(i+0), 31,0);}}
         {int i; for (i=0; i<32; i++) {
@@ -389,14 +389,15 @@ void Vpipeline::traceFullThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
                                              >> 0x20U)) 
                                     >> 0xcU));
         vcdp->fullArray(c+217,(__Vtemp8),244);
-        vcdp->fullBus(c+281,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX),32);
-        vcdp->fullBus(c+289,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX),32);
-        vcdp->fullBus(c+297,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__forward_reg),5);
-        vcdp->fullBit(c+305,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__is_forwarding));
-        vcdp->fullBus(c+313,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem
+        vcdp->fullBit(c+281,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__br_cond_AGEX));
+        vcdp->fullBus(c+289,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__output_AGEX),32);
+        vcdp->fullBus(c+297,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__branch_addr_AGEX),32);
+        vcdp->fullBus(c+305,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__forward_reg),5);
+        vcdp->fullBit(c+313,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__is_forwarding));
+        vcdp->fullBus(c+321,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem
                              [(0x3fffU & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__memaddr_MEM 
                                           >> 2U))]),32);
-        vcdp->fullBit(c+321,(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb));
+        vcdp->fullBit(c+329,(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb));
         __Vtemp14[0U] = ((0xffffff00U & (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__regs
                                          [(0x1fU & 
                                            ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
@@ -482,128 +483,64 @@ void Vpipeline::traceFullThis__1(Vpipeline__Syms* __restrict vlSymsp, VerilatedV
                                                 << 0xaU)) 
                                     | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                        >> 0x16U)));
-        vcdp->fullArray(c+329,(__Vtemp14),238);
-        vcdp->fullBus(c+393,(vlSymsp->TOP__pipeline.__PVT__cycle_count),32);
-        vcdp->fullArray(c+401,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch),132);
-        vcdp->fullArray(c+441,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch),238);
-        vcdp->fullArray(c+505,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch),244);
-        vcdp->fullArray(c+569,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch),244);
-        vcdp->fullBus(c+633,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
+        vcdp->fullArray(c+337,(__Vtemp14),238);
+        vcdp->fullBus(c+401,(vlSymsp->TOP__pipeline.__PVT__cycle_count),32);
+        vcdp->fullArray(c+409,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch),132);
+        vcdp->fullArray(c+449,(vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch),238);
+        vcdp->fullArray(c+513,(vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch),244);
+        vcdp->fullArray(c+577,(vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch),244);
+        vcdp->fullBus(c+641,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
                                         << 0x1cU) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
                                         >> 4U)))),6);
-        vcdp->fullBus(c+641,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch),32);
-        vcdp->fullBus(c+649,(((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)),32);
-        vcdp->fullBus(c+657,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE),32);
-        vcdp->fullBus(c+665,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+        vcdp->fullBus(c+649,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch),32);
+        vcdp->fullBus(c+657,(((IData)(4U) + vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__PC_FE_latch)),32);
+        vcdp->fullBus(c+665,(vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__inst_count_FE),32);
+        vcdp->fullBus(c+673,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                << 0x1cU) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                             >> 4U))),32);
-        vcdp->fullBus(c+673,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
+        vcdp->fullBus(c+681,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                << 0x1cU) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
                                             >> 4U))),32);
-        vcdp->fullBus(c+681,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
+        vcdp->fullBus(c+689,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[2U] 
                                << 0x1cU) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
                                             >> 4U))),32);
-        vcdp->fullBus(c+689,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
+        vcdp->fullBus(c+697,(((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[1U] 
                                << 0x1cU) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U] 
                                             >> 4U))),32);
-        vcdp->fullBus(c+697,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U])),4);
-        vcdp->fullBus(c+705,((7U & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+        vcdp->fullBus(c+705,((0xfU & vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[0U])),4);
+        vcdp->fullBus(c+713,((7U & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                      << 0x10U) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                   >> 0x10U)))),3);
-        vcdp->fullBus(c+713,((0x7fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+        vcdp->fullBus(c+721,((0x7fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                         << 3U) | (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                                   >> 0x1dU)))),7);
-        vcdp->fullBus(c+721,((0x7fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
+        vcdp->fullBus(c+729,((0x7fU & ((vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                         << 0x1cU) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__FE_latch[3U] 
                                         >> 4U)))),7);
-        vcdp->fullBus(c+729,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
+        vcdp->fullBus(c+737,((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[1U] 
                                         << 0x1bU) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
                                         >> 5U)))),5);
-        vcdp->fullBit(c+737,((1U & (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
+        vcdp->fullBit(c+745,((1U & (vlSymsp->TOP__pipeline.__PVT__my_AGEX_stage__DOT__AGEX_latch[0U] 
                                     >> 4U))));
-        vcdp->fullBus(c+745,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+        vcdp->fullBus(c+753,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[7U] 
                                << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
                                             >> 0xeU))),32);
-        vcdp->fullBus(c+753,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+        vcdp->fullBus(c+761,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[6U] 
                                << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                             >> 0xeU))),32);
-        vcdp->fullBus(c+761,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+        vcdp->fullBus(c+769,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                                             >> 8U))),32);
-        vcdp->fullBus(c+769,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+        vcdp->fullBus(c+777,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                             >> 0xeU))),32);
-        vcdp->fullBus(c+777,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+        vcdp->fullBus(c+785,((0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                         << 0x18U) | 
                                        (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                         >> 8U)))),6);
-        vcdp->fullBit(c+785,(((0x1cU == (0x3fU & ((
-                                                   vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                                                   << 0x18U) 
-                                                  | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                                     >> 8U))))
-                               ? (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                    << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                 >> 8U)) 
-                                  == ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                       << 0x18U) | 
-                                      (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
-                                       >> 8U))) : (
-                                                   (0x1dU 
-                                                    == 
-                                                    (0x3fU 
-                                                     & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                                                         << 0x18U) 
-                                                        | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                                           >> 8U))))
-                                                    ? 
-                                                   (((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                                      << 0x18U) 
-                                                     | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                        >> 8U)) 
-                                                    != 
-                                                    ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                      << 0x18U) 
-                                                     | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
-                                                        >> 8U)))
-                                                    : 
-                                                   ((0x1eU 
-                                                     == 
-                                                     (0x3fU 
-                                                      & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                                                          << 0x18U) 
-                                                         | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                                            >> 8U))))
-                                                     ? 
-                                                    VL_LTES_III(1,32,32, 
-                                                                ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                                                  << 0x18U) 
-                                                                 | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                                    >> 8U)), 
-                                                                ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                                  << 0x18U) 
-                                                                 | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
-                                                                    >> 8U)))
-                                                     : 
-                                                    ((0x1fU 
-                                                      == 
-                                                      (0x3fU 
-                                                       & ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                                                           << 0x18U) 
-                                                          | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                                             >> 8U)))) 
-                                                     & VL_GTES_III(1,32,32, 
-                                                                   ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                                                     << 0x18U) 
-                                                                    | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                                       >> 8U)), 
-                                                                   ((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                                                     << 0x18U) 
-                                                                    | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[0U] 
-                                                                       >> 8U)))))))));
         vcdp->fullBus(c+793,(((vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                                << 0x18U) | (vlSymsp->TOP__pipeline.__PVT__my_DE_stage__DOT__DE_latch[2U] 
                                             >> 8U))),32);

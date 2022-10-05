@@ -13,11 +13,11 @@ li t2, 4
 li gp, 1 
 bne t0, t2, fail
 bne zero, gp, done 
-j fail 
+j fail project1/Fall_2022/proj2/tests/part2/test8.asm
 li gp, 3
 j done 
 fail: 
-li gp, 0
+li gp, 0w
 done: 
 addi gp, x0, 1 
 nop 

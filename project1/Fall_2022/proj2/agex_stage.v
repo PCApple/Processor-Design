@@ -80,10 +80,9 @@ module AGEX_STAGE(
           br_cond_AGEX = 0;
         end
       end
-      /*
-      `BLTU_I: ..
-      `BGEU_I : ...
-      */
+      `JAL_I: br_cond_AGEX =1;
+      `JALR_I: br_cond_AGEX =1;
+      `JR_I: br_cond_AGEX =1;
   
       default : br_cond_AGEX = 1'b0;
     endcase
@@ -97,6 +96,16 @@ module AGEX_STAGE(
   case (op_I_AGEX)
     `ADDI_I: begin
       output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `LUI_I: begin
+      output_AGEX = sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `AUIPC_I: begin
+      output_AGEX = PC_AGEX + sxt_imm_AGEX;
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
@@ -144,6 +153,25 @@ module AGEX_STAGE(
       output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
+    end
+    `JAL_I: begin
+      branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      br_cond_AGEX = 1;
+      output_AGEX = PC_AGEX + 4;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `JALR_I: begin
+      branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 'hfffffffe;
+      br_cond_AGEX = 1;
+      output_AGEX = PC_AGEX + 4;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `JR_I: begin
+      branch_addr_AGEX = rs1_AGEX;
+      br_cond_AGEX = 1;
+      is_forwarding = 0;
     end
 
 
