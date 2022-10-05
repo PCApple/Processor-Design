@@ -33,7 +33,8 @@ module AGEX_STAGE(
   reg [`DBITS-1:0] branch_addr_AGEX;
   reg [`REGNOBITS-1:0] forward_reg;
   reg is_forwarding;
-
+  reg [`DBITS-1:0] mem_addr_AGEX;
+  reg is_wr_mem_AGEX;
 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
  
@@ -134,8 +135,18 @@ module AGEX_STAGE(
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
+    `ORI_I: begin
+      output_AGEX = rs1_AGEX | sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
     `XOR_I: begin
       output_AGEX = rs1_AGEX ^ rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `XORI_I: begin
+      output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
@@ -173,7 +184,45 @@ module AGEX_STAGE(
       br_cond_AGEX = 1;
       is_forwarding = 0;
     end
-
+    `SRA_I: begin
+      output_AGEX = rs1_AGEX >>> rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SRL_I: begin
+      output_AGEX = rs1_AGEX << rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SLL_I: begin
+      output_AGEX = rs1_AGEX >> rs2_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SRAI_I: begin
+      output_AGEX = rs1_AGEX >>> sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SRLI_I: begin
+      output_AGEX = rs1_AGEX << sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SLLI_I: begin
+      output_AGEX = rs1_AGEX >> sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
+    `SW_I: begin
+      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+      is_forwarding = 0;
+    end
+    `LW_I: begin
+      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+      is_forwarding = 1;
+      forward_reg = inst_AGEX[11:7];
+    end
 
     default: is_forwarding = 0;
 

@@ -35,7 +35,7 @@ module MEM_STAGE(
   wire [`DBITS-1:0] sxt_imm_MEM;
   wire [`DBITS-1:0] rs1_MEM;
   wire [`DBITS-1:0] rs2_MEM;
-  wire [`DBITS-1:0] output_MEM;
+  reg [`DBITS-1:0] output_MEM;
   wire [`TYPENOBITS-1:0] type_I_MEM; // instruction type
   wire [`REGNOBITS-1:0] forward_reg_MEM;
   wire is_forwarding_MEM;
@@ -51,15 +51,25 @@ module MEM_STAGE(
   wire wr_mem_MEM;  // is this instruction writing a value into memory? 
   // Read from D-MEM  (read code is completed if there is a correct memaddr_MEM ) 
   // asynchronous read
+  assign memaddr_MEM = output_MEM;
   assign rd_val_MEM = dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]];
-
+  always @ (*) begin
+    if (op_I_MEM == `LW_I) begin
+      memaddr_MEM = output_MEM;
+      output_MEM = rd_val_MEM;
+      wr_mem_MEM = 0;
+    end
+    else if (op_I_MEM == `SW_I) begin
+      wr_mem_MEM = 1'b1;
+    end
+  end
   
  // Write to D-MEM
   always @ (posedge clk) begin
   if (wr_mem_MEM)
     // fill out the correct signal name to do write operations 
       //synchronous write
-      dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= wr_val_MEM; 
+      dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= output_MEM; 
   end
 
   assign MEM_latch_out = MEM_latch; 
