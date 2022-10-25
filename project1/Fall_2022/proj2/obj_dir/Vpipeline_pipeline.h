@@ -34,10 +34,8 @@ VL_MODULE(Vpipeline_pipeline) {
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__stall_next;
-    CData/*0:0*/ __PVT__my_AGEX_stage__DOT__br_cond_AGEX;
     CData/*4:0*/ __PVT__my_AGEX_stage__DOT__forward_reg;
     CData/*0:0*/ __PVT__my_AGEX_stage__DOT__is_forwarding;
-    CData/*0:0*/ __PVT__my_MEM_stage__DOT__wr_mem_MEM;
     IData/*31:0*/ __PVT__cycle_count;
     WData/*131:0*/ __PVT__my_FE_stage__DOT__FE_latch[5];
     IData/*31:0*/ __PVT__my_FE_stage__DOT__PC_FE_latch;
@@ -46,12 +44,12 @@ VL_MODULE(Vpipeline_pipeline) {
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
     WData/*237:0*/ __PVT__my_DE_stage__DOT__DE_latch[8];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__sxt_imm_DE;
-    WData/*243:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
+    WData/*244:0*/ __PVT__my_AGEX_stage__DOT__AGEX_latch[8];
     IData/*31:0*/ __PVT__my_AGEX_stage__DOT__output_AGEX;
     IData/*31:0*/ __PVT__my_AGEX_stage__DOT__branch_addr_AGEX;
     WData/*243:0*/ __PVT__my_MEM_stage__DOT__MEM_latch[8];
+    IData/*31:0*/ __PVT__my_MEM_stage__DOT__output_MEM;
     IData/*31:0*/ __PVT__my_MEM_stage__DOT__memaddr_MEM;
-    IData/*31:0*/ __PVT__my_MEM_stage__DOT__wr_val_MEM;
     QData/*32:0*/ __PVT__from_AGEX_to_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__imem[16384];
     IData/*31:0*/ __PVT__my_DE_stage__DOT__regs[32];

@@ -33,53 +33,20 @@ module AGEX_STAGE(
   reg [`DBITS-1:0] branch_addr_AGEX;
   reg [`REGNOBITS-1:0] forward_reg;
   reg is_forwarding;
+  reg to_mem;
 
 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
  
   // **TODO: Complete the rest of the pipeline 
  
-  
+  // checking if need to branch
   always @ (*) begin
     case (op_I_AGEX)
-      `BEQ_I :
-      begin
-        if (rs1_AGEX == rs2_AGEX) begin
-          br_cond_AGEX = 1;
-          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-        end else begin
-          br_cond_AGEX = 0;
-        end
-      end
-
-      //`BEQ_I : br_cond_AGEX = 1; // write correct code to check the branch condition. 
-      // Check registers one and two
-      // If equal, pcplus_AGEX <= PC_AGEX + offset
-
-      `BNE_I : begin
-        if (rs1_AGEX != rs2_AGEX) begin
-          br_cond_AGEX = 1;
-          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-        end else begin
-          br_cond_AGEX = 0;
-        end
-      end
-      `BLT_I : begin
-        if (rs1_AGEX <= rs2_AGEX) begin
-          br_cond_AGEX = 1;
-          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-        end else begin
-          br_cond_AGEX = 0;
-        end
-      end
-      `BGE_I : begin
-        if (rs1_AGEX >= rs2_AGEX) begin
-          br_cond_AGEX = 1;
-          branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-        end else begin
-          br_cond_AGEX = 0;
-        end
-      end
+      `BEQ_I : br_cond_AGEX = 1;
+      `BNE_I : br_cond_AGEX = 1;
+      `BLT_I : br_cond_AGEX = 1;
+      `BGE_I : br_cond_AGEX = 1;
       `JAL_I: br_cond_AGEX =1;
       `JALR_I: br_cond_AGEX =1;
       `JR_I: br_cond_AGEX =1;
@@ -87,6 +54,59 @@ module AGEX_STAGE(
       default : br_cond_AGEX = 1'b0;
     endcase
   end
+   // branch target needs to be computed here 
+  // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
+
+  always @(*)begin  
+    if (op_I_AGEX == `JAL_I) begin
+      branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+    end
+    else if (op_I_AGEX == `JALR_I) begin
+      branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 'hfffffffe;
+    end
+    else if (op_I_AGEX == `JR_I) begin
+      branch_addr_AGEX = rs1_AGEX;
+    end
+    else if (op_I_AGEX == `BEQ_I) begin
+      if (rs1_AGEX == rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else if (op_I_AGEX == `BNE_I) begin
+      if (rs1_AGEX != rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else if (op_I_AGEX == `BLT_I) begin
+      if (rs1_AGEX < rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else if (op_I_AGEX == `BGE_I) begin
+      if (rs1_AGEX >= rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else 
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else if (op_I_AGEX == `BLTU_I) begin
+      if (rs1_AGEX < rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else if (op_I_AGEX == `BGEU_I) begin
+      if(rs1_AGEX >= rs2_AGEX)
+        branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
+      else  
+        branch_addr_AGEX = pcplus_AGEX;
+    end
+    else begin
+      branch_addr_AGEX = 0;
+    end
+  end 
 
 
   // compute ALU operations  (alu out or memory addresses)
@@ -96,102 +116,106 @@ module AGEX_STAGE(
   case (op_I_AGEX)
     `ADDI_I: begin
       output_AGEX = rs1_AGEX + sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `LUI_I: begin
       output_AGEX = sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `AUIPC_I: begin
       output_AGEX = PC_AGEX + sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ADD_I: begin
       output_AGEX = rs1_AGEX + rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `AND_I: begin
       output_AGEX = rs1_AGEX & rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `MUL_I: begin
       output_AGEX = rs1_AGEX * rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `SUB_I: begin
       output_AGEX = rs1_AGEX - rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `OR_I: begin
       output_AGEX = rs1_AGEX | rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `XOR_I: begin
       output_AGEX = rs1_AGEX ^ rs2_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ANDI_I: begin
       output_AGEX = rs1_AGEX & sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `ORI_I: begin
       output_AGEX = rs1_AGEX | sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `XORI_I: begin
       output_AGEX = rs1_AGEX ^ sxt_imm_AGEX;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `JAL_I: begin
       branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX;
-      br_cond_AGEX = 1;
       output_AGEX = PC_AGEX + 4;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
     `JALR_I: begin
-      branch_addr_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 'hfffffffe;
-      br_cond_AGEX = 1;
       output_AGEX = PC_AGEX + 4;
-      is_forwarding = 1;
-      forward_reg = inst_AGEX[11:7];
     end
-    `JR_I: begin
-      branch_addr_AGEX = rs1_AGEX;
-      br_cond_AGEX = 1;
-      is_forwarding = 0;
+    `SW_I: begin
+      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
     end
-
-
-    default: is_forwarding = 0;
-
+    `LW_I: begin
+      output_AGEX = rs1_AGEX + sxt_imm_AGEX;
+    end
+    default: begin
+    end
 	 endcase 
-   
   end 
 
-  // branch target needs to be computed here 
-  // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
+  // mem computes
+  always @ (*) begin
+    case (op_I_AGEX)
+      `SW_I: to_mem = 1;
+      default to_mem = 0;
+  endcase
+  end
 
-  always @(*)begin  
-  /*
-    if (op_I_AGEX == `JAL_I) 
-    ... 
-    */
-  end 
+  // forwarding
+  always @ (*) begin
+    case (op_I_AGEX)
+      `SW_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BEQ_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BNE_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BLT_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BGE_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BLTU_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      `BGEU_I: begin
+        is_forwarding = 0;
+        forward_reg = 0;
+      end
+      default: begin
+        is_forwarding = 1;
+        forward_reg = inst_AGEX[11:7];
+      end
+    endcase
+  end
+ 
 
-  assign from_AGEX_to_FE = { br_cond_AGEX, branch_addr_AGEX};
+  
 
   assign  {
     inst_AGEX,
@@ -219,21 +243,25 @@ module AGEX_STAGE(
     type_I_AGEX,
     forward_reg,
     is_forwarding,
+    to_mem,
             // more signals might need
     bus_canary_AGEX     
   }; 
+  // for branching/jumping
+  assign from_AGEX_to_FE = { br_cond_AGEX, branch_addr_AGEX};
+  // for forwarding
   assign from_AGEX_to_DE = {forward_reg, is_forwarding};
  
   always @ (posedge clk) begin
     if (reset) begin
       AGEX_latch <= {`AGEX_latch_WIDTH{1'b0}};
       // might need more code here  
-        end 
+      end 
     else 
-        begin
-      // need to complete 
-            AGEX_latch <= AGEX_latch_contents;
-        end 
+      begin
+        // need to complete 
+        AGEX_latch <= AGEX_latch_contents;
+      end 
   end
 
 endmodule

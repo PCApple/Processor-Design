@@ -35,13 +35,13 @@ module MEM_STAGE(
   wire [`DBITS-1:0] sxt_imm_MEM;
   wire [`DBITS-1:0] rs1_MEM;
   wire [`DBITS-1:0] rs2_MEM;
-  wire [`DBITS-1:0] output_MEM;
+  reg [`DBITS-1:0] output_MEM;
   wire [`TYPENOBITS-1:0] type_I_MEM; // instruction type
   wire [`REGNOBITS-1:0] forward_reg_MEM;
   wire is_forwarding_MEM;
  
 
-   wire [`BUS_CANARY_WIDTH-1:0] bus_canary_MEM;
+  wire [`BUS_CANARY_WIDTH-1:0] bus_canary_MEM;
 
 // **TODO: Complete the rest of the pipeline 
 
@@ -52,6 +52,15 @@ module MEM_STAGE(
   // Read from D-MEM  (read code is completed if there is a correct memaddr_MEM ) 
   // asynchronous read
   assign rd_val_MEM = dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]];
+  always @ (*) begin
+    if (op_I_MEM == `LW_I) begin
+      output_MEM = rd_val_MEM;
+    end else begin
+      output_MEM = output_MEM;
+    end
+  end
+  assign wr_val_MEM = rs2_MEM;
+
 
   
  // Write to D-MEM
@@ -75,7 +84,8 @@ module MEM_STAGE(
                                 output_MEM,
                                 type_I_MEM,
                                 forward_reg_MEM,
-                                is_forwarding_MEM,                                                                
+                                is_forwarding_MEM,
+                                wr_mem_MEM,                                                                
                                 
                                  bus_canary_MEM
                                  } = from_AGEX_latch;  

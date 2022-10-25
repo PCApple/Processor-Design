@@ -84,12 +84,14 @@ module FE_STAGE(
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
+  // if we need to debug, check this if-else area
    if (reset) begin 
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
     else if (!stall_pipe_FE) begin 
       if (br_cond_FE) begin
+        // check here for debugging
         PC_FE_latch <= branch_addr_FE;
         inst_count_FE <= inst_count_FE + 1; 
       end 
@@ -100,7 +102,8 @@ module FE_STAGE(
     end
     else 
       PC_FE_latch <= PC_FE_latch;
-      //put more here
+      // is this alright? Check here for debugging
+      //put more here, maybe throw in a nop for stalling
   end
   
 

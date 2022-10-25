@@ -19,8 +19,7 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-Passed!
+Failed. exitcode: 0
 -- DONE --------------------
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
@@ -43,10 +42,7 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
-[118]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
-[127]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0xfff08193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-Passed!
+Failed. exitcode: 0
 -- DONE --------------------
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
@@ -69,11 +65,7 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
-[118]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
-[127]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x2081b3 Op_I:1 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-Passed!
+Failed. exitcode: 0
 -- DONE --------------------
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
@@ -96,14 +88,7 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
-[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-[121]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x730863 Op_I:28
-[123]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
-[125]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
-[127]  inst_count_WB: 7 PC_WB: 0x21c Inst_WB: 0x400313 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:6
-Passed!
+Failed. exitcode: 0
 -- DONE --------------------
 
 TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
@@ -126,12 +111,5 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
-[121]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x730463 Op_I:28
-[123]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
-[125]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-[127]  inst_count_WB: 6 PC_WB: 0x210 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
-[129]  inst_count_WB: 7 PC_WB: 0x214 Inst_WB: 0x400313 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:6
-Passed!
+Failed. exitcode: 0
 -- DONE --------------------
