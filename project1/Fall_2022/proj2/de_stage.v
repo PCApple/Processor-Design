@@ -22,10 +22,47 @@ module DE_STAGE(
   wire [`INSTBITS-1:0] inst_DE; 
   wire [`DBITS-1:0] PC_DE;
   wire [`DBITS-1:0] pcplus_DE; 
-  wire [`DBITS-1:0] inst_count_DE; 
+  wire [`DBITS-1:0] inst_count_DE;
+  wire [`BHR_SIZE-1:0] BHR_DE;
+  wire [`PHT_INDEX_SIZE-1:0] PHT_index_DE;
+  wire branch_predict_DE;
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE; 
- 
+// Our Edit: adding reg_val_1 and reg_val_2 and always block
+ /* this signal is passed from WB stage */ 
+  wire wr_reg_WB; // is this instruction writing into a register file? 
+  wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
+  wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
+  wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
+  wire wr_csr_WB; // is this instruction writing into CSR ? 
+  wire [`REGNOBITS-1:0] agex_forward_reg_addr;
+  wire [`REGNOBITS-1:0] mem_forward_reg_addr;
+  wire [`REGNOBITS-1:0] wb_forward_reg_addr;
+  wire is_forwarding_agex;
+  wire is_forwarding_mem;
+  wire is_forwarding_wb;
+  wire is_forward_rs1;
+  wire is_forward_rs2;
+  wire flush_pipe_DE;
+  wire is_branch;
+  wire is_jmp;
+  wire rd_mem;
+  wire wr_reg;
+  wire wr_mem;
+  assign is_branch = (type_I_DE == `S_Type && op_I_DE != `SW_I);
+  assign is_jmp = (op_I_DE == `JAL_I || op_I_DE == `JALR_I || op_I_DE == `JR_I);
+  assign rd_mem = (op_I_DE == `LW_I);
+  assign wr_mem = (op_I_DE == `SW_I);
+  assign wr_reg = (!is_branch && !wr_mem);
+  assign is_forward_rs1 = (type_I_DE != `S_Type || type_I_DE)
+                        && (((regs[inst_DE[19:15]] == agex_forward_reg_addr) & is_forwarding_agex)
+                        || ((regs[inst_DE[19:15]] == mem_forward_reg_addr) & is_forwarding_mem)
+                        || ((regs[inst_DE[19:15]] == wb_forward_reg_addr) & is_forwarding_wb));  
+  assign is_forward_rs2 = (type_I_DE == `R_Type || type_I_DE)
+                        && (regs[inst_DE[24:20]] != 0)
+                        && (((regs[inst_DE[24:20]] == agex_forward_reg_addr) & is_forwarding_agex)
+                        || ((regs[inst_DE[24:20]] == mem_forward_reg_addr) & is_forwarding_mem)
+                        || ((regs[inst_DE[24:20]] == wb_forward_reg_addr) & is_forwarding_wb));
 
   // extracting a part of opcode 
   wire [2:0] F3_DE; 
@@ -185,7 +222,7 @@ module DE_STAGE(
 
   //////////////////////////////////
   // **TODO: Complete the rest of the pipeline 
-  reg  [`DBITS-1:0] sxt_imm_DE;
+  reg signed [`DBITS-1:0] sxt_imm_DE;
   always @(*) begin 
     case (type_immediate_DE )  
     // pg 24 of Volume I: RISC-V User-Level ISA V2.2
@@ -204,32 +241,18 @@ module DE_STAGE(
       sxt_imm_DE = 32'b0; 
     endcase  
   end 
-   wire wr_reg_WB; 
-// Our Edit: adding reg_val_1 and reg_val_2 and always block
- /* this signal is passed from WB stage */ 
-  wire wr_reg_WB; // is this instruction writing into a register file? 
-  wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
-  wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
-  wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
-  wire wr_csr_WB; // is this instruction writing into CSR ? 
-  wire [`REGNOBITS-1:0] agex_forward_reg_addr;
-  wire [`REGNOBITS-1:0] mem_forward_reg_addr;
-  wire [`REGNOBITS-1:0] wb_forward_reg_addr;
-  wire is_forwarding_agex;
-  wire is_forwarding_mem;
-  wire is_forwarding_wb;
+   
 
 
   // signals come from WB stage for register WB 
-  assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, wb_forward_reg_addr, is_forwarding_wb} = from_WB_to_DE;  
-  assign {agex_forward_reg_addr, is_forwarding_agex} = from_AGEX_to_DE;
-  assign {mem_forward_reg_addr, is_forwarding_mem} = from_MEM_to_DE;
+  
+  
 
 
   reg stall_next;
   wire pipeline_stall_DE; 
   assign pipeline_stall_DE = stall_next;
-  assign from_DE_to_FE = pipeline_stall_DE;
+  assign from_DE_to_FE = {pipeline_stall_DE};
   //assign pipeline_stall_DE = {from_AGEX_to_DE};
 
 
@@ -239,9 +262,30 @@ module DE_STAGE(
             PC_DE, 
             pcplus_DE,
             inst_count_DE,
+            BHR_DE,
+            PHT_index_DE,
+            branch_predict_DE,
             bus_canary_DE 
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
-
+  assign {
+    agex_forward_reg_addr,
+    is_forwarding_agex,
+    flush_pipe_DE
+    } = from_AGEX_to_DE;
+  assign {
+    mem_forward_reg_addr,
+    is_forwarding_mem
+    } = from_MEM_to_DE;
+  assign { 
+    wr_reg_WB,
+    wregno_WB,
+    regval_WB,
+    wcsrno_WB,
+    wr_csr_WB,
+    wb_forward_reg_addr,
+    is_forwarding_wb
+    } = from_WB_to_DE;  
+  
 
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
@@ -256,6 +300,14 @@ module DE_STAGE(
                                   regs[inst_DE[19:15]],
                                   regs[inst_DE[24:20]],
                                   type_I_DE,
+                                  is_branch,
+                                  is_jmp,
+                                  rd_mem,
+                                  wr_mem,
+                                  wr_reg,
+                                  branch_predict_DE,
+                                  PHT_index_DE,
+                                  BHR_DE,                                  
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
@@ -325,29 +377,14 @@ module DE_STAGE(
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
-  always @ (*) begin
-    if (((inst_DE[19:15] == agex_forward_reg_addr || inst_DE[24:20] == agex_forward_reg_addr) && is_forwarding_agex == 1) 
-    || ((inst_DE[19:15] == mem_forward_reg_addr ||  inst_DE[24:20] == mem_forward_reg_addr) && is_forwarding_mem == 1)|| 
-    ((inst_DE[19:15] == wb_forward_reg_addr  || inst_DE[24:20] == wb_forward_reg_addr) && is_forwarding_wb == 1)) begin
-      stall_next = 1;
-    end else begin
-      stall_next = 0;
-    end
-  end
+  assign stall_next = ((op_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
 
   always @ (posedge clk) begin // you need to expand this always block 
-    if (reset) begin
+    if (reset || pipeline_stall_DE || flush_pipe_DE || op_I_DE == `INVALID_I) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
-      end
-     else begin
-      if (op_I_DE == `INVALID_I) begin
-        DE_latch <= {`DE_latch_WIDTH{1'b0}};
-      end else if (pipeline_stall_DE) 
-        DE_latch <= {`DE_latch_WIDTH{1'b0}};
-      else
+      end else begin
           DE_latch <= DE_latch_contents;
-
-     end 
+      end 
   end
 
 endmodule

@@ -49,6 +49,7 @@ module WB_STAGE(
                                 type_I_WB,
                                 forward_reg_WB,
                                 is_forwarding_WB,
+                                wr_reg_WB,
 
                                 // more signals might need                        
                                  bus_canary_WB 
@@ -56,7 +57,7 @@ module WB_STAGE(
         
         // write register by sending data to the DE stage 
         
-reg is_wb;
+/*reg is_wb;
 always @ (*) begin
   is_wb = 0;
   if (type_I_WB == `I_Type)begin
@@ -71,9 +72,9 @@ always @ (*) begin
     is_wb = 0;
   end
 end
-assign wr_reg_WB = is_wb;
+assign wr_reg_WB = is_wb;*/
 
-assign wregno_WB = inst_WB[11:7];
+assign wregno_WB = forward_reg_WB;
 // we send register write (and CSR register) information to DE stage 
 assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, forward_reg_WB, is_forwarding_WB};
 

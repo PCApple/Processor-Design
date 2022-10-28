@@ -45,12 +45,15 @@ module MEM_STAGE(
 
 // **TODO: Complete the rest of the pipeline 
 
+  wire rd_mem_MEM;
+  wire wr_reg_MEM;
   wire [`DBITS-1:0] memaddr_MEM;  // memory address. need to be computed in AGEX stage and pass through a latch 
   wire [`DBITS-1:0] rd_val_MEM;  // memory read value 
   wire [`DBITS-1:0] wr_val_MEM;  // memory write value 
   wire wr_mem_MEM;  // is this instruction writing a value into memory? 
   // Read from D-MEM  (read code is completed if there is a correct memaddr_MEM ) 
   // asynchronous read
+  assign memaddr_MEM = output_MEM;
   assign rd_val_MEM = dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]];
 
   
@@ -61,6 +64,7 @@ module MEM_STAGE(
       //synchronous write
       dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= wr_val_MEM; 
   end
+  assign rs1_MEM = rd_mem_MEM ? rd_val_MEM : output_MEM;
 
   assign MEM_latch_out = MEM_latch; 
 
@@ -75,7 +79,10 @@ module MEM_STAGE(
                                 output_MEM,
                                 type_I_MEM,
                                 forward_reg_MEM,
-                                is_forwarding_MEM,                                                                
+                                is_forwarding_MEM,
+                                rd_mem_MEM,
+                                wr_mem_MEM,
+                                wr_reg_MEM,                                                                
                                 
                                  bus_canary_MEM
                                  } = from_AGEX_latch;  
@@ -90,10 +97,11 @@ module MEM_STAGE(
                                 sxt_imm_MEM,
                                 rs1_MEM,
                                 rs2_MEM,
-                                output_MEM,
+                                memaddr_MEM,
                                 type_I_MEM, 
                                 forward_reg_MEM,
-                                is_forwarding_MEM,   
+                                is_forwarding_MEM,
+                                wr_reg_MEM,   
                                         // more signals might need    
                               bus_canary_MEM                   
    }; 

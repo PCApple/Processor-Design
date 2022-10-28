@@ -16,7 +16,7 @@
 // address space is m 0x00000000 to 0x000fffff
 // [NOTICE] please note that both imem and dmem use the SAME "IDMEMINITFILE".
 // you need to change this line to change which test file to read 
-`define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part4/testall.mem"
+`define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part4/testall.mem"
 `define IMEMADDRBITS  16
 `define IMEMWORDBITS  2
 `define IMEMWORDS	  (1 << (`IMEMADDRBITS - `IMEMWORDBITS))
@@ -27,6 +27,18 @@
 `define CSRNOBITS 4
 `define CSR_ID_BIT_MASK 12'hF // this should match with CSRNOBITS 
 `define CSRREGNUM (1 << (`CSRNOBITS))
+
+// Branch prediction
+`define PHT_ENTRIES 256 // 2^8
+`define PHT_ENTRY_SIZE 2
+`define PHT_INDEX_SIZE 8
+
+`define BTB_ENTRIES 16
+`define BTB_TAG_SIZE 26
+`define BTB_INDEX_SIZE 4
+`define BTB_TARGET_SIZE 32
+`define BTB_ENTRY_SIZE (`BTB_TAG_SIZE + `BTB_TARGET_SIZE + 1)
+`define BHR_SIZE 8
 
 // internal instruction opcode enumerator for easy programming 
 
