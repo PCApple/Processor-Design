@@ -141,16 +141,17 @@ end
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
-    else if (stall_pipe_FE) begin
-      PC_FE_latch <= PC_FE_latch;  
-      inst_count_FE <= inst_count_FE + 1;
-    end else if (flush_pipe_FE) begin
+    else if (flush_pipe_FE) begin
       PC_FE_latch <= branch_addr_FE;
+      inst_count_FE <= inst_count_FE + 1;
+    end else if (stall_pipe_FE) begin
+      PC_FE_latch <= PC_FE_latch; 
       inst_count_FE <= inst_count_FE + 1;
     end else if (btb_hit_FE && branch_predict_FE) begin
       PC_FE_latch <= btb_target_FE;
       inst_count_FE <= inst_count_FE + 1;
     end else begin
+      //$display("dumb");
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1;
     end

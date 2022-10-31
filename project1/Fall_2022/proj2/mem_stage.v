@@ -56,16 +56,23 @@ module MEM_STAGE(
   assign memaddr_MEM = output_MEM;
   assign rd_val_MEM = dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]];
 
-  
+  always @ (posedge clk) begin
+    if (rd_mem_MEM) begin
+      $display("MEM address: %h, value: %h", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS], rd_val_MEM);
+      $display("MEM: rd_val_MEM = %h", rd_val_MEM);
+    end
+  end
  // Write to D-MEM
   always @ (posedge clk) begin
-  if (wr_mem_MEM)
+  if (wr_mem_MEM) begin
     // fill out the correct signal name to do write operations 
       //synchronous write
       dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= wr_val_MEM; 
+      $display("in write ", wr_val_MEM, " to address ", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]);
+  end
   end
   assign rs1_MEM = rd_mem_MEM ? rd_val_MEM : output_MEM;
-
+  assign wr_val_MEM = rs2_MEM;
   assign MEM_latch_out = MEM_latch; 
 
    assign {
@@ -97,7 +104,7 @@ module MEM_STAGE(
                                 sxt_imm_MEM,
                                 rs1_MEM,
                                 rs2_MEM,
-                                memaddr_MEM,
+                                output_MEM,
                                 type_I_MEM, 
                                 forward_reg_MEM,
                                 is_forwarding_MEM,

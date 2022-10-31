@@ -36,26 +36,27 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__1(V
     IData/*31:0*/ __Vdlyvval__WB_counters__v6;
     // Body
     __Vdlyvval__WB_counters__v0 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                    << 0xcU) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                                >> 0x14U));
+                                    << 0xbU) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
+                                                >> 0x15U));
     __Vdlyvval__WB_counters__v1 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
-                                    << 0xcU) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                                >> 0x14U));
-    __Vdlyvval__WB_counters__v2 = vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb;
-    __Vdlyvval__WB_counters__v3 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                    << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                                 >> 0xeU));
+                                    << 0xbU) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
+                                                >> 0x15U));
+    __Vdlyvval__WB_counters__v2 = (1U & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                         >> 4U));
+    __Vdlyvval__WB_counters__v3 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
+                                    << 0x11U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
+                                                 >> 0xfU));
     __Vdlyvval__WB_counters__v4 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                    << 0x12U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[4U] 
-                                                 >> 0xeU));
+                                    << 0x11U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[4U] 
+                                                 >> 0xfU));
     __Vdlyvval__WB_counters__v5 = (0x3fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                             << 0x12U) 
+                                             << 0x11U) 
                                             | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
-                                               >> 0xeU)));
-    __Vdlyvval__WB_counters__v6 = (0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
-                                             << 5U) 
-                                            | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                               >> 0x1bU)));
+                                               >> 0xfU)));
+    __Vdlyvval__WB_counters__v6 = (0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                             << 0x1aU) 
+                                            | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                               >> 6U)));
     vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[1U] 
         = __Vdlyvval__WB_counters__v0;
     vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[2U] 
@@ -76,41 +77,27 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__2(V
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__2\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb 
-        = ((2U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                            << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                         >> 0xaU)))) 
-           | ((1U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                               << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                            >> 0xaU)))) 
-              | ((3U != (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                  << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                               >> 0xaU)))) 
-                 & (4U == (0xfU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                    << 0x16U) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                                 >> 0xaU)))))));
     vlSymsp->TOP__pipeline__my_WB_stage.__PVT__from_WB_to_DE 
-        = (((QData)((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb)) 
-            << 0x30U) | (((QData)((IData)((0x1fU & 
-                                           ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
-                                             << 5U) 
-                                            | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                               >> 0x1bU))))) 
-                          << 0x2bU) | (((QData)((IData)(
-                                                        ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                                          << 0x12U) 
-                                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                                            >> 0xeU)))) 
-                                        << 0xbU) | (QData)((IData)(
-                                                                   (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wcsrno_WB) 
-                                                                     << 7U) 
-                                                                    | (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wr_csr_WB) 
-                                                                        << 6U) 
-                                                                       | (0x3fU 
-                                                                          & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                                                              << 0x1cU) 
-                                                                             | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                                                                >> 4U))))))))));
+        = (((QData)((IData)((1U & (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                   >> 4U)))) << 0x30U) 
+           | (((QData)((IData)((0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                          << 0x1aU) 
+                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                            >> 6U))))) 
+               << 0x2bU) | (((QData)((IData)(((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
+                                               << 0x11U) 
+                                              | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
+                                                 >> 0xfU)))) 
+                             << 0xbU) | (QData)((IData)(
+                                                        (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wcsrno_WB) 
+                                                          << 7U) 
+                                                         | (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wr_csr_WB) 
+                                                             << 6U) 
+                                                            | (0x3fU 
+                                                               & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                                                   << 0x1bU) 
+                                                                  | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                                                     >> 5U))))))))));
 }
 
 VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__3(Vpipeline__Syms* __restrict vlSymsp) {
@@ -122,17 +109,17 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__3(V
     IData/*31:0*/ __Vdlyvval__last_WB_value__v0;
     // Body
     __Vdlyvset__last_WB_value__v0 = 0U;
-    if (vlSymsp->TOP__pipeline__my_WB_stage.__PVT__is_wb) {
-        __Vdlyvval__last_WB_value__v0 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                          << 0x12U) 
-                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                            >> 0xeU));
+    if ((0x10U & vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U])) {
+        __Vdlyvval__last_WB_value__v0 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[3U] 
+                                          << 0x11U) 
+                                         | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
+                                            >> 0xfU));
         __Vdlyvset__last_WB_value__v0 = 1U;
         __Vdlyvdim0__last_WB_value__v0 = (0x1fU & (
-                                                   (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[7U] 
-                                                    << 5U) 
-                                                   | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
-                                                      >> 0x1bU)));
+                                                   (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                                    << 0x1aU) 
+                                                   | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                                      >> 6U)));
     }
     if (__Vdlyvset__last_WB_value__v0) {
         vlSymsp->TOP__pipeline__my_WB_stage.last_WB_value[__Vdlyvdim0__last_WB_value__v0] 
@@ -145,14 +132,13 @@ void Vpipeline_WB_STAGE::_ctor_var_reset() {
     // Body
     __PVT__clk = VL_RAND_RESET_I(1);
     __PVT__reset = VL_RAND_RESET_I(1);
-    VL_RAND_RESET_W(244, __PVT__from_MEM_latch);
+    VL_RAND_RESET_W(245, __PVT__from_MEM_latch);
     __PVT__from_WB_to_FE = VL_RAND_RESET_I(1);
     __PVT__from_WB_to_DE = VL_RAND_RESET_Q(49);
     __PVT__from_WB_to_AGEX = VL_RAND_RESET_I(1);
     __PVT__from_WB_to_MEM = VL_RAND_RESET_I(1);
     __PVT__wcsrno_WB = VL_RAND_RESET_I(4);
     __PVT__wr_csr_WB = VL_RAND_RESET_I(1);
-    __PVT__is_wb = VL_RAND_RESET_I(1);
     { int __Vi0=0; for (; __Vi0<32; ++__Vi0) {
             last_WB_value[__Vi0] = VL_RAND_RESET_I(32);
     }}

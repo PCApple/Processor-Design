@@ -1,35 +1,135 @@
 
-TESTING: /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
+TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
 -- VERILATE ----------------
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem"|g'  /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF'
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF   -c -o sim_main.o ../sim_main.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp > Vpipeline__ALLcls.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALLsup.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLcls.o Vpipeline__ALLcls.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLsup.o Vpipeline__ALLsup.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALLcls.o Vpipeline__ALLsup.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a    -o Vpipeline -lm -lstdc++ 
+make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+Passed!
+-- DONE --------------------
 
-TESTING: /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
+TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
 -- VERILATE ----------------
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem"|g'  /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF'
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF   -c -o sim_main.o ../sim_main.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp > Vpipeline__ALLcls.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALLsup.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLcls.o Vpipeline__ALLcls.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test2.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLsup.o Vpipeline__ALLsup.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALLcls.o Vpipeline__ALLsup.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a    -o Vpipeline -lm -lstdc++ 
+make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[118]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
+[127]  inst_count_WB: 6 PC_WB: 0x208 Inst_WB: 0xfff08193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+Passed!
+-- DONE --------------------
 
-TESTING: /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
+TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
 -- VERILATE ----------------
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem"|g'  /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF'
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF   -c -o sim_main.o ../sim_main.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp > Vpipeline__ALLcls.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALLsup.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLcls.o Vpipeline__ALLcls.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test3.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLsup.o Vpipeline__ALLsup.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALLcls.o Vpipeline__ALLsup.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a    -o Vpipeline -lm -lstdc++ 
+make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[118]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
+[127]  inst_count_WB: 6 PC_WB: 0x20c Inst_WB: 0x2081b3 Op_I:1 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+Passed!
+-- DONE --------------------
 
-TESTING: /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
+TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
 -- VERILATE ----------------
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem"|g'  /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF'
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF   -c -o sim_main.o ../sim_main.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp > Vpipeline__ALLcls.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALLsup.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLcls.o Vpipeline__ALLcls.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test4.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLsup.o Vpipeline__ALLsup.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALLcls.o Vpipeline__ALLsup.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a    -o Vpipeline -lm -lstdc++ 
+make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
+rs1 =           1, rs2 =           1, br_cond = 1
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[121]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x730863 Op_I:28
+[127]  inst_count_WB: 9 PC_WB: 0x21c Inst_WB: 0x400313 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:6
+Passed!
+-- DONE --------------------
 
-TESTING: /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
+TESTING: /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
 -- VERILATE ----------------
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
-/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem"|g'  /mnt/c/Github2/CS3220/project1/Fall_2022/proj2/define.vh
-verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF'
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem
+/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem"|g'  /mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF   -c -o sim_main.o ../sim_main.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp > Vpipeline__ALLcls.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALLsup.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLcls.o Vpipeline__ALLcls.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part1/test5.mem -DVCD_OUTPUT -DDPRINTF   -c -o Vpipeline__ALLsup.o Vpipeline__ALLsup.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALLcls.o Vpipeline__ALLsup.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a    -o Vpipeline -lm -lstdc++ 
+make[1]: Leaving directory '/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
+rs1 =           1, rs2 =           1, br_cond = 1
+[121]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x730463 Op_I:28
+[127]  inst_count_WB: 9 PC_WB: 0x210 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[129]  inst_count_WB: 10 PC_WB: 0x214 Inst_WB: 0x400313 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:6
+Passed!
+-- DONE --------------------

@@ -16,7 +16,7 @@
 // address space is m 0x00000000 to 0x000fffff
 // [NOTICE] please note that both imem and dmem use the SAME "IDMEMINITFILE".
 // you need to change this line to change which test file to read 
-`define IDMEMINITFILE "/mnt/c/Github2/CS3220/project1/Fall_2022/proj2/tests/part4/testall.mem"
+`define IDMEMINITFILE "/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part4/testall.mem"
 `define IMEMADDRBITS  16
 `define IMEMWORDBITS  2
 `define IMEMWORDS	  (1 << (`IMEMADDRBITS - `IMEMWORDBITS))
@@ -34,7 +34,7 @@
 `define PHT_INDEX_SIZE 8
 
 `define BTB_ENTRIES 16
-`define BTB_TAG_SIZE 26
+`define BTB_TAG_SIZE 26 
 `define BTB_INDEX_SIZE 4
 `define BTB_TARGET_SIZE 32
 `define BTB_ENTRY_SIZE (`BTB_TAG_SIZE + `BTB_TARGET_SIZE + 1)
@@ -203,22 +203,22 @@
 /** please update the following define with your own values */ 
 
 // we added 3 dbits to each latch except fe
-`define FE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `DBITS + `BUS_CANARY_WIDTH)
-    // (inst_FE, PC_FE_latch, pcplus_FE, `BUS_CANARY_VALUE)
-`define DE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `TYPENOBITS+ `BUS_CANARY_WIDTH)
-    // (inst, PC, pcplus, op_I, inst_count, sxt_imm, regs[0], regs[0], bus_canary)
+`define FE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `DBITS  + `BHR_SIZE + 8 + 1 + `BUS_CANARY_WIDTH)
+    // {inst_FE, PC_FE_latch, pcplus_FE, inst_count_FE, BHR_FE, pht_index_FE, branch_predict_FE, `BUS_CANARY_VALUE ;
+`define DE_latch_WIDTH  (`INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `TYPENOBITS+ + 1 + 1 + 1 + 1 + 1 + 1 + 8 + `BHR_SIZE + `BUS_CANARY_WIDTH)
+    // (inst_DE, PC_DE, pcplus_DE, op_I_DE, inst_count_DE, sxt_imm_DE, regs[inst_DE[19:15]], regs[inst_DE[24:20]], type_I_DE, is_branch, is_jmp, rd_mem, wr_mem, wr_reg, branch_predict_DE, PHT_index_DE, BHR_DE, bus_canary_DE
 
-`define AGEX_latch_WIDTH   (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `DBITS +`TYPENOBITS+ `REGNOBITS+ 1 +`BUS_CANARY_WIDTH)
-    // (inst, PC, op_I, inst_count, sxt_imm, regs[0], regs[0], output, bus_canary)
-`define MEM_latch_WIDTH    (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS +  `DBITS + `DBITS + `DBITS + `TYPENOBITS + `REGNOBITS+ 1 + `BUS_CANARY_WIDTH) 
-    // (inst_DE, PC_DE, op_I_DE, inst_count_DE, sxt_imm_DE, regs[0], regs[0], output, bus_canary_DE)
+`define AGEX_latch_WIDTH   (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + `DBITS +`TYPENOBITS+ `REGNOBITS+ 1 + 1 + 1 + 1 +`BUS_CANARY_WIDTH)
+    // (inst_AGEX, PC_AGEX, op_I_AGEX, inst_count_AGEX, sxt_imm_AGEX, rs1_AGEX, rs2_AGEX, output_AGEX, type_I_AGEX, forward_reg, is_forwarding, rd_mem_AGEX, wr_mem_AGEX, wr_reg_AGEX, bus_canary_AGEX)
+`define MEM_latch_WIDTH    (`INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS +  `DBITS + `DBITS + `DBITS + `TYPENOBITS + `REGNOBITS+ 1 + 1 + `BUS_CANARY_WIDTH) 
+    // (inst_MEM, PC_MEM, op_I_MEM, inst_count_MEM, sxt_imm_MEM, rs1_MEM, rs2_MEM, memaddr_MEM, type_I_MEM, forward_reg_MEM, is_forwarding_MEM, wr_reg_MEM, bus_canary_MEM)
 
 `define from_DE_to_FE_WIDTH  1 
-`define from_AGEX_to_FE_WIDTH (1 + `DBITS)
+`define from_AGEX_to_FE_WIDTH (1 + `DBITS + `BHR_SIZE + 1 + `BTB_INDEX_SIZE + `BTB_ENTRY_SIZE + 1)
 `define from_MEM_to_FE_WIDTH 1
 `define from_WB_to_FE_WIDTH 1
 
-`define from_AGEX_to_DE_WIDTH (`REGNOBITS + 1) 
+`define from_AGEX_to_DE_WIDTH (`REGNOBITS + 1 + 1) 
 `define from_MEM_to_DE_WIDTH  (`REGNOBITS + 1) 
 `define from_WB_to_DE_WIDTH  (1 + `REGNOBITS + `DBITS + `CSRNOBITS + 1 + `REGNOBITS + 1) 
 

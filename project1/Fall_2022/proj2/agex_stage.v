@@ -29,6 +29,12 @@ module AGEX_STAGE(
   wire signed [`DBITS-1:0] sxt_imm_AGEX; // for the immediate value 
   wire signed [`DBITS-1:0] rs1_AGEX; // rs1 value
   wire signed [`DBITS-1:0] rs2_AGEX; // rs2 value
+  wire [`DBITS-1:0] unsigned_sxt_imm_AGEX; // for the immediate value
+  wire [`DBITS-1:0] unsigned_rs1_AGEX; // rs1 value
+  wire [`DBITS-1:0] unsigned_rs2_AGEX; // rs2 value
+  assign unsigned_sxt_imm_AGEX = sxt_imm_AGEX;
+  assign unsigned_rs1_AGEX = rs1_AGEX;
+  assign unsigned_rs2_AGEX = rs2_AGEX;
   
   wire is_branch_AGEX;
   wire is_jmp_AGEX;
@@ -47,7 +53,7 @@ module AGEX_STAGE(
   wire [`BTB_ENTRY_SIZE-1:0] BTB_entry;
   wire [`BTB_TAG_SIZE-1:0] BTB_tag;
 
-  wire [15:0] correct_predictions;
+  /*wire [15:0] correct_predictions;
   wire [15:0] incorrect_predictions;
   wire [15:0] total_predictions;
   reg [15:0] incorrect_predictions_reg;
@@ -57,7 +63,7 @@ module AGEX_STAGE(
   assign incorrect_predictions = incorrect_predictions_reg+1;
   assign correct_predictions = correct_predictions_reg+1;
   assign total_predictions = total_predictions_reg+1;
-  assign correct_prediction = (is_branch_AGEX || is_jmp_AGEX) && (branch_predict_AGEX == br_cond_AGEX) || (!br_cond_AGEX);
+  assign correct_prediction = (is_branch_AGEX || is_jmp_AGEX) && (branch_predict_AGEX == br_cond_AGEX) || (!br_cond_AGEX);*/
 
   
   
@@ -96,11 +102,15 @@ module AGEX_STAGE(
       `BNE_I : br_cond_AGEX = (rs1_AGEX != rs2_AGEX);
       `BLT_I : br_cond_AGEX = (rs1_AGEX < rs2_AGEX);
       `BGE_I : br_cond_AGEX = (rs1_AGEX >= rs2_AGEX);
-      `JAL_I: br_cond_AGEX =1;
-      `JALR_I: br_cond_AGEX =1;
-      `JR_I: br_cond_AGEX =1;
+      `BLTU_I : br_cond_AGEX = (unsigned_rs1_AGEX < unsigned_rs2_AGEX);
+      `BGEU_I : br_cond_AGEX = (unsigned_rs1_AGEX >= unsigned_rs2_AGEX);
+      `JAL_I: br_cond_AGEX = 1'b1;
+      `JALR_I: br_cond_AGEX = 1'b1;
+      `JR_I: br_cond_AGEX = 1'b1;
       default : br_cond_AGEX = 1'b0;
     endcase
+    if (br_cond_AGEX)
+      $display("rs1 = %d, rs2 = %d, br_cond = %d", rs1_AGEX, rs2_AGEX, br_cond_AGEX);
   end
 
 
@@ -120,7 +130,7 @@ module AGEX_STAGE(
       forward_reg = inst_AGEX[11:7];
     end
     `AND_I: begin
-      output_AGEX = rs1_AGEX & rs2_AGEX;
+      output_AGEX = unsigned_rs1_AGEX & unsigned_rs2_AGEX;
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
@@ -135,22 +145,22 @@ module AGEX_STAGE(
       forward_reg = inst_AGEX[11:7];
     end
     `SLT_I: begin
-      output_AGEX = (rs1_AGEX << rs2_AGEX);
+      output_AGEX = {31'b0,(rs1_AGEX < rs2_AGEX)};
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SLTU_I: begin
-      output_AGEX = (rs1_AGEX << rs2_AGEX);
+      output_AGEX = {31'b0,(unsigned_rs1_AGEX < unsigned_rs2_AGEX)};
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SRA_I: begin
-      output_AGEX = (rs1_AGEX >>> rs2_AGEX);
+      output_AGEX = (rs1_AGEX >>> rs2_AGEX[4:0]);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SRL_I: begin
-      output_AGEX = (rs1_AGEX >>> rs2_AGEX[4:0]);
+      output_AGEX = (rs1_AGEX >> rs2_AGEX[4:0]);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
@@ -158,6 +168,10 @@ module AGEX_STAGE(
       output_AGEX = (rs1_AGEX << rs2_AGEX[4:0]);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
+    end
+    `SW_I: begin
+      output_AGEX = (rs1_AGEX + sxt_imm_AGEX)&(32'hFFFFFFFC);
+      is_forwarding = 0;
     end
     `MUL_I: begin
       output_AGEX = rs1_AGEX * rs2_AGEX;
@@ -185,22 +199,23 @@ module AGEX_STAGE(
       forward_reg = inst_AGEX[11:7];
     end
     `SLTI_I: begin
-      output_AGEX = (rs1_AGEX < sxt_imm_AGEX);
+      output_AGEX = {31'b0,(rs1_AGEX < sxt_imm_AGEX)};
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SLTIU_I: begin
-      output_AGEX = (rs1_AGEX < sxt_imm_AGEX);
+      output_AGEX = {31'b0,(unsigned_rs1_AGEX < unsigned_sxt_imm_AGEX)};
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SRAI_I: begin
-      output_AGEX = (rs1_AGEX >>> sxt_imm_AGEX[4:0]);
+      output_AGEX = (rs1_AGEX >>> inst_AGEX[24:20]);
+      $display(inst_AGEX[24:20]);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `SRLI_I: begin
-      output_AGEX = (rs1_AGEX >>> sxt_imm_AGEX[4:0]);
+      output_AGEX = (rs1_AGEX >> inst_AGEX[24:20]);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
@@ -210,17 +225,20 @@ module AGEX_STAGE(
       forward_reg = inst_AGEX[11:7];
     end
     `LUI_I: begin
-      output_AGEX = sxt_imm_AGEX;
+      output_AGEX = unsigned_sxt_imm_AGEX;
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `AUIPC_I: begin
       output_AGEX = PC_AGEX + sxt_imm_AGEX;
+      $display("PC ", PC_AGEX, " sxt ", sxt_imm_AGEX);
+      $display("wr ", wr_reg_AGEX);
+      $display("output", output_AGEX);
       is_forwarding = 1;
       forward_reg = inst_AGEX[11:7];
     end
     `LW_I: begin
-      output_AGEX = rs1_AGEX + sxt_imm_AGEX && 32'hFFFFFFFC;
+      output_AGEX = (rs1_AGEX + sxt_imm_AGEX) & 32'hFFFFFFFC;
       is_forwarding = 1;
       forward_reg = 1;
     end
@@ -235,7 +253,6 @@ module AGEX_STAGE(
       forward_reg = inst_AGEX[11:7];
     end
     `JR_I: begin
-      branch_addr_AGEX = rs1_AGEX;
       br_cond_AGEX = 1;
       is_forwarding = 0;
     end
@@ -269,15 +286,30 @@ module AGEX_STAGE(
     end
   end 
 
-  assign branch_addr_AGEX = is_jmp_AGEX ? jmp_addr: (is_branch_AGEX && br_cond_AGEX) ? PC_AGEX + sxt_imm_AGEX: PC_AGEX + 4;
+  assign branch_addr_AGEX = is_jmp_AGEX ? op_I_AGEX == `JR_I ? rs1_AGEX : jmp_addr : (is_branch_AGEX && br_cond_AGEX) ? PC_AGEX + sxt_imm_AGEX: PC_AGEX + 4;
+  /*
+  if (is_jump_AGEX) {
+    if (op_I_AGEX == 'JR_I) {
+      branch_addr_AGEX = rs1_AGEX
+    } else {
+      branch_addr_AGEX = jmp_addr
+    } else if (is_branch_AGEX && br_cond_AGEX) {
+      branch_addr_AGEX = PC_AGEX + sxt_imm_AGEX
+    } else {
+      branch_addr_AGEX = PC_AGEX + 4 // could be pc_plus
+    }
+
+  }
+  */
 
   assign update_BTB = (is_branch_AGEX || is_jmp_AGEX);
-  assign BTB_tag = PC_AGEX[31:10];
-  assign BTB_index = PC_AGEX[9:2];
-  assign BTB_entry = {BTB_tag, BTB_index, 1'b1};
+  assign BTB_tag = PC_AGEX[31:6];
+  assign BTB_index = PC_AGEX[5:2];
+  assign BTB_entry = {BTB_tag, branch_addr_AGEX, 1'b1};
 
   assign flush_pipe = (is_branch_AGEX || is_jmp_AGEX) && (br_cond_AGEX != branch_predict_AGEX);
-  assign next_BHR = BHR_AGEX << 1 | br_cond_AGEX;
+  assign next_BHR = BHR_AGEX << 1 | {7'b0, {br_cond_AGEX}};
+  // if (flush_pipe) is 1, stall_pipe should be 0!
 
   
 
@@ -338,7 +370,7 @@ module AGEX_STAGE(
   // need to calculate the new pc
   // update BTB (and BHR as always, done earlier tho)
   // put logic to flush the pipe
-  always @ (posedge clk or posedge reset) begin
+  /*always @ (posedge clk or posedge reset) begin
     if (reset) begin
       incorrect_predictions_reg <= 0;
       correct_predictions_reg <= 0;
@@ -353,7 +385,7 @@ module AGEX_STAGE(
       total_predictions_reg = total_predictions;
     end
 
-  end
+  end*/
 
   // If we do extra credit, we need to count correct and incorrect predictions
   // And then use those values to measure the accuracy

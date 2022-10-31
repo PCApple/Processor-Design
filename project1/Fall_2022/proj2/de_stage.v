@@ -54,15 +54,27 @@ module DE_STAGE(
   assign rd_mem = (op_I_DE == `LW_I);
   assign wr_mem = (op_I_DE == `SW_I);
   assign wr_reg = (!is_branch && !wr_mem);
-  assign is_forward_rs1 = (type_I_DE != `S_Type || type_I_DE)
-                        && (((regs[inst_DE[19:15]] == agex_forward_reg_addr) & is_forwarding_agex)
-                        || ((regs[inst_DE[19:15]] == mem_forward_reg_addr) & is_forwarding_mem)
-                        || ((regs[inst_DE[19:15]] == wb_forward_reg_addr) & is_forwarding_wb));  
-  assign is_forward_rs2 = (type_I_DE == `R_Type || type_I_DE)
-                        && (regs[inst_DE[24:20]] != 0)
-                        && (((regs[inst_DE[24:20]] == agex_forward_reg_addr) & is_forwarding_agex)
-                        || ((regs[inst_DE[24:20]] == mem_forward_reg_addr) & is_forwarding_mem)
-                        || ((regs[inst_DE[24:20]] == wb_forward_reg_addr) & is_forwarding_wb));
+  assign is_forward_rs1 = (type_I_DE != `U_Type)
+                        && (((inst_DE[19:15] == agex_forward_reg_addr) & is_forwarding_agex)
+                        || ((inst_DE[19:15] == mem_forward_reg_addr) & is_forwarding_mem)
+                        || ((inst_DE[19:15] == wb_forward_reg_addr) & is_forwarding_wb));  
+  assign is_forward_rs2 = (type_I_DE == `R_Type || type_I_DE == `S_Type)
+                        && (inst_DE[24:20] != 0)
+                        && (((inst_DE[24:20] == agex_forward_reg_addr) & is_forwarding_agex)
+                        || ((inst_DE[24:20] == mem_forward_reg_addr) & is_forwarding_mem)
+                        || ((inst_DE[24:20] == wb_forward_reg_addr) & is_forwarding_wb));
+  // assign stall_next = ((op_I_DE != `U_Type)&&(is_forward_rs1 || is_forward_rs2)) || ((op_I_DE == `JAL_I) || (w op_I_DE == `JALR_I && is_forward_rs1) || (op_I_DE == `JR_I && is_forward_rs1));; // stall next cycle if any of the conditions are true
+  wire check1;
+  wire check2;
+  assign check1 = ((type_I_DE != `U_Type)&&(is_forward_rs1 || is_forward_rs2));
+  assign check2 = (op_I_DE == `JAL_I) || (op_I_DE == `JALR_I && is_forward_rs1) || (op_I_DE == `JR_I && is_forward_rs1);
+  assign stall_next = ((type_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
+// stall next cycle if any of the conditions are true
+  
+  
+  // DON'T CHANGE commented version below, experiment 
+  //assign stall_next = ((op_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
+
 
   // extracting a part of opcode 
   wire [2:0] F3_DE; 
@@ -377,7 +389,8 @@ module DE_STAGE(
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
   end
-  assign stall_next = ((op_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
+  // DON'T CHANGE commented version below, experiment 
+  //assign stall_next = ((op_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
 
   always @ (posedge clk) begin // you need to expand this always block 
     if (reset || pipeline_stall_DE || flush_pipe_DE || op_I_DE == `INVALID_I) begin
