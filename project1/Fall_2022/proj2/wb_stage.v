@@ -9,6 +9,7 @@ module WB_STAGE(
   output wire [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX,
   output wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM,
   output[31:0] reg10_val
+  
 );
   reg [31:0] reg10_val_latch; 
   wire [`IOPBITS-1:0] op_I_WB;
@@ -22,7 +23,6 @@ module WB_STAGE(
   wire [`TYPENOBITS-1:0] type_I_WB; // instruction type
   wire [`REGNOBITS-1:0] forward_reg_WB;
   wire is_forwarding_WB;
-
   
   wire wr_reg_WB; // is this instruction writing into a register file? 
   
@@ -82,6 +82,9 @@ assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, f
     // special workaround to get tests Pass/Fail status
   reg [`DBITS-1:0] last_WB_value [`REGWORDS-1:0] /* verilator public */;
   reg [`DBITS-1:0] WB_counters[`REGWORDS-1:0]   /* verilator public */ ;
+  assign reg10_val = 32'd33;  
+// assign reg10_val = 32'd33; // to check out2 works correctly
+//assign reg10_val = reg10_val_latch;  // to check reg10 value
   always @(posedge reset) 
     reg10_val_latch <= 0; 
   always @(negedge clk) begin

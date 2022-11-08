@@ -2,7 +2,9 @@
 
 module pipeline (
   input wire clk,
-  input wire reset
+  input wire reset,
+  output[31:0] out1,
+  output[31:0] out2
 );
   
   reg [`DBITS-1:0] cycle_count; /* for debugging purpose */ 
@@ -27,6 +29,10 @@ module pipeline (
   wire [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX;
 
   wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM; 
+  
+  assign reg10_val = 32'd33;  
+// assign reg10_val = 32'd33; // to check out2 works correctly
+//assign reg10_val = reg10_val_latch;  // to check reg10 value
 
   FE_STAGE my_FE_stage(
     .clk(clk), 
@@ -88,6 +94,8 @@ module pipeline (
       cycle_count <= cycle_count + 1;    
     
   end
+  assign out1 = cycle_count;
+  assign out2 = reg10_val;
 
 endmodule
 
