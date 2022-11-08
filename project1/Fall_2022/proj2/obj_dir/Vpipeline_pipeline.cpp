@@ -2403,59 +2403,57 @@ void Vpipeline_pipeline::_initial__TOP__pipeline__6(Vpipeline__Syms* __restrict 
     VL_DEBUG_IF(VL_DBG_MSGF("+      Vpipeline_pipeline::_initial__TOP__pipeline__6\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
-    WData/*735:0*/ __Vtemp34[23];
-    WData/*735:0*/ __Vtemp35[23];
+    WData/*703:0*/ __Vtemp34[22];
+    WData/*703:0*/ __Vtemp35[22];
     // Body
     __Vtemp34[0U] = 0x2e6d656dU;
-    __Vtemp34[1U] = 0x74616c6cU;
-    __Vtemp34[2U] = 0x2f746573U;
-    __Vtemp34[3U] = 0x61727434U;
-    __Vtemp34[4U] = 0x74732f70U;
-    __Vtemp34[5U] = 0x2f746573U;
-    __Vtemp34[6U] = 0x726f6a32U;
-    __Vtemp34[7U] = 0x32322f70U;
-    __Vtemp34[8U] = 0x6c5f3230U;
-    __Vtemp34[9U] = 0x2f46616cU;
-    __Vtemp34[0xaU] = 0x65637431U;
-    __Vtemp34[0xbU] = 0x70726f6aU;
-    __Vtemp34[0xcU] = 0x3232302fU;
-    __Vtemp34[0xdU] = 0x2f435333U;
-    __Vtemp34[0xeU] = 0x74487562U;
-    __Vtemp34[0xfU] = 0x732f4769U;
-    __Vtemp34[0x10U] = 0x6d656e74U;
-    __Vtemp34[0x11U] = 0x446f6375U;
-    __Vtemp34[0x12U] = 0x636b632fU;
-    __Vtemp34[0x13U] = 0x732f706fU;
-    __Vtemp34[0x14U] = 0x55736572U;
-    __Vtemp34[0x15U] = 0x742f632fU;
-    __Vtemp34[0x16U] = 0x2f6d6eU;
-    VL_READMEM_N(true, 32, 16384, 0, VL_CVT_PACK_STR_NW(23, __Vtemp34)
+    __Vtemp34[1U] = 0x786f7269U;
+    __Vtemp34[2U] = 0x7274332fU;
+    __Vtemp34[3U] = 0x732f7061U;
+    __Vtemp34[4U] = 0x74657374U;
+    __Vtemp34[5U] = 0x6f6a322fU;
+    __Vtemp34[6U] = 0x322f7072U;
+    __Vtemp34[7U] = 0x5f323032U;
+    __Vtemp34[8U] = 0x46616c6cU;
+    __Vtemp34[9U] = 0x6374312fU;
+    __Vtemp34[0xaU] = 0x726f6a65U;
+    __Vtemp34[0xbU] = 0x32302f70U;
+    __Vtemp34[0xcU] = 0x43533332U;
+    __Vtemp34[0xdU] = 0x4875622fU;
+    __Vtemp34[0xeU] = 0x2f476974U;
+    __Vtemp34[0xfU] = 0x656e7473U;
+    __Vtemp34[0x10U] = 0x6f63756dU;
+    __Vtemp34[0x11U] = 0x6b632f44U;
+    __Vtemp34[0x12U] = 0x2f706f63U;
+    __Vtemp34[0x13U] = 0x73657273U;
+    __Vtemp34[0x14U] = 0x2f632f55U;
+    __Vtemp34[0x15U] = 0x2f6d6e74U;
+    VL_READMEM_N(true, 32, 16384, 0, VL_CVT_PACK_STR_NW(22, __Vtemp34)
                  , vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__dmem
                  , 0, ~VL_ULL(0));
     __Vtemp35[0U] = 0x2e6d656dU;
-    __Vtemp35[1U] = 0x74616c6cU;
-    __Vtemp35[2U] = 0x2f746573U;
-    __Vtemp35[3U] = 0x61727434U;
-    __Vtemp35[4U] = 0x74732f70U;
-    __Vtemp35[5U] = 0x2f746573U;
-    __Vtemp35[6U] = 0x726f6a32U;
-    __Vtemp35[7U] = 0x32322f70U;
-    __Vtemp35[8U] = 0x6c5f3230U;
-    __Vtemp35[9U] = 0x2f46616cU;
-    __Vtemp35[0xaU] = 0x65637431U;
-    __Vtemp35[0xbU] = 0x70726f6aU;
-    __Vtemp35[0xcU] = 0x3232302fU;
-    __Vtemp35[0xdU] = 0x2f435333U;
-    __Vtemp35[0xeU] = 0x74487562U;
-    __Vtemp35[0xfU] = 0x732f4769U;
-    __Vtemp35[0x10U] = 0x6d656e74U;
-    __Vtemp35[0x11U] = 0x446f6375U;
-    __Vtemp35[0x12U] = 0x636b632fU;
-    __Vtemp35[0x13U] = 0x732f706fU;
-    __Vtemp35[0x14U] = 0x55736572U;
-    __Vtemp35[0x15U] = 0x742f632fU;
-    __Vtemp35[0x16U] = 0x2f6d6eU;
-    VL_READMEM_N(true, 32, 16384, 0, VL_CVT_PACK_STR_NW(23, __Vtemp35)
+    __Vtemp35[1U] = 0x786f7269U;
+    __Vtemp35[2U] = 0x7274332fU;
+    __Vtemp35[3U] = 0x732f7061U;
+    __Vtemp35[4U] = 0x74657374U;
+    __Vtemp35[5U] = 0x6f6a322fU;
+    __Vtemp35[6U] = 0x322f7072U;
+    __Vtemp35[7U] = 0x5f323032U;
+    __Vtemp35[8U] = 0x46616c6cU;
+    __Vtemp35[9U] = 0x6374312fU;
+    __Vtemp35[0xaU] = 0x726f6a65U;
+    __Vtemp35[0xbU] = 0x32302f70U;
+    __Vtemp35[0xcU] = 0x43533332U;
+    __Vtemp35[0xdU] = 0x4875622fU;
+    __Vtemp35[0xeU] = 0x2f476974U;
+    __Vtemp35[0xfU] = 0x656e7473U;
+    __Vtemp35[0x10U] = 0x6f63756dU;
+    __Vtemp35[0x11U] = 0x6b632f44U;
+    __Vtemp35[0x12U] = 0x2f706f63U;
+    __Vtemp35[0x13U] = 0x73657273U;
+    __Vtemp35[0x14U] = 0x2f632f55U;
+    __Vtemp35[0x15U] = 0x2f6d6e74U;
+    VL_READMEM_N(true, 32, 16384, 0, VL_CVT_PACK_STR_NW(22, __Vtemp35)
                  , vlSymsp->TOP__pipeline.__PVT__my_FE_stage__DOT__imem
                  , 0, ~VL_ULL(0));
 }
