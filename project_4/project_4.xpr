@@ -58,20 +58,20 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="pynq-z2"/>
-    <Option Name="WTXSimLaunchSim" Val="0"/>
+    <Option Name="WTXSimLaunchSim" Val="102"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="0"/>
-    <Option Name="WTModelSimExportSim" Val="0"/>
-    <Option Name="WTQuestaExportSim" Val="0"/>
+    <Option Name="WTXSimExportSim" Val="1"/>
+    <Option Name="WTModelSimExportSim" Val="1"/>
+    <Option Name="WTQuestaExportSim" Val="1"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="0"/>
-    <Option Name="WTRivieraExportSim" Val="0"/>
-    <Option Name="WTActivehdlExportSim" Val="0"/>
+    <Option Name="WTVcsExportSim" Val="1"/>
+    <Option Name="WTRivieraExportSim" Val="1"/>
+    <Option Name="WTActivehdlExportSim" Val="1"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -151,17 +151,14 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_processing_system7_0_1/diagram_processing_system7_0_1.xci">
+          <Proxy FileSetName="diagram_processing_system7_0_1"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_comm_0_0/diagram_comm_0_0.xci">
           <Proxy FileSetName="diagram_comm_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_project2_frame_0_0/diagram_project2_frame_0_0.xci">
-          <Proxy FileSetName="diagram_project2_frame_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_rst_ps7_0_50M_1/diagram_rst_ps7_0_50M_1.xci">
-          <Proxy FileSetName="diagram_rst_ps7_0_50M_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_processing_system7_0_0/diagram_processing_system7_0_0.xci">
-          <Proxy FileSetName="diagram_processing_system7_0_0"/>
+        <CompFileExtendedInfo CompFileName="diagram.bd" FileRelPathName="ip/diagram_project2_frame_0_2/diagram_project2_frame_0_2.xci">
+          <Proxy FileSetName="diagram_project2_frame_0_2"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/diagram/hdl/diagram_wrapper.v">
@@ -191,6 +188,12 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
+      <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/tb_project2_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="tb_project2"/>
@@ -199,15 +202,26 @@
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
+        <Option Name="SimMode" Val="post-synthesis"/>
         <Option Name="PamDesignTestbench" Val=""/>
         <Option Name="PamDutBypassFile" Val="xil_dut_bypass"/>
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
         <Option Name="PamPseudoTop" Val="pseudo_tb"/>
         <Option Name="SrcSet" Val="sources_1"/>
+        <Option Name="XSimWcfgFile" Val="$PPRDIR/tb_project2_behav.wcfg"/>
+        <Option Name="NLNetlistMode" Val="funcsim"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
       <Filter Type="Utils"/>
+      <File Path="$PSRCDIR/utils_1/imports/synth_1/diagram_wrapper.dcp">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedInSteps" Val="synth_1"/>
+          <Attr Name="AutoDcp" Val="1"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
@@ -218,21 +232,15 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="diagram_rst_ps7_0_50M_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/diagram_rst_ps7_0_50M_1" RelGenDir="$PGENDIR/diagram_rst_ps7_0_50M_1">
+    <FileSet Name="diagram_processing_system7_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/diagram_processing_system7_0_1" RelGenDir="$PGENDIR/diagram_processing_system7_0_1">
       <Config>
-        <Option Name="TopModule" Val="diagram_rst_ps7_0_50M_1"/>
+        <Option Name="TopModule" Val="diagram_processing_system7_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="diagram_processing_system7_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/diagram_processing_system7_0_0" RelGenDir="$PGENDIR/diagram_processing_system7_0_0">
+    <FileSet Name="diagram_project2_frame_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/diagram_project2_frame_0_2" RelGenDir="$PGENDIR/diagram_project2_frame_0_2">
       <Config>
-        <Option Name="TopModule" Val="diagram_processing_system7_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="diagram_project2_frame_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/diagram_project2_frame_0_0" RelGenDir="$PGENDIR/diagram_project2_frame_0_0">
-      <Config>
-        <Option Name="TopModule" Val="diagram_project2_frame_0_0"/>
+        <Option Name="TopModule" Val="diagram_project2_frame_0_2"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -256,11 +264,9 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="19">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/diagram_wrapper.dcp" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -270,9 +276,7 @@
     </Run>
     <Run Id="diagram_comm_0_0_synth_1" Type="Ft3:Synth" SrcSet="diagram_comm_0_0" Part="xc7z020clg400-1" ConstrsSet="diagram_comm_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_comm_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_comm_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_comm_0_0_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -280,11 +284,9 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="diagram_rst_ps7_0_50M_1_synth_1" Type="Ft3:Synth" SrcSet="diagram_rst_ps7_0_50M_1" Part="xc7z020clg400-1" ConstrsSet="diagram_rst_ps7_0_50M_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_rst_ps7_0_50M_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_rst_ps7_0_50M_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_rst_ps7_0_50M_1_synth_1">
+    <Run Id="diagram_processing_system7_0_1_synth_1" Type="Ft3:Synth" SrcSet="diagram_processing_system7_0_1" Part="xc7z020clg400-1" ConstrsSet="diagram_processing_system7_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_processing_system7_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_1_synth_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -292,19 +294,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="diagram_processing_system7_0_0_synth_1" Type="Ft3:Synth" SrcSet="diagram_processing_system7_0_0" Part="xc7z020clg400-1" ConstrsSet="diagram_processing_system7_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_processing_system7_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="diagram_project2_frame_0_0_synth_1" Type="Ft3:Synth" SrcSet="diagram_project2_frame_0_0" Part="xc7z020clg400-1" ConstrsSet="diagram_project2_frame_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_project2_frame_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_0_synth_1">
+    <Run Id="diagram_project2_frame_0_2_synth_1" Type="Ft3:Synth" SrcSet="diagram_project2_frame_0_2" Part="xc7z020clg400-1" ConstrsSet="diagram_project2_frame_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/diagram_project2_frame_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_2_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -318,9 +308,7 @@
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -338,9 +326,7 @@
     </Run>
     <Run Id="diagram_comm_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_comm_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_comm_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_comm_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_comm_0_0_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -355,11 +341,9 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="diagram_rst_ps7_0_50M_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_rst_ps7_0_50M_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_rst_ps7_0_50M_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_rst_ps7_0_50M_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_rst_ps7_0_50M_1_impl_1">
+    <Run Id="diagram_processing_system7_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_processing_system7_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_processing_system7_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_1_impl_1">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -374,26 +358,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="diagram_processing_system7_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_processing_system7_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_processing_system7_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_processing_system7_0_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="diagram_project2_frame_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_project2_frame_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_project2_frame_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_0_impl_1">
+    <Run Id="diagram_project2_frame_0_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="diagram_project2_frame_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="diagram_project2_frame_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/diagram_project2_frame_0_2_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022">
           <Desc>Default settings for Implementation.</Desc>

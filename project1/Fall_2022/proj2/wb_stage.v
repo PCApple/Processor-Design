@@ -30,8 +30,8 @@ module WB_STAGE(
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
   wire [`DBITS-1:0] regval_WB;  // the contents to be written in the register file (or CSR )
   
-  wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
-  wire wr_csr_WB; // is this instruction writing into CSR ? 
+  wire [`CSRNOBITS-1:0] wcsrno_WB = 0;  // desitnation CSR register ID 
+  wire wr_csr_WB = 0; // is this instruction writing into CSR ? 
 
 
   // **TODO: Complete the rest of the pipeline**
@@ -77,26 +77,26 @@ assign wr_reg_WB = is_wb;*/
 assign wregno_WB = forward_reg_WB;
 // we send register write (and CSR register) information to DE stage 
 assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, forward_reg_WB, is_forwarding_WB};
+assign from_WB_to_AGEX = 0;
+assign from_WB_to_MEM = 0;
+assign from_WB_to_FE = 0;
 
 // this code need to be commented out when we synthesize the code later 
     // special workaround to get tests Pass/Fail status
   reg [`DBITS-1:0] last_WB_value [`REGWORDS-1:0] /* verilator public */;
   reg [`DBITS-1:0] WB_counters[`REGWORDS-1:0]   /* verilator public */ ;
-  assign reg10_val = 32'd33;  
-// assign reg10_val = 32'd33; // to check out2 works correctly
-//assign reg10_val = reg10_val_latch;  // to check reg10 value
-  always @(posedge reset) 
-    reg10_val_latch <= 0; 
-  always @(negedge clk) begin
-  if (wr_reg_WB)
-    last_WB_value[wregno_WB] <= regval_WB;
-  end
+  //assign reg10_val = 32'd33;  
+  //assign reg10_val = 32'd32; // to check out2 works correctly
+  assign reg10_val = reg10_val_latch;  // to check reg10 value
   always @(posedge clk) begin 
-    
-    //if ((last_WB_value[10] == 32'hff) && (reg10_val_latch == 0)) // reg10 should be 0xff 
-    if ((last_WB_value[10] == 32'hf0) && (reg10_val_latch == 0))  // intentionally check reg10 value is other than 0xff to really prove that this logic works as expected 
-        reg10_val_latch <= 32'hff; 
-  end 
+    if (reset) begin
+      reg10_val_latch <= 32'd0;
+    end
+      // comment out the 2 lines below in step [18]
+      //$display("WB: regno=%d, regval=%d", wregno_WB, regval_WB);
+    if (wr_reg_WB && wregno_WB == 10 && (reg10_val_latch == 0))
+      reg10_val_latch <= 32'hff;
+ end
 
   // this is only for debugging purpose to interact with sim_main.cpp when we use verilator 
   always @(posedge clk) begin 
@@ -108,6 +108,12 @@ assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB, f
     WB_counters[5] <= inst_count_WB; 
     WB_counters[6] <= {26'b0, op_I_WB}; 
     WB_counters[7] <= {27'b0, wregno_WB};   
+  end 
+  always @(negedge clk) begin
+    if (wr_reg_WB) begin
+      //$display("WB: reg[%d] = %d", wregno_WB, regval_WB);
+      last_WB_value[wregno_WB] <= regval_WB;
+    end
   end 
 
 endmodule 

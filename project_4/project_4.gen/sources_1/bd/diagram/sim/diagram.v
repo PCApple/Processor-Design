@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-//Date        : Mon Nov  7 20:43:59 2022
+//Date        : Fri Nov 18 18:13:24 2022
 //Host        : PCLaptop running 64-bit major release  (build 9200)
 //Command     : generate_target diagram.bd
 //Design      : diagram
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "diagram,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=diagram,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=2,da_clkrst_cnt=2,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "diagram.hwdef" *) 
+(* CORE_GENERATION_INFO = "diagram,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=diagram,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=1,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=2,da_clkrst_cnt=5,da_ps7_cnt=2,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "diagram.hwdef" *) 
 module diagram
    (DDR_addr,
     DDR_ba,
@@ -134,11 +134,11 @@ module diagram
   wire ps7_0_axi_periph_M00_AXI_WREADY;
   wire [3:0]ps7_0_axi_periph_M00_AXI_WSTRB;
   wire ps7_0_axi_periph_M00_AXI_WVALID;
-  wire [0:0]rst_ps7_0_50M_peripheral_aresetn;
+  wire [0:0]rst_ps7_0_100M_peripheral_aresetn;
 
   diagram_comm_0_0 comm_0
        (.ap_clk(processing_system7_0_FCLK_CLK0),
-        .ap_rst_n(rst_ps7_0_50M_peripheral_aresetn),
+        .ap_rst_n(rst_ps7_0_100M_peripheral_aresetn),
         .in1(project2_frame_0_out1),
         .in2(project2_frame_0_out2),
         .s_axi_control_ARADDR(ps7_0_axi_periph_M00_AXI_ARADDR[5:0]),
@@ -158,7 +158,7 @@ module diagram
         .s_axi_control_WREADY(ps7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_control_WSTRB(ps7_0_axi_periph_M00_AXI_WSTRB),
         .s_axi_control_WVALID(ps7_0_axi_periph_M00_AXI_WVALID));
-  diagram_processing_system7_0_0 processing_system7_0
+  diagram_processing_system7_0_1 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
         .DDR_CAS_n(DDR_cas_n),
@@ -222,16 +222,16 @@ module diagram
         .PS_PORB(FIXED_IO_ps_porb),
         .PS_SRSTB(FIXED_IO_ps_srstb),
         .USB0_VBUS_PWRFAULT(1'b0));
-  diagram_project2_frame_0_0 project2_frame_0
+  diagram_project2_frame_0_2 project2_frame_0
        (.clk(processing_system7_0_FCLK_CLK0),
         .out1(project2_frame_0_out1),
         .out2(project2_frame_0_out2),
-        .reset_n(rst_ps7_0_50M_peripheral_aresetn));
-  diagram_ps7_0_axi_periph_1 ps7_0_axi_periph
+        .reset_n(rst_ps7_0_100M_peripheral_aresetn));
+  diagram_ps7_0_axi_periph_2 ps7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
-        .ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .ARESETN(rst_ps7_0_100M_peripheral_aresetn),
         .M00_ACLK(processing_system7_0_FCLK_CLK0),
-        .M00_ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .M00_ARESETN(rst_ps7_0_100M_peripheral_aresetn),
         .M00_AXI_araddr(ps7_0_axi_periph_M00_AXI_ARADDR),
         .M00_AXI_arready(ps7_0_axi_periph_M00_AXI_ARREADY),
         .M00_AXI_arvalid(ps7_0_axi_periph_M00_AXI_ARVALID),
@@ -250,7 +250,7 @@ module diagram
         .M00_AXI_wstrb(ps7_0_axi_periph_M00_AXI_WSTRB),
         .M00_AXI_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
         .S00_ACLK(processing_system7_0_FCLK_CLK0),
-        .S00_ARESETN(rst_ps7_0_50M_peripheral_aresetn),
+        .S00_ARESETN(rst_ps7_0_100M_peripheral_aresetn),
         .S00_AXI_araddr(processing_system7_0_M_AXI_GP0_ARADDR),
         .S00_AXI_arburst(processing_system7_0_M_AXI_GP0_ARBURST),
         .S00_AXI_arcache(processing_system7_0_M_AXI_GP0_ARCACHE),
@@ -289,16 +289,16 @@ module diagram
         .S00_AXI_wready(processing_system7_0_M_AXI_GP0_WREADY),
         .S00_AXI_wstrb(processing_system7_0_M_AXI_GP0_WSTRB),
         .S00_AXI_wvalid(processing_system7_0_M_AXI_GP0_WVALID));
-  diagram_rst_ps7_0_50M_1 rst_ps7_0_50M
+  diagram_rst_ps7_0_100M_0 rst_ps7_0_100M
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(processing_system7_0_FCLK_RESET0_N),
         .mb_debug_sys_rst(1'b0),
-        .peripheral_aresetn(rst_ps7_0_50M_peripheral_aresetn),
+        .peripheral_aresetn(rst_ps7_0_100M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
 endmodule
 
-module diagram_ps7_0_axi_periph_1
+module diagram_ps7_0_axi_periph_2
    (ACLK,
     ARESETN,
     M00_ACLK,

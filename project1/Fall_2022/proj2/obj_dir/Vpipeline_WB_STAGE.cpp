@@ -27,6 +27,7 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__1(V
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__1\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
+    IData/*31:0*/ __Vdly__reg10_val_latch;
     IData/*31:0*/ __Vdlyvval__WB_counters__v0;
     IData/*31:0*/ __Vdlyvval__WB_counters__v1;
     IData/*31:0*/ __Vdlyvval__WB_counters__v2;
@@ -35,6 +36,18 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__1(V
     IData/*31:0*/ __Vdlyvval__WB_counters__v5;
     IData/*31:0*/ __Vdlyvval__WB_counters__v6;
     // Body
+    __Vdly__reg10_val_latch = vlSymsp->TOP__pipeline__my_WB_stage.__PVT__reg10_val_latch;
+    if (vlTOPp->reset) {
+        __Vdly__reg10_val_latch = 0U;
+    }
+    if ((((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+           >> 4U) & (0xaU == (0x1fU & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                        << 0x1aU) | 
+                                       (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                        >> 6U))))) 
+         & (0U == vlSymsp->TOP__pipeline__my_WB_stage.__PVT__reg10_val_latch))) {
+        __Vdly__reg10_val_latch = 0xffU;
+    }
     __Vdlyvval__WB_counters__v0 = ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[6U] 
                                     << 0xbU) | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[5U] 
                                                 >> 0x15U));
@@ -57,6 +70,8 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__1(V
                                              << 0x1aU) 
                                             | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
                                                >> 6U)));
+    vlSymsp->TOP__pipeline__my_WB_stage.__PVT__reg10_val_latch 
+        = __Vdly__reg10_val_latch;
     vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[1U] 
         = __Vdlyvval__WB_counters__v0;
     vlSymsp->TOP__pipeline__my_WB_stage.WB_counters[2U] 
@@ -89,15 +104,11 @@ VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__2(V
                                               | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[2U] 
                                                  >> 0xfU)))) 
                              << 0xbU) | (QData)((IData)(
-                                                        (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wcsrno_WB) 
-                                                          << 7U) 
-                                                         | (((IData)(vlSymsp->TOP__pipeline__my_WB_stage.__PVT__wr_csr_WB) 
-                                                             << 6U) 
-                                                            | (0x3fU 
-                                                               & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
-                                                                   << 0x1bU) 
-                                                                  | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
-                                                                     >> 5U))))))))));
+                                                        (0x3fU 
+                                                         & ((vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[1U] 
+                                                             << 0x1bU) 
+                                                            | (vlSymsp->TOP__pipeline.__PVT__my_MEM_stage__DOT__MEM_latch[0U] 
+                                                               >> 5U))))))));
 }
 
 VL_INLINE_OPT void Vpipeline_WB_STAGE::_sequent__TOP__pipeline__my_WB_stage__3(Vpipeline__Syms* __restrict vlSymsp) {
@@ -137,8 +148,8 @@ void Vpipeline_WB_STAGE::_ctor_var_reset() {
     __PVT__from_WB_to_DE = VL_RAND_RESET_Q(49);
     __PVT__from_WB_to_AGEX = VL_RAND_RESET_I(1);
     __PVT__from_WB_to_MEM = VL_RAND_RESET_I(1);
-    __PVT__wcsrno_WB = VL_RAND_RESET_I(4);
-    __PVT__wr_csr_WB = VL_RAND_RESET_I(1);
+    __PVT__reg10_val = VL_RAND_RESET_I(32);
+    __PVT__reg10_val_latch = VL_RAND_RESET_I(32);
     { int __Vi0=0; for (; __Vi0<32; ++__Vi0) {
             last_WB_value[__Vi0] = VL_RAND_RESET_I(32);
     }}

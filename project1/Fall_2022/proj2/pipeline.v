@@ -29,10 +29,7 @@ module pipeline (
   wire [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX;
 
   wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM; 
-  
-  assign reg10_val = 32'd33;  
-// assign reg10_val = 32'd33; // to check out2 works correctly
-//assign reg10_val = reg10_val_latch;  // to check reg10 value
+  wire [31:0] reg10_val;
 
   FE_STAGE my_FE_stage(
     .clk(clk), 
@@ -84,7 +81,8 @@ module pipeline (
     .from_WB_to_FE(from_WB_to_FE),
     .from_WB_to_DE(from_WB_to_DE),  
     .from_WB_to_AGEX(from_WB_to_AGEX),
-    .from_WB_to_MEM(from_WB_to_MEM)
+    .from_WB_to_MEM(from_WB_to_MEM),
+    .reg10_val(reg10_val)
   );
 
   always @ (posedge clk) begin
@@ -94,6 +92,7 @@ module pipeline (
       cycle_count <= cycle_count + 1;    
     
   end
+  
   assign out1 = cycle_count;
   assign out2 = reg10_val;
 

@@ -55,7 +55,7 @@ module FE_STAGE(
 
   reg [`PHT_ENTRY_SIZE-1:0] PHT [`PHT_ENTRIES-1:0];
   wire [`PHT_INDEX_SIZE-1:0] pht_index_FE;
-  wire [`PHT_INDEX_SIZE-1:0] pht_index_update_FE;
+  wire [`PHT_INDEX_SIZE-1:0] pht_index_update_FE = 0;
   wire [7:0] PHT_PC_FE;
   wire update_BTB_PHT_FE;
   
@@ -73,7 +73,7 @@ module FE_STAGE(
   
   
   // reading instruction from imem 
-  assign inst_FE = flush_pipe_FE ? 0 : imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];  // this code works. imem is stored 4B together 
+  assign inst_FE = flush_pipe_FE == 0 ? imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]] : 0;  // this code works. imem is stored 4B together 
   
   // wire to send the FE latch contents to the DE stage 
   assign FE_latch_out = FE_latch; 
@@ -124,16 +124,6 @@ module FE_STAGE(
       stall_next = 0;
     end
   end*/
-always @ (posedge clk or posedge reset) begin
-  if (update_BTB_PHT_FE) begin
-    if (br_cond_FE)
-      PHT[pht_index_update_FE] <= PHT[pht_index_update_FE] == 3 ? 3 : PHT[pht_index_update_FE] + 1;
-    else
-      PHT[pht_index_update_FE] <= PHT[pht_index_update_FE] == 0 ? 0 : PHT[pht_index_update_FE] - 1;
-  end
-  BHR_FE_LATCH <= BHR_FE;
-  BTB[btb_index_update_FE][`BTB_ENTRY_SIZE-1:0] <= btb_entry_update_FE;
-end
 // PC stuff
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -164,9 +154,18 @@ end
     else if (stall_pipe_FE)
       FE_latch <= FE_latch;
     else
+      //$monitor("inst_count_FE = %d, PC_FE_latch = %h, inst_FE = %h", inst_count_FE, PC_FE_latch, inst_FE);
       FE_latch <= FE_latch_contents; 
   end
   always @ (posedge clk or posedge reset) begin
+    if (update_BTB_PHT_FE) begin
+      if (br_cond_FE)
+        PHT[pht_index_update_FE] <= PHT[pht_index_update_FE] == 3 ? 3 : PHT[pht_index_update_FE] + 1;
+      else
+        PHT[pht_index_update_FE] <= PHT[pht_index_update_FE] == 0 ? 0 : PHT[pht_index_update_FE] - 1;
+    end
+    BHR_FE_LATCH <= BHR_FE;
+    BTB[btb_index_update_FE][`BTB_ENTRY_SIZE-1:0] <= btb_entry_update_FE;
     if (reset) begin
       PHT[0] <= {`PHT_ENTRY_SIZE{1'b0}};
       PHT[1] <= {`PHT_ENTRY_SIZE{1'b0}};

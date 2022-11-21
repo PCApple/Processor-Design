@@ -4,20 +4,20 @@
 # Block Designs: bd/diagram/diagram.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram || ORIG_REF_NAME==diagram} -quiet] -quiet
 
-# IP: bd/diagram/ip/diagram_project2_frame_0_0/diagram_project2_frame_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_project2_frame_0_0 || ORIG_REF_NAME==diagram_project2_frame_0_0} -quiet] -quiet
-
 # IP: bd/diagram/ip/diagram_comm_0_0/diagram_comm_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_comm_0_0 || ORIG_REF_NAME==diagram_comm_0_0} -quiet] -quiet
 
-# IP: bd/diagram/ip/diagram_processing_system7_0_0/diagram_processing_system7_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_processing_system7_0_0 || ORIG_REF_NAME==diagram_processing_system7_0_0} -quiet] -quiet
+# IP: bd/diagram/ip/diagram_project2_frame_0_2/diagram_project2_frame_0_2.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_project2_frame_0_2 || ORIG_REF_NAME==diagram_project2_frame_0_2} -quiet] -quiet
 
-# IP: bd/diagram/ip/diagram_ps7_0_axi_periph_1/diagram_ps7_0_axi_periph_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_ps7_0_axi_periph_1 || ORIG_REF_NAME==diagram_ps7_0_axi_periph_1} -quiet] -quiet
+# IP: bd/diagram/ip/diagram_processing_system7_0_1/diagram_processing_system7_0_1.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_processing_system7_0_1 || ORIG_REF_NAME==diagram_processing_system7_0_1} -quiet] -quiet
 
-# IP: bd/diagram/ip/diagram_rst_ps7_0_50M_1/diagram_rst_ps7_0_50M_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_rst_ps7_0_50M_1 || ORIG_REF_NAME==diagram_rst_ps7_0_50M_1} -quiet] -quiet
+# IP: bd/diagram/ip/diagram_ps7_0_axi_periph_2/diagram_ps7_0_axi_periph_2.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_ps7_0_axi_periph_2 || ORIG_REF_NAME==diagram_ps7_0_axi_periph_2} -quiet] -quiet
+
+# IP: bd/diagram/ip/diagram_rst_ps7_0_100M_0/diagram_rst_ps7_0_100M_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_rst_ps7_0_100M_0 || ORIG_REF_NAME==diagram_rst_ps7_0_100M_0} -quiet] -quiet
 
 # IP: bd/diagram/ip/diagram_auto_pc_0/diagram_auto_pc_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==diagram_auto_pc_0 || ORIG_REF_NAME==diagram_auto_pc_0} -quiet] -quiet

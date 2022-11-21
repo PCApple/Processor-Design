@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../project1/Fall_2022/proj2" --include "../../../../project_4.gen/sources_1/bd/diagram/ipshared/ec67/hdl" --include "../../../../project_4.gen/sources_1/bd/diagram/ipshared/5765/hdl" --include "C:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" \
+"../../../../../project1/Fall_2022/proj2/agex_stage.v" \
+"../../../../../project1/Fall_2022/proj2/de_stage.v" \
+"../../../../../project1/Fall_2022/proj2/fe_stage.v" \
+"../../../../../project1/Fall_2022/proj2/mem_stage.v" \
+"../../../../../project1/Fall_2022/proj2/pipeline.v" \
+"../../../../../project1/Fall_2022/proj2/project2_frame.v" \
+"../../../../../project1/Fall_2022/proj2/wb_stage.v" \
+"../../../../../project1/Fall_2022/proj2/tb_project2.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -32,6 +32,8 @@ VL_MODULE(Vpipeline) {
     // propagate new values into/out from the Verilated model.
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
+    VL_OUT(out1,31,0);
+    VL_OUT(out2,31,0);
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
@@ -79,11 +81,11 @@ VL_MODULE(Vpipeline) {
   public:
     static void _eval_initial(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
+    static void _sequent__TOP__1(Vpipeline__Syms* __restrict vlSymsp);
+    static void _settle__TOP__2(Vpipeline__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void traceChgThis(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__10(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__11(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__12(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
-    static void traceChgThis__13(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__4(Vpipeline__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);

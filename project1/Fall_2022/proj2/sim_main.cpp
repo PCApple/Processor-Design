@@ -23,7 +23,7 @@ double sc_time_stamp() {
   return timestamp;
 }
 
-#define RUN_CYCLES 1100
+#define RUN_CYCLES 50000
 
 #define CLOCK_PERIOD 10
 

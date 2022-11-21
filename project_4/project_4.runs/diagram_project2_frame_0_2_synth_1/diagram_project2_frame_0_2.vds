@@ -1,0 +1,488 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri Nov 18 18:13:31 2022
+# Process ID: 7876
+# Current directory: C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.runs/diagram_project2_frame_0_2_synth_1
+# Command line: vivado.exe -log diagram_project2_frame_0_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source diagram_project2_frame_0_2.tcl
+# Log file: C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.runs/diagram_project2_frame_0_2_synth_1/diagram_project2_frame_0_2.vds
+# Journal file: C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.runs/diagram_project2_frame_0_2_synth_1\vivado.jou
+# Running On: PCLaptop, OS: Windows, CPU Frequency: 2592 MHz, CPU Physical cores: 6, Host memory: 16894 MB
+#-----------------------------------------------------------
+source diagram_project2_frame_0_2.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/export'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+Command: synth_design -top diagram_project2_frame_0_2 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 29400
+WARNING: [Synth 8-8895] 'stall_next' is already implicitly declared on line 67 [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:261]
+WARNING: [Synth 8-6901] identifier 'type_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:52]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:52]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:53]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:53]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:53]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:54]
+WARNING: [Synth 8-6901] identifier 'op_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:55]
+WARNING: [Synth 8-6901] identifier 'type_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:57]
+WARNING: [Synth 8-6901] identifier 'type_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:61]
+WARNING: [Synth 8-6901] identifier 'type_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:61]
+WARNING: [Synth 8-6901] identifier 'type_I_DE' is used before its declaration [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:67]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1275.254 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'diagram_project2_frame_0_2' [c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_project2_frame_0_2/synth/diagram_project2_frame_0_2.v:53]
+INFO: [Synth 8-6157] synthesizing module 'project2_frame' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/project2_frame.v:3]
+INFO: [Synth 8-6157] synthesizing module 'pipeline' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/pipeline.v:3]
+INFO: [Synth 8-6157] synthesizing module 'FE_STAGE' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v:3]
+INFO: [Synth 8-3876] $readmem data file 'C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/towers/towers.mem' is read successfully [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'FE_STAGE' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'DE_STAGE' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'DE_STAGE' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'AGEX_STAGE' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/agex_stage.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'AGEX_STAGE' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/agex_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'MEM_STAGE' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/mem_stage.v:3]
+INFO: [Synth 8-3876] $readmem data file 'C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/towers/towers.mem' is read successfully [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/mem_stage.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'MEM_STAGE' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/mem_stage.v:3]
+INFO: [Synth 8-6157] synthesizing module 'WB_STAGE' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'WB_STAGE' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/pipeline.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'project2_frame' (0#1) [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/project2_frame.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'diagram_project2_frame_0_2' (0#1) [c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_project2_frame_0_2/synth/diagram_project2_frame_0_2.v:53]
+WARNING: [Synth 8-6014] Unused sequential element BHR_FE_LATCH_reg was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v:167]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[15] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[14] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[13] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[12] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[11] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[10] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[9] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[8] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[7] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[6] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[5] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[4] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[3] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[2] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[1] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element csr_regs_reg[0] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:364]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[7] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[6] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[5] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[4] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[3] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[2] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element WB_counters_reg[1] was removed.  [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v:104]
+WARNING: [Synth 8-6014] Unused sequential element last_WB_value_reg was removed. 
+WARNING: [Synth 8-7129] Port from_MEM_latch[244] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[243] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[242] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[241] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[240] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[239] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[238] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[237] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[236] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[235] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[234] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[233] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[232] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[231] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[230] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[229] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[228] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[227] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[226] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[225] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[224] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[223] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[222] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[221] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[220] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[219] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[218] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[217] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[216] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[215] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[214] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[213] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[212] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[211] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[210] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[209] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[208] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[207] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[206] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[205] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[204] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[203] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[202] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[201] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[200] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[199] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[198] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[197] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[196] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[195] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[194] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[193] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[192] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[191] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[190] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[189] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[188] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[187] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[186] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[185] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[184] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[183] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[182] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[181] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[180] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[179] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[178] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[177] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[176] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[175] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[174] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[173] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[172] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[171] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[170] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[169] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[168] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[167] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[166] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[165] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[164] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[163] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[162] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[161] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[160] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[159] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[158] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[157] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[156] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[155] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[154] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[153] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[152] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[151] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[150] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[149] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[148] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[147] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[146] in module WB_STAGE is either unconnected or has no load
+WARNING: [Synth 8-7129] Port from_MEM_latch[145] in module WB_STAGE is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1279.105 ; gain = 3.852
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1279.105 ; gain = 3.852
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1279.105 ; gain = 3.852
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.076 . Memory (MB): peak = 1279.105 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1360.000 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 1360.137 ; gain = 0.137
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'type_I_DE_reg' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:52]
+WARNING: [Synth 8-327] inferring latch for variable 'type_immediate_DE_reg' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v:192]
+WARNING: [Synth 8-327] inferring latch for variable 'forward_reg_reg' [C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/agex_stage.v:127]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 4     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 2     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input      8 Bit         XORs := 1     
++---Registers : 
+	              260 Bit    Registers := 1     
+	              247 Bit    Registers := 1     
+	              149 Bit    Registers := 1     
+	               59 Bit    Registers := 16    
+	               32 Bit    Registers := 41    
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Multipliers : 
+	              32x32  Multipliers := 1     
++---RAMs : 
+	             512K Bit	(16384 X 32 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input  149 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 8     
+	   4 Input   32 Bit        Muxes := 1     
+	   3 Input   32 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 8     
+	   5 Input    6 Bit        Muxes := 1     
+	   3 Input    6 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 44    
+	   3 Input    1 Bit        Muxes := 30    
+	  27 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP output_AGEX0, operation Mode is: A*B.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: Generating DSP output_AGEX0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: Generating DSP output_AGEX0, operation Mode is: A*B.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: Generating DSP output_AGEX0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+DSP Report: operator output_AGEX0 is absorbed into DSP output_AGEX0.
+WARNING: [Synth 8-3332] Sequential element (type_I_DE_reg[3]) is unused and will be removed from module DE_STAGE.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:47 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|FE_STAGE    | imem       | 4096x31       | LUT            | 
+|FE_STAGE    | p_0_out    | 4096x31       | LUT            | 
++------------+------------+---------------+----------------+
+
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+|Module Name                | RTL Object                        | Inference | Size (Depth x Width) | Primitives        | 
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+|diagram_project2_frame_0_2 | inst/my_cpu/my_MEM_stage/dmem_reg | Implied   | 16 K x 32            | RAM256X1S x 2048  | 
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|AGEX_STAGE  | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|AGEX_STAGE  | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|AGEX_STAGE  | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|AGEX_STAGE  | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1360.137 ; gain = 84.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+|Module Name                | RTL Object                        | Inference | Size (Depth x Width) | Primitives        | 
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+|diagram_project2_frame_0_2 | inst/my_cpu/my_MEM_stage/dmem_reg | Implied   | 16 K x 32            | RAM256X1S x 2048  | 
++---------------------------+-----------------------------------+-----------+----------------------+-------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:00 ; elapsed = 00:01:00 . Memory (MB): peak = 1394.520 ; gain = 119.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:05 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|AGEX_STAGE  | A'*B'          | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|AGEX_STAGE  | A'*B'          | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|AGEX_STAGE  | PCIN>>17+A'*B' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |CARRY4    |    85|
+|2     |DSP48E1   |     3|
+|3     |LUT1      |     6|
+|4     |LUT2      |   107|
+|5     |LUT3      |   149|
+|6     |LUT4      |   293|
+|7     |LUT5      |   379|
+|8     |LUT6      |  2176|
+|9     |MUXF7     |   738|
+|10    |MUXF8     |   203|
+|11    |RAM256X1S |  2048|
+|12    |FDCE      |   946|
+|13    |FDRE      |  1459|
+|14    |FDSE      |     1|
+|15    |LD        |    11|
++------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 46 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:56 ; elapsed = 00:01:04 . Memory (MB): peak = 1408.352 ; gain = 52.066
+Synthesis Optimization Complete : Time (s): cpu = 00:01:06 ; elapsed = 00:01:06 . Memory (MB): peak = 1408.352 ; gain = 133.098
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.109 . Memory (MB): peak = 1420.418 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 3088 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1433.488 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2059 instances were transformed.
+  LD => LDCE: 11 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 2048 instances
+
+Synth Design complete, checksum: abbb6756
+INFO: [Common 17-83] Releasing license: Synthesis
+37 Infos, 142 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 1433.488 ; gain = 158.234
+INFO: [Common 17-1381] The checkpoint 'C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.runs/diagram_project2_frame_0_2_synth_1/diagram_project2_frame_0_2.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP diagram_project2_frame_0_2, cache-ID = 46411b84a2e1e69c
+INFO: [Coretcl 2-1174] Renamed 7 cell refs.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.runs/diagram_project2_frame_0_2_synth_1/diagram_project2_frame_0_2.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file diagram_project2_frame_0_2_utilization_synth.rpt -pb diagram_project2_frame_0_2_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 18 18:14:57 2022...

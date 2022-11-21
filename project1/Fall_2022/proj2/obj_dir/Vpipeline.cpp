@@ -87,36 +87,51 @@ void Vpipeline::_eval_initial_loop(Vpipeline__Syms* __restrict vlSymsp) {
     } while (VL_UNLIKELY(__Vchange));
 }
 
+VL_INLINE_OPT void Vpipeline::_sequent__TOP__1(Vpipeline__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_sequent__TOP__1\n"); );
+    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    vlTOPp->out1 = vlSymsp->TOP__pipeline.__PVT__cycle_count;
+    vlTOPp->out2 = vlSymsp->TOP__pipeline__my_WB_stage.__PVT__reg10_val_latch;
+}
+
+void Vpipeline::_settle__TOP__2(Vpipeline__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_settle__TOP__2\n"); );
+    Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    vlTOPp->out2 = vlSymsp->TOP__pipeline__my_WB_stage.__PVT__reg10_val_latch;
+    vlTOPp->out1 = vlSymsp->TOP__pipeline.__PVT__cycle_count;
+}
+
 void Vpipeline::_eval(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__1(vlSymsp);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__2(vlSymsp);
         vlTOPp->__Vm_traceActivity = (2U | vlTOPp->__Vm_traceActivity);
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__1(vlSymsp);
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__2(vlSymsp);
-        vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
+        vlTOPp->_sequent__TOP__1(vlSymsp);
         vlSymsp->TOP__pipeline._sequent__TOP__pipeline__3(vlSymsp);
+        vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
     }
     if ((((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk))) 
          | ((IData)(vlTOPp->reset) & (~ (IData)(vlTOPp->__Vclklast__TOP__reset))))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__5(vlSymsp);
         vlTOPp->__Vm_traceActivity = (4U | vlTOPp->__Vm_traceActivity);
     }
     if (((~ (IData)(vlTOPp->clk)) & (IData)(vlTOPp->__Vclklast__TOP__clk))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__5(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (8U | vlTOPp->__Vm_traceActivity);
         vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__3(vlSymsp);
     }
     if (((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk)))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__9(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (0x10U | vlTOPp->__Vm_traceActivity);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__8(vlSymsp);
+        vlTOPp->__Vm_traceActivity = (8U | vlTOPp->__Vm_traceActivity);
     }
     if ((((IData)(vlTOPp->clk) & (~ (IData)(vlTOPp->__Vclklast__TOP__clk))) 
          | ((IData)(vlTOPp->reset) & (~ (IData)(vlTOPp->__Vclklast__TOP__reset))))) {
-        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__10(vlSymsp);
-        vlTOPp->__Vm_traceActivity = (0x20U | vlTOPp->__Vm_traceActivity);
+        vlSymsp->TOP__pipeline._sequent__TOP__pipeline__9(vlSymsp);
+        vlTOPp->__Vm_traceActivity = (0x10U | vlTOPp->__Vm_traceActivity);
     }
     // Final
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
@@ -127,10 +142,10 @@ void Vpipeline::_eval_initial(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval_initial\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
+    vlSymsp->TOP__pipeline._initial__TOP__pipeline__1(vlSymsp);
+    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
     vlTOPp->__Vclklast__TOP__clk = vlTOPp->clk;
     vlTOPp->__Vclklast__TOP__reset = vlTOPp->reset;
-    vlSymsp->TOP__pipeline._initial__TOP__pipeline__6(vlSymsp);
-    vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
 }
 
 void Vpipeline::final() {
@@ -144,10 +159,11 @@ void Vpipeline::_eval_settle(Vpipeline__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vpipeline::_eval_settle\n"); );
     Vpipeline* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlSymsp->TOP__pipeline._settle__TOP__pipeline__7(vlSymsp);
+    vlTOPp->_settle__TOP__2(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
+    vlSymsp->TOP__pipeline._settle__TOP__pipeline__6(vlSymsp);
     vlSymsp->TOP__pipeline__my_WB_stage._sequent__TOP__pipeline__my_WB_stage__2(vlSymsp);
-    vlSymsp->TOP__pipeline._sequent__TOP__pipeline__3(vlSymsp);
+    vlSymsp->TOP__pipeline._sequent__TOP__pipeline__4(vlSymsp);
 }
 
 VL_INLINE_OPT QData Vpipeline::_change_request(Vpipeline__Syms* __restrict vlSymsp) {
@@ -175,5 +191,7 @@ void Vpipeline::_ctor_var_reset() {
     // Body
     clk = VL_RAND_RESET_I(1);
     reset = VL_RAND_RESET_I(1);
+    out1 = VL_RAND_RESET_I(32);
+    out2 = VL_RAND_RESET_I(32);
     __Vm_traceActivity = 0;
 }

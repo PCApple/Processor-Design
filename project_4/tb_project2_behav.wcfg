@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_project2_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_project2" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="260.801 ns"></ZoomEndTime>
+      <Cursor1Time time="80.308 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="322"></NameColumnWidth>
+      <ValueColumnWidth column_width="178"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="38" />
+   <wvobject fp_name="/tb_project2/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/reset_n" type="logic">
+      <obj_property name="ElementShortName">reset_n</obj_property>
+      <obj_property name="ObjectShortName">reset_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/out1" type="array">
+      <obj_property name="ElementShortName">out1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/out2" type="array">
+      <obj_property name="ElementShortName">out2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/last_WB_value[10]" type="array">
+      <obj_property name="ElementShortName">[10][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/wr_reg_WB" type="logic">
+      <obj_property name="ElementShortName">wr_reg_WB</obj_property>
+      <obj_property name="ObjectShortName">wr_reg_WB</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/regval_WB" type="array">
+      <obj_property name="ElementShortName">regval_WB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">regval_WB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_MEM_stage/rd_mem_MEM" type="logic">
+      <obj_property name="ElementShortName">rd_mem_MEM</obj_property>
+      <obj_property name="ObjectShortName">rd_mem_MEM</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_MEM_stage/rd_val_MEM" type="array">
+      <obj_property name="ElementShortName">rd_val_MEM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rd_val_MEM[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/in_alu" type="array">
+      <obj_property name="ElementShortName">in_alu[5:0]</obj_property>
+      <obj_property name="ObjectShortName">in_alu[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/wregno_WB" type="array">
+      <obj_property name="ElementShortName">wregno_WB[4:0]</obj_property>
+      <obj_property name="ObjectShortName">wregno_WB[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_FE_stage/flush_pipe_FE" type="logic">
+      <obj_property name="ElementShortName">flush_pipe_FE</obj_property>
+      <obj_property name="ObjectShortName">flush_pipe_FE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_FE_stage/inst_FE" type="array">
+      <obj_property name="ElementShortName">inst_FE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">inst_FE[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_FE_stage/PC_FE_latch" type="array">
+      <obj_property name="ElementShortName">PC_FE_latch[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_FE_latch[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/op_I_AGEX" type="array">
+      <obj_property name="ElementShortName">op_I_AGEX[5:0]</obj_property>
+      <obj_property name="ObjectShortName">op_I_AGEX[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/forward_reg" type="array">
+      <obj_property name="ElementShortName">forward_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">forward_reg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/output_AGEX" type="array">
+      <obj_property name="ElementShortName">output_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/is_forwarding" type="logic">
+      <obj_property name="ElementShortName">is_forwarding</obj_property>
+      <obj_property name="ObjectShortName">is_forwarding</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_MEM_stage/forward_reg_MEM" type="array">
+      <obj_property name="ElementShortName">forward_reg_MEM[4:0]</obj_property>
+      <obj_property name="ObjectShortName">forward_reg_MEM[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/forward_reg_WB" type="array">
+      <obj_property name="ElementShortName">forward_reg_WB[4:0]</obj_property>
+      <obj_property name="ObjectShortName">forward_reg_WB[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/found_10" type="logic">
+      <obj_property name="ElementShortName">found_10</obj_property>
+      <obj_property name="ObjectShortName">found_10</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/op_I_AGEX" type="array">
+      <obj_property name="ElementShortName">op_I_AGEX[5:0]</obj_property>
+      <obj_property name="ObjectShortName">op_I_AGEX[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/sxt_imm_WB" type="array">
+      <obj_property name="ElementShortName">sxt_imm_WB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sxt_imm_WB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_FE_stage/PC_FE_latch" type="array">
+      <obj_property name="ElementShortName">PC_FE_latch[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_FE_latch[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/PC_DE" type="array">
+      <obj_property name="ElementShortName">PC_DE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_DE[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/PC_AGEX" type="array">
+      <obj_property name="ElementShortName">PC_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_MEM_stage/PC_MEM" type="array">
+      <obj_property name="ElementShortName">PC_MEM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_MEM[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/PC_WB" type="array">
+      <obj_property name="ElementShortName">PC_WB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_WB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/reg10_val" type="array">
+      <obj_property name="ElementShortName">reg10_val[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg10_val[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/from_FE_latch" type="array">
+      <obj_property name="ElementShortName">from_FE_latch[148:0]</obj_property>
+      <obj_property name="ObjectShortName">from_FE_latch[148:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_AGEX_stage/from_DE_latch" type="array">
+      <obj_property name="ElementShortName">from_DE_latch[259:0]</obj_property>
+      <obj_property name="ObjectShortName">from_DE_latch[259:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_MEM_stage/from_AGEX_latch" type="array">
+      <obj_property name="ElementShortName">from_AGEX_latch[246:0]</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_latch[246:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_WB_stage/from_MEM_latch" type="array">
+      <obj_property name="ElementShortName">from_MEM_latch[244:0]</obj_property>
+      <obj_property name="ObjectShortName">from_MEM_latch[244:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/pipeline_stall_DE" type="logic">
+      <obj_property name="ElementShortName">pipeline_stall_DE</obj_property>
+      <obj_property name="ObjectShortName">pipeline_stall_DE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/flush_pipe_DE" type="logic">
+      <obj_property name="ElementShortName">flush_pipe_DE</obj_property>
+      <obj_property name="ObjectShortName">flush_pipe_DE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_project2/my_frame/my_cpu/my_DE_stage/op_I_DE" type="array">
+      <obj_property name="ElementShortName">op_I_DE[5:0]</obj_property>
+      <obj_property name="ObjectShortName">op_I_DE[5:0]</obj_property>
+   </wvobject>
+</wave_config>

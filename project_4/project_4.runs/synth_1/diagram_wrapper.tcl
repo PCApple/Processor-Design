@@ -91,13 +91,13 @@ set_property ip_output_repo c:/Users/pockc/Documents/GitHub/CS3220/project_4/pro
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/hdl/diagram_wrapper.v
+read_verilog -library xil_defaultlib C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/hdl/diagram_wrapper.v
 add_files C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.srcs/sources_1/bd/diagram/diagram.bd
 set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_comm_0_0/constraints/comm_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_processing_system7_0_0/diagram_processing_system7_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_50M_1/diagram_rst_ps7_0_50M_1_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_50M_1/diagram_rst_ps7_0_50M_1.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_50M_1/diagram_rst_ps7_0_50M_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_processing_system7_0_1/diagram_processing_system7_0_1.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_100M_0/diagram_rst_ps7_0_100M_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_100M_0/diagram_rst_ps7_0_100M_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_rst_ps7_0_100M_0/diagram_rst_ps7_0_100M_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/ip/diagram_auto_pc_0/diagram_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.gen/sources_1/bd/diagram/diagram_ooc.xdc]
 
@@ -113,6 +113,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/pockc/Documents/GitHub/CS3220/project_4/project_4.srcs/utils_1/imports/synth_1/diagram_wrapper.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

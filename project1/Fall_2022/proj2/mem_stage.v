@@ -34,6 +34,7 @@ module MEM_STAGE(
   wire [`DBITS-1:0] PC_MEM;
   wire [`DBITS-1:0] sxt_imm_MEM;
   wire [`DBITS-1:0] rs1_MEM;
+  wire [`DBITS-1:0] rs1_out;
   wire [`DBITS-1:0] rs2_MEM;
   wire [`DBITS-1:0] output_MEM;
   wire [`TYPENOBITS-1:0] type_I_MEM; // instruction type
@@ -58,8 +59,8 @@ module MEM_STAGE(
 
   always @ (posedge clk) begin
     if (rd_mem_MEM) begin
-      $display("MEM address: %h, value: %h", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS], rd_val_MEM);
-      $display("MEM: rd_val_MEM = %h", rd_val_MEM);
+      //$display("MEM address: %h, value: %h", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS], rd_val_MEM);
+      //$display("MEM: rd_val_MEM = %h", rd_val_MEM);
     end
   end
  // Write to D-MEM
@@ -68,10 +69,10 @@ module MEM_STAGE(
     // fill out the correct signal name to do write operations 
       //synchronous write
       dmem[memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]] <= wr_val_MEM; 
-      $display("in write ", wr_val_MEM, " to address ", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]);
+      //$display("in write ", wr_val_MEM, " to address ", memaddr_MEM[`DMEMADDRBITS-1:`DMEMWORDBITS]);
   end
   end
-  assign rs1_MEM = rd_mem_MEM ? rd_val_MEM : output_MEM;
+  assign rs1_out = rd_mem_MEM ? rd_val_MEM : output_MEM;
   assign wr_val_MEM = rs2_MEM;
   assign MEM_latch_out = MEM_latch; 
 
@@ -102,7 +103,7 @@ module MEM_STAGE(
                                 op_I_MEM,
                                 inst_count_MEM,
                                 sxt_imm_MEM,
-                                rs1_MEM,
+                                rs1_out,
                                 rs2_MEM,
                                 output_MEM,
                                 type_I_MEM, 
@@ -112,7 +113,9 @@ module MEM_STAGE(
                                         // more signals might need    
                               bus_canary_MEM                   
    }; 
+   assign from_MEM_to_FE = 0;
    assign from_MEM_to_DE = {forward_reg_MEM, is_forwarding_MEM};
+   assign from_MEM_to_AGEX = 0;
 
   always @ (posedge clk) begin
     if (reset) begin

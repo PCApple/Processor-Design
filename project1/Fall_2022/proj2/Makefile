@@ -42,7 +42,8 @@ endif
 
 VX_DEFINE = $(PWD)/define.vh
 SED_STRING = 's|define IDMEMINITFILE.*|define IDMEMINITFILE "$(IDMEMINITFILE)"|g' 
-VL_FLAGS += --exe -cc pipeline.v --top-module pipeline --trace --trace-structs
+VL_FLAGS += --exe -cc pipeline.v --top-module pipeline --trace --trace-structs 
+#VL_FLAGS += --assert -Wall -Wpedantic -Wno-DECLFILENAME -Wno-UNUSED --x-initial unique --x-assign unique
 CXXFLAGS += -DVCD_OUTPUT -DDPRINTF
 LDFLAGS += 
 

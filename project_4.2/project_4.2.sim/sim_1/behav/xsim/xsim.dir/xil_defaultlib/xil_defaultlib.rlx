@@ -1,0 +1,14 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/agex_stage.v,1668395378,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,AGEX_STAGE,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/de_stage.v,1668124697,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,DE_STAGE,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,1668395314,verilog,,,,,,,,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/fe_stage.v,1668396814,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/mem_stage.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,FE_STAGE,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/mem_stage.v,1668397118,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/pipeline.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,MEM_STAGE,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/pipeline.v,1668135437,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/project2_frame.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,pipeline,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/project2_frame.v,1667866544,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,project2_frame,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tb_project2.v,1667866544,verilog,,,,tb_project2,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/wb_stage.v,1668463544,verilog,,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tb_project2.v,C:/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/define.vh,WB_STAGE,,,../../../../../project1/Fall_2022/proj2,,,,,
+C:/Users/pockc/Documents/GitHub/CS3220/project_4.2/project_4.2.sim/sim_1/behav/xsim/glbl.v,1649976174,verilog,,,,glbl,,,,,,,,

@@ -33,7 +33,7 @@ VM_PREFIX = Vpipeline
 VM_MODPREFIX = Vpipeline
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-DIDMEMINITFILE=/mnt/c/Users/pockc/Documents/GitHub/CS3220/project1/Fall_2022/proj2/tests/part3/xori.mem -DVCD_OUTPUT -DDPRINTF \
+	-DVCD_OUTPUT -DDPRINTF \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \

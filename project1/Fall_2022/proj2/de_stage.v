@@ -64,11 +64,7 @@ module DE_STAGE(
                         || ((inst_DE[24:20] == mem_forward_reg_addr) & is_forwarding_mem)
                         || ((inst_DE[24:20] == wb_forward_reg_addr) & is_forwarding_wb));
   // assign stall_next = ((op_I_DE != `U_Type)&&(is_forward_rs1 || is_forward_rs2)) || ((op_I_DE == `JAL_I) || (w op_I_DE == `JALR_I && is_forward_rs1) || (op_I_DE == `JR_I && is_forward_rs1));; // stall next cycle if any of the conditions are true
-  wire check1;
-  wire check2;
-  assign check1 = ((type_I_DE != `U_Type)&&(is_forward_rs1 || is_forward_rs2));
-  assign check2 = (op_I_DE == `JAL_I) || (op_I_DE == `JALR_I && is_forward_rs1) || (op_I_DE == `JR_I && is_forward_rs1);
-  assign stall_next = ((type_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
+ assign stall_next = ((type_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
 // stall next cycle if any of the conditions are true
   
   
@@ -141,6 +137,7 @@ module DE_STAGE(
       op_I_DE = `SW_I; 
     else if ((op_DE == `JAL_OPCODE))
       op_I_DE = `JAL_I; 
+      //$monitor ("In DE, op_I_DE = ", op_I_DE);
     // else if ((op_DE == `JR_OPCODE) && (F3_DE == `JR_FUNCT3))
      //  op_I_DE = `JR_I; 
     else if ((op_DE == `JALR_OPCODE) && (F3_DE == `JALR_FUNCT3))
@@ -261,9 +258,9 @@ module DE_STAGE(
   
 
 
-  reg stall_next;
+  wire stall_next;   // change reg to wire? to solve concurrency problem
   wire pipeline_stall_DE; 
-  assign pipeline_stall_DE = stall_next;
+  assign pipeline_stall_DE = {stall_next};
   assign from_DE_to_FE = {pipeline_stall_DE};
   //assign pipeline_stall_DE = {from_AGEX_to_DE};
 
@@ -328,7 +325,7 @@ module DE_STAGE(
 
 
 
-  always @ (negedge clk) begin 
+  always @ (posedge clk) begin 
   /* register write code is completed for your benefit */ 
     if (reset) begin 
       regs[0] <= {`DBITS{1'b0}};
@@ -393,9 +390,10 @@ module DE_STAGE(
   //assign stall_next = ((op_I_DE != `S_Type)&&(is_forward_rs1 || is_forward_rs2)) || (is_branch&&(is_forward_rs1 || is_forward_rs2)) || (wr_mem&&(is_forward_rs1 || is_forward_rs2)) || ((is_jmp || rd_mem)&& is_forward_rs1); // stall next cycle if any of the conditions are true
 
   always @ (posedge clk) begin // you need to expand this always block 
-    if (reset || pipeline_stall_DE || flush_pipe_DE || op_I_DE == `INVALID_I) begin
+    if (reset || pipeline_stall_DE || flush_pipe_DE) begin
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end else begin
+          //$monitor ("In DE, op_I_DE = ", op_I_DE, " is_branch = ", is_branch, " is_jmp = ", is_jmp, " rd_mem = ", rd_mem, " wr_mem = ", wr_mem, " wr_reg = ", wr_reg, " branch_predict_DE = ", branch_predict_DE, " PHT_index_DE = ", PHT_index_DE, " BHR_DE = ", BHR_DE, " bus_canary_DE = ", bus_canary_DE);
           DE_latch <= DE_latch_contents;
       end 
   end

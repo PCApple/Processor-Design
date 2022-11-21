@@ -1,0 +1,12 @@
+verilog xil_defaultlib --include "C:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" --include "../../../../project_4.gen/sources_1/bd/diagram/ip/diagram_comm_0_0/drivers/comm_v1_0/src" --include "../../../../project_4.gen/sources_1/bd/diagram/ipshared/ec67/hdl" --include "../../../../project_4.gen/sources_1/bd/diagram/ipshared/5765/hdl" \
+"../../../../project_4.gen/sources_1/bd/diagram/ipshared/8097/hdl/verilog/comm_control_s_axi.v" \
+"../../../../project_4.gen/sources_1/bd/diagram/ipshared/8097/hdl/verilog/comm.v" \
+"../../../bd/diagram/ip/diagram_comm_0_0/sim/diagram_comm_0_0.v" \
+"../../../bd/diagram/ip/diagram_processing_system7_0_0/sim/diagram_processing_system7_0_0.v" \
+"../../../bd/diagram/ip/diagram_project2_frame_0_0/sim/diagram_project2_frame_0_0.v" \
+"../../../bd/diagram/ip/diagram_auto_pc_0/sim/diagram_auto_pc_0.v" \
+"../../../bd/diagram/sim/diagram.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
